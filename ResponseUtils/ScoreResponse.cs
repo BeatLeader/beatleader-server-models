@@ -1,13 +1,11 @@
-﻿using BeatLeader_Server.Models;
+﻿using BeatLeader.Models;
 using Newtonsoft.Json;
 using System.Linq.Expressions;
-using static BeatLeader_Server.Utils.ResponseUtils;
+using static BeatLeader.Utils.ResponseUtils;
 using ReplayDecoder;
 
-namespace BeatLeader_Server.Utils
-{
-    public class ScoreResponse
-    {
+namespace BeatLeader.Utils {
+    public class ScoreResponse {
         public int Id { get; set; }
         public int BaseScore { get; set; }
         public int ModifiedScore { get; set; }
@@ -49,8 +47,7 @@ namespace BeatLeader_Server.Utils
         public ScoreMetadata? Metadata { get; set; }
         public ReplayOffsets? Offsets { get; set; }
 
-        public void ToContext(ScoreContextExtension? extension)
-        {
+        public void ToContext(ScoreContextExtension? extension) {
             if (extension == null) return;
 
             Weight = extension.Weight;
@@ -66,14 +63,12 @@ namespace BeatLeader_Server.Utils
         }
     }
 
-    public class ScoreResponseWithAcc : ScoreResponse
-    {
+    public class ScoreResponseWithAcc : ScoreResponse {
         public float AccLeft { get; set; }
         public float AccRight { get; set; }
     }
 
-    public class ScoreResponseWithMyScore : ScoreResponseWithAcc
-    {
+    public class ScoreResponseWithMyScore : ScoreResponseWithAcc {
         public ScoreResponseWithAcc? MyScore { get; set; }
         public LeaderboardContexts ValidContexts { get; set; }
 
@@ -81,12 +76,9 @@ namespace BeatLeader_Server.Utils
         public ICollection<ScoreContextExtension> ContextExtensions { get; set; }
     }
 
-    public static class ScoreResponseQuery
-    {
-        public static Expression<Func<Score, ScoreResponseWithMyScore>> SelectWithMyScore()
-        {
-            return s => new ScoreResponseWithMyScore
-            {
+    public static class ScoreResponseQuery {
+        public static Expression<Func<Score, ScoreResponseWithMyScore>> SelectWithMyScore() {
+            return s => new ScoreResponseWithMyScore {
                 Id = s.Id,
                 BaseScore = s.BaseScore,
                 ModifiedScore = s.ModifiedScore,
@@ -116,8 +108,7 @@ namespace BeatLeader_Server.Utils
                 Timepost = s.Timepost,
                 LeaderboardId = s.LeaderboardId,
                 Platform = s.Platform,
-                Player = new PlayerResponse
-                {
+                Player = new PlayerResponse {
                     Id = s.Player.Id,
                     Name = s.Player.Name,
                     Platform = s.Player.Platform,
@@ -141,12 +132,10 @@ namespace BeatLeader_Server.Utils
                 Metadata = s.Metadata,
                 Country = s.Country,
                 Offsets = s.ReplayOffsets,
-                Leaderboard = new LeaderboardResponse
-                {
+                Leaderboard = new LeaderboardResponse {
                     Id = s.LeaderboardId,
                     Song = s.Leaderboard.Song,
-                    Difficulty = new DifficultyResponse
-                    {
+                    Difficulty = new DifficultyResponse {
                         Id = s.Leaderboard.Difficulty.Id,
                         Value = s.Leaderboard.Difficulty.Value,
                         Mode = s.Leaderboard.Difficulty.Mode,
@@ -184,10 +173,8 @@ namespace BeatLeader_Server.Utils
             };
         }
 
-        public static Expression<Func<Score, ScoreResponseWithAcc>> SelectWithAcc() 
-        {
-            return s => new ScoreResponseWithAcc
-            {
+        public static Expression<Func<Score, ScoreResponseWithAcc>> SelectWithAcc() {
+            return s => new ScoreResponseWithAcc {
                 Id = s.Id,
                 BaseScore = s.BaseScore,
                 ModifiedScore = s.ModifiedScore,
@@ -217,8 +204,7 @@ namespace BeatLeader_Server.Utils
                 Timepost = s.Timepost,
                 LeaderboardId = s.LeaderboardId,
                 Platform = s.Platform,
-                Player = new PlayerResponse
-                {
+                Player = new PlayerResponse {
                     Id = s.Player.Id,
                     Name = s.Player.Name,
                     Platform = s.Player.Platform,

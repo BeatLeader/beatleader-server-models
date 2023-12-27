@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace BeatLeader_Server.Models {
+namespace BeatLeader.Models {
 
     [Index(nameof(PlayerId), nameof(LeaderboardId), nameof(Context), IsUnique = true)]
-    public class ScoreContextExtension
-    {
+    public class ScoreContextExtension {
         public int Id { get; set; }
         public string PlayerId { get; set; }
         public Player Player { get; set; }
@@ -21,7 +20,7 @@ namespace BeatLeader_Server.Models {
         public float TechPP { get; set; }
         public float BonusPp { get; set; }
         public string? Modifiers { get; set; }
-        
+
         public int Timeset { get; set; }
         public int Priority { get; set; }
 

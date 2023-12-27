@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BeatLeader_Server.Models
-{
-    public class ClanRanking
-    {
+namespace BeatLeader.Models {
+    public class ClanRanking {
         public int Id { get; set; } // Unique ID for this clanRanking
 
         public int? ClanId { get; set; }

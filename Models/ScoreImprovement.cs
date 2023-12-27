@@ -1,7 +1,5 @@
-﻿namespace BeatLeader_Server.Models
-{
-    public class ScoreImprovement
-    {
+﻿namespace BeatLeader.Models {
+    public class ScoreImprovement {
         public int Id { get; set; }
         public string Timeset { get; set; } = "";
         public int Score { get; set; }
@@ -22,5 +20,5 @@
         public int WallsHit { get; set; }
         public int Pauses { get; set; }
     }
-        
+
 }

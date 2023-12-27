@@ -1,7 +1,5 @@
-﻿namespace BeatLeader_Server.Models
-{
-    public class MapDetail
-    {
+﻿namespace BeatLeader.Models {
+    public class MapDetail {
         public string? Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -27,8 +25,7 @@
         public List<MapDetail> Docs { get; set; }
     }
 
-    public class UserDetail
-    {
+    public class UserDetail {
         public int Id { get; set; }
         public string Name { get; set; }
         public string? Description { get; set; }
@@ -46,8 +43,7 @@
         public string? PlaylistUrl { get; set; }
     }
 
-    public class MapVersion
-    {
+    public class MapVersion {
         public string Hash { get; set; }
         public string? Key { get; set; }
         public string State { get; set; }
@@ -60,8 +56,7 @@
         public string PreviewURL { get; set; }
     }
 
-    public class MapDifficulty
-    {
+    public class MapDifficulty {
         public float Njs { get; set; }
         public float Offset { get; set; }
         public int Notes { get; set; }
@@ -82,8 +77,7 @@
         public string? Label { get; set; }
     }
 
-    public class MapDetailMetadata
-    {
+    public class MapDetailMetadata {
         public float Bpm { get; set; }
         public int Duration { get; set; }
         public string SongName { get; set; }

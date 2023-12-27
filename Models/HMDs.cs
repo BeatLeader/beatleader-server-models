@@ -1,7 +1,5 @@
-﻿namespace BeatLeader_Server.Models
-{
-    public enum HMD
-    {
+﻿namespace BeatLeader.Models {
+    public enum HMD {
         unknown = 0,
         rift = 1,
         riftS = 16,

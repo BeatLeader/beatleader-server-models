@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BeatLeader_Server.Models {
+namespace BeatLeader.Models {
     [Index(nameof(PlayerId), nameof(Context), IsUnique = true)]
     public class PlayerContextExtension : IPlayer {
         public int Id { get; set; }

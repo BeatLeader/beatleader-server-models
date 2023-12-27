@@ -1,4 +1,4 @@
-﻿namespace BeatLeader_Server.Models {
+﻿namespace BeatLeader.Models {
     public class Leaderboard {
         public string Id { get; set; }
         public string? SongId { get; set; }

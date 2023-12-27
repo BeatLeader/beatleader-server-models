@@ -1,7 +1,5 @@
-﻿namespace BeatLeader_Server.Models
-{
-    public class Ban
-    {
+﻿namespace BeatLeader.Models {
+    public class Ban {
         public int Id { get; set; }
         public string PlayerId { get; set; }
         public string BannedBy { get; set; }

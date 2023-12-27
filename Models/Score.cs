@@ -2,11 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using ReplayDecoder;
 
-namespace BeatLeader_Server.Models
-{
+namespace BeatLeader.Models {
     [Flags]
-    public enum LeaderboardContexts
-    {
+    public enum LeaderboardContexts {
         None = 0,
         General = 1 << 1,
         NoMods = 1 << 2,
@@ -16,7 +14,7 @@ namespace BeatLeader_Server.Models
     }
 
     public static class ContextExtensions {
-        public static List<LeaderboardContexts> All =  new List<LeaderboardContexts> { 
+        public static List<LeaderboardContexts> All = new List<LeaderboardContexts> {
             LeaderboardContexts.General,
             LeaderboardContexts.NoMods,
             LeaderboardContexts.NoPause,
@@ -24,7 +22,7 @@ namespace BeatLeader_Server.Models
             LeaderboardContexts.SCPM
         };
 
-        public static List<LeaderboardContexts> NonGeneral = new List<LeaderboardContexts> { 
+        public static List<LeaderboardContexts> NonGeneral = new List<LeaderboardContexts> {
             LeaderboardContexts.NoMods,
             LeaderboardContexts.NoPause,
             LeaderboardContexts.Golf,
@@ -32,8 +30,7 @@ namespace BeatLeader_Server.Models
         };
     }
 
-    public class ScoreMetadata 
-    {
+    public class ScoreMetadata {
         public int Id { get; set; }
         public LeaderboardContexts PinnedContexts { get; set; }
         public int Priority { get; set; }
@@ -49,8 +46,7 @@ namespace BeatLeader_Server.Models
     [Index(nameof(Banned), nameof(Qualification), nameof(Pp), IsUnique = false)]
     [Index(nameof(Timepost), nameof(Replay))]
     [Index(nameof(PlayerId), nameof(Banned), nameof(Qualification), nameof(Pp), IsUnique = false)]
-    public class Score
-    {
+    public class Score {
         [Key]
         public int Id { get; set; }
         public int BaseScore { get; set; }
@@ -132,8 +128,7 @@ namespace BeatLeader_Server.Models
         public string? IP { get; set; }
         public string? Player { get; set; }
     }
-    public class FailedScore
-    {
+    public class FailedScore {
         public int Id { get; set; }
         public int BaseScore { get; set; }
         public int ModifiedScore { get; set; }

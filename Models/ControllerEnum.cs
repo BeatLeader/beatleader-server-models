@@ -1,13 +1,11 @@
-﻿namespace BeatLeader_Server.Models
-{
-    public enum ControllerEnum
-    {
+﻿namespace BeatLeader.Models {
+    public enum ControllerEnum {
         unknown = 0,
         oculustouch = 1,
         oculustouch2 = 16,
         quest2 = 256,
         vive = 2,
-        
+
         vivePro = 4,
         wmr = 8,
         odyssey = 9,

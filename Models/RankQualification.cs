@@ -1,7 +1,5 @@
-﻿namespace BeatLeader_Server.Models
-{
-    public class QualificationCommentary 
-    {
+﻿namespace BeatLeader.Models {
+    public class QualificationCommentary {
         public int Id { get; set; }
         public string PlayerId { get; set; }
         public int Timeset { get; set; }
@@ -16,8 +14,7 @@
         public string DiscordMessageId { get; set; } = "";
     }
 
-    public class CriteriaCommentary 
-    {
+    public class CriteriaCommentary {
         public int Id { get; set; }
         public string PlayerId { get; set; }
         public int Timeset { get; set; }
@@ -32,15 +29,13 @@
         public string DiscordMessageId { get; set; } = "";
     }
 
-    public enum MapQuality
-    {
+    public enum MapQuality {
         Good = 1,
         Ok = 2,
         Bad = 3
     }
 
-    public class QualificationVote 
-    {
+    public class QualificationVote {
         public int Id { get; set; }
         public string PlayerId { get; set; }
         public int Timeset { get; set; }
@@ -55,8 +50,7 @@
         public string? DiscordRTMessageId { get; set; }
     }
 
-    public class RankQualification
-    {
+    public class RankQualification {
         public int Id { get; set; }
         public int Timeset { get; set; }
         public string RTMember { get; set; }

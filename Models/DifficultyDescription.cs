@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BeatLeader_Server.Models
-{
-    public enum DifficultyStatus
-    {
+namespace BeatLeader.Models {
+    public enum DifficultyStatus {
         unranked = 0,
         nominated = 1,
         qualified = 2,
@@ -15,8 +13,7 @@ namespace BeatLeader_Server.Models
     }
 
     [Flags]
-    public enum Requirements
-    {
+    public enum Requirements {
         Ignore = -1,
         None = 0,
         Chroma = 1 << 1,
@@ -28,8 +25,7 @@ namespace BeatLeader_Server.Models
     }
 
     [Index(nameof(Status), IsUnique = false)]
-    public class DifficultyDescription
-    {
+    public class DifficultyDescription {
         public int Id { get; set; }
         public int Value { get; set; }
         public int Mode { get; set; }

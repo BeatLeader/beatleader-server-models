@@ -1,7 +1,5 @@
-﻿namespace BeatLeader_Server.Models
-{
-    public class RankUpdate
-    {
+﻿namespace BeatLeader.Models {
+    public class RankUpdate {
         public int Id { get; set; }
         public int Timeset { get; set; }
         public string RTMember { get; set; }
@@ -22,8 +20,7 @@
         public ICollection<RankUpdateChange>? Changes { get; set; }
     }
 
-    public class RankUpdateChange
-    {
+    public class RankUpdateChange {
         public int Id { get; set; }
 
         public int Timeset { get; set; } = 0;

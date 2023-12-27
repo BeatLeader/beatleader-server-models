@@ -1,7 +1,7 @@
-﻿using BeatLeader_Server.Models;
+﻿using BeatLeader.Models;
 using Newtonsoft.Json;
 
-namespace BeatLeader_Server.Utils {
+namespace BeatLeader.Utils {
     public class ResponseUtils {
         public class ClanResponse {
             public int Id { get; set; }
@@ -84,7 +84,7 @@ namespace BeatLeader_Server.Utils {
             public ICollection<PlayerChange>? Changes { get; set; }
         }
 
-        
+
 
         public class ScoreSongResponse {
             public string Id { get; set; }
@@ -142,7 +142,7 @@ namespace BeatLeader_Server.Utils {
             public new ICollection<LeaderboardsInfoResponseWithScore> Leaderboards { get; set; }
         }
 
-        public class LeaderboardsInfoResponseWithScore : LeaderboardsInfoResponse { 
+        public class LeaderboardsInfoResponseWithScore : LeaderboardsInfoResponse {
             public ScoreResponseWithAcc? MyScore { get; set; }
         }
 
@@ -219,8 +219,7 @@ namespace BeatLeader_Server.Utils {
             public Requirements Requirements { get; set; }
         }
 
-        public class DifficultyResponse
-        {
+        public class DifficultyResponse {
             public int Id { get; set; }
             public int Value { get; set; }
             public int Mode { get; set; }
@@ -275,8 +274,7 @@ namespace BeatLeader_Server.Utils {
 
             public Clan? Clan { get; set; }
             public bool ClanRankingContested { get; set; }
-            public void HideRatings()
-            {
+            public void HideRatings() {
                 this.Difficulty.HideRatings();
             }
         }
@@ -286,8 +284,7 @@ namespace BeatLeader_Server.Utils {
             public ICollection<ClanRankingResponse>? ClanRanking { get; set; }
         }
 
-        public class ClanRankingResponse
-        {
+        public class ClanRankingResponse {
             public int Id { get; set; }
             public Clan Clan { get; set; }
             public int LastUpdateTime { get; set; }
@@ -441,8 +438,8 @@ namespace BeatLeader_Server.Utils {
                         PlayerId = ce.PlayerId,
 
                         Rank = ce.Rank,
-                        Country  = ce.Country,
-                        CountryRank  = ce.CountryRank,
+                        Country = ce.Country,
+                        CountryRank = ce.CountryRank,
                     }).ToList() : null,
                     Clans = s.Player.Clans?.OrderBy(c => s.Player.ClanOrder.IndexOf(c.Tag))
                             .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
@@ -519,8 +516,8 @@ namespace BeatLeader_Server.Utils {
                         PassPp = ce.PassPp,
 
                         Rank = ce.Rank,
-                        Country  = ce.Country,
-                        CountryRank  = ce.CountryRank,
+                        Country = ce.Country,
+                        CountryRank = ce.CountryRank,
                     }).ToList() : null,
                     Clans = s.Player.Clans?.OrderBy(c => s.Player.ClanOrder.IndexOf(c.Tag))
                             .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
@@ -610,24 +607,24 @@ namespace BeatLeader_Server.Utils {
                         Status = s.Leaderboard.Difficulty.Status,
                         ModifierValues = s.Leaderboard.Difficulty.ModifierValues,
                         ModifiersRating = s.Leaderboard.Difficulty.ModifiersRating,
-                        NominatedTime  = s.Leaderboard.Difficulty.NominatedTime,
-                        QualifiedTime  = s.Leaderboard.Difficulty.QualifiedTime,
+                        NominatedTime = s.Leaderboard.Difficulty.NominatedTime,
+                        QualifiedTime = s.Leaderboard.Difficulty.QualifiedTime,
                         RankedTime = s.Leaderboard.Difficulty.RankedTime,
 
-                        Stars  = s.Leaderboard.Difficulty.Stars,
-                        PredictedAcc  = s.Leaderboard.Difficulty.PredictedAcc,
-                        PassRating  = s.Leaderboard.Difficulty.PassRating,
-                        AccRating  = s.Leaderboard.Difficulty.AccRating,
-                        TechRating  = s.Leaderboard.Difficulty.TechRating,
-                        Type  = s.Leaderboard.Difficulty.Type,
+                        Stars = s.Leaderboard.Difficulty.Stars,
+                        PredictedAcc = s.Leaderboard.Difficulty.PredictedAcc,
+                        PassRating = s.Leaderboard.Difficulty.PassRating,
+                        AccRating = s.Leaderboard.Difficulty.AccRating,
+                        TechRating = s.Leaderboard.Difficulty.TechRating,
+                        Type = s.Leaderboard.Difficulty.Type,
 
-                        Njs  = s.Leaderboard.Difficulty.Njs,
-                        Nps  = s.Leaderboard.Difficulty.Nps,
-                        Notes  = s.Leaderboard.Difficulty.Notes,
-                        Bombs  = s.Leaderboard.Difficulty.Bombs,
-                        Walls  = s.Leaderboard.Difficulty.Walls,
+                        Njs = s.Leaderboard.Difficulty.Njs,
+                        Nps = s.Leaderboard.Difficulty.Nps,
+                        Notes = s.Leaderboard.Difficulty.Notes,
+                        Bombs = s.Leaderboard.Difficulty.Bombs,
+                        Walls = s.Leaderboard.Difficulty.Walls,
                         MaxScore = s.Leaderboard.Difficulty.MaxScore,
-                        Duration  = s.Leaderboard.Difficulty.Duration,
+                        Duration = s.Leaderboard.Difficulty.Duration,
 
                         Requirements = s.Leaderboard.Difficulty.Requirements,
                     } : null
@@ -680,24 +677,24 @@ namespace BeatLeader_Server.Utils {
                     Status = l.Difficulty.Status,
                     ModifierValues = l.Difficulty.ModifierValues,
                     ModifiersRating = l.Difficulty.ModifiersRating,
-                    NominatedTime  = l.Difficulty.NominatedTime,
-                    QualifiedTime  = l.Difficulty.QualifiedTime,
+                    NominatedTime = l.Difficulty.NominatedTime,
+                    QualifiedTime = l.Difficulty.QualifiedTime,
                     RankedTime = l.Difficulty.RankedTime,
 
-                    Stars  = l.Difficulty.Stars,
-                    PredictedAcc  = l.Difficulty.PredictedAcc,
-                    PassRating  = l.Difficulty.PassRating,
-                    AccRating  = l.Difficulty.AccRating,
-                    TechRating  = l.Difficulty.TechRating,
-                    Type  = l.Difficulty.Type,
+                    Stars = l.Difficulty.Stars,
+                    PredictedAcc = l.Difficulty.PredictedAcc,
+                    PassRating = l.Difficulty.PassRating,
+                    AccRating = l.Difficulty.AccRating,
+                    TechRating = l.Difficulty.TechRating,
+                    Type = l.Difficulty.Type,
 
-                    Njs  = l.Difficulty.Njs,
-                    Nps  = l.Difficulty.Nps,
-                    Notes  = l.Difficulty.Notes,
-                    Bombs  = l.Difficulty.Bombs,
-                    Walls  = l.Difficulty.Walls,
+                    Njs = l.Difficulty.Njs,
+                    Nps = l.Difficulty.Nps,
+                    Notes = l.Difficulty.Notes,
+                    Bombs = l.Difficulty.Bombs,
+                    Walls = l.Difficulty.Walls,
                     MaxScore = l.Difficulty.MaxScore,
-                    Duration  = l.Difficulty.Duration,
+                    Duration = l.Difficulty.Duration,
 
                     Requirements = l.Difficulty.Requirements,
                 },

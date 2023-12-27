@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace BeatLeader_Server.Models {
+namespace BeatLeader.Models {
     public class GraphResponse {
         public string LeaderboardId { get; set; }
         public string Diff { get; set; }

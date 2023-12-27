@@ -1,7 +1,5 @@
-﻿namespace BeatLeader_Server.Models
-{
-    public class EventRanking
-    {
+﻿namespace BeatLeader.Models {
+    public class EventRanking {
         public int Id { get; set; }
         public string Name { get; set; }
         public int EndDate { get; set; }

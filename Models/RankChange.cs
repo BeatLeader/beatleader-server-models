@@ -1,7 +1,5 @@
-﻿namespace BeatLeader_Server.Models
-{
-    public class LeaderboardChange
-    {
+﻿namespace BeatLeader.Models {
+    public class LeaderboardChange {
         public int Id { get; set; }
 
         public int Timeset { get; set; } = 0;
@@ -30,8 +28,7 @@
         public ModifiersRating? NewModifiersRating { get; set; }
     }
 
-    public class QualificationChange
-    {
+    public class QualificationChange {
         public int Id { get; set; }
 
         public int Timeset { get; set; } = 0;

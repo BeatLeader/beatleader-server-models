@@ -1,6 +1,6 @@
 ﻿using ReplayDecoder;
 
-namespace BeatLeader_Server.Models {
+namespace BeatLeader.Models {
     public enum EndType {
         Unknown = 0,
         Clear = 1,

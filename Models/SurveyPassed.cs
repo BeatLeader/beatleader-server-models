@@ -1,4 +1,4 @@
-﻿namespace BeatLeader_Server.Models {
+﻿namespace BeatLeader.Models {
     public class SurveyPassed {
         public int Id { get; set; }
         public string PlayerId { get; set; }

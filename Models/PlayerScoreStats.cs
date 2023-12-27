@@ -1,8 +1,6 @@
 ﻿using System;
-namespace BeatLeader_Server.Models
-{
-    public class PlayerScoreStats
-    {
+namespace BeatLeader.Models {
+    public class PlayerScoreStats {
         public int Id { get; set; }
 
         public long TotalScore { get; set; }
@@ -66,7 +64,7 @@ namespace BeatLeader_Server.Models
         public int APlays { get; set; }
 
         public string TopPlatform { get; set; } = "";
-        public HMD TopHMD { get ; set; }
+        public HMD TopHMD { get; set; }
 
         public int DailyImprovements { get; set; }
         public int AuthorizedReplayWatched { get; set; }
@@ -74,8 +72,7 @@ namespace BeatLeader_Server.Models
         public int WatchedReplays { get; set; }
     }
 
-    public class PlayerScoreStatsHistory
-    {
+    public class PlayerScoreStatsHistory {
         public int Id { get; set; }
         public LeaderboardContexts Context { get; set; }
         public int Timestamp { get; set; }
@@ -141,14 +138,11 @@ namespace BeatLeader_Server.Models
         public int WatchedReplays { get; set; }
     }
 
-    public class PlayerVoteStats
-    {
+    public class PlayerVoteStats {
         public int Id { get; set; }
     }
 
-    public class PlayerRankStats
-    {
+    public class PlayerRankStats {
         public int Id { get; set; }
     }
 }
-

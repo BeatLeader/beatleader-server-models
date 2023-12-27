@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BeatLeader_Server.Models
-{
-    public class ModifiersRating 
-    {
+namespace BeatLeader.Models {
+    public class ModifiersRating {
         public int Id { get; set; }
         public float FSPredictedAcc { get; set; }
         public float FSPassRating { get; set; }
@@ -24,8 +22,7 @@ namespace BeatLeader_Server.Models
         public float SFStars { get; set; }
     }
 
-    public class ModifiersMap
-    {
+    public class ModifiersMap {
         [Key]
         public int ModifierId { get; set; }
 

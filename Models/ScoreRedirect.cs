@@ -1,7 +1,5 @@
-﻿namespace BeatLeader_Server.Models
-{
-    public class ScoreRedirect
-    {
+﻿namespace BeatLeader.Models {
+    public class ScoreRedirect {
         public int Id { get; set; }
 
         public int OldScoreId { get; set; }

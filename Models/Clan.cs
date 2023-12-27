@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BeatLeader_Server.Models
-{
-    public class Clan
-    {
+namespace BeatLeader.Models {
+    public class Clan {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Color { get; set; }
@@ -30,8 +28,7 @@ namespace BeatLeader_Server.Models
         public ICollection<User> Banned { get; set; } = new List<User>();
     }
 
-    public class ReservedClanTag
-    {
+    public class ReservedClanTag {
         public int Id { get; set; }
         public string Tag { get; set; }
     }

@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BeatLeader_Server.Models
-{
-    public class PlayerFriends
-    {
+namespace BeatLeader.Models {
+    public class PlayerFriends {
         public string Id { get; set; }
 
         [ForeignKey("PlayerFriendsId")]

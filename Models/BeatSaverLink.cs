@@ -1,7 +1,5 @@
-﻿namespace BeatLeader_Server.Models
-{
-    public class BeatSaverLink
-    {
+﻿namespace BeatLeader.Models {
+    public class BeatSaverLink {
         public string Id { get; set; }
         public string BeatSaverId { get; set; }
         public string Token { get; set; } = "";

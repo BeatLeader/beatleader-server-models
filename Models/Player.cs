@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace BeatLeader_Server.Models {
+namespace BeatLeader.Models {
     public class PlayerChange {
         public int Id { get; set; }
         public int Timestamp { get; set; }
@@ -110,7 +110,7 @@ namespace BeatLeader_Server.Models {
             role.Contains("sponsor") ||
             role.Contains("booster") ||
             role.Contains("creator") ||
-            role.Contains("rankedteam") || 
+            role.Contains("rankedteam") ||
             role.Contains("qualityteam");
         }
 

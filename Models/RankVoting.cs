@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BeatLeader_Server.Models
-{
-    public class RankVoting
-    {
+namespace BeatLeader.Models {
+    public class RankVoting {
         [Key]
         public int ScoreId { get; set; }
         public string PlayerId { get; set; }

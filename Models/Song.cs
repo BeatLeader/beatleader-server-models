@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
-namespace BeatLeader_Server.Models
-{
+namespace BeatLeader.Models {
     [Flags]
-    public enum SongStatus
-    {
+    public enum SongStatus {
         None = 0,
         Curated = 1 << 1,
         MapOfTheWeek = 1 << 2,
@@ -13,8 +11,7 @@ namespace BeatLeader_Server.Models
         FeaturedOnCC = 1 << 4,
     }
 
-    public class ExternalStatus
-    {
+    public class ExternalStatus {
         public int Id { get; set; }
         public SongStatus Status { get; set; }
         public int Timeset { get; set; }
@@ -23,8 +20,7 @@ namespace BeatLeader_Server.Models
     }
 
     [Index(nameof(Hash), IsUnique = true)]
-    public class Song
-    {
+    public class Song {
         public string Id { get; set; }
         public string Hash { get; set; }
         public string Name { get; set; }
@@ -56,8 +52,7 @@ namespace BeatLeader_Server.Models
         [JsonIgnore]
         public ICollection<SongSearch> Searches { get; set; }
 
-        public void FromMapDetails(MapDetail info)
-        {
+        public void FromMapDetails(MapDetail info) {
             Author = info.Metadata.SongAuthorName;
             Mapper = info.Metadata.LevelAuthorName;
             Name = info.Metadata.SongName;
@@ -66,12 +61,10 @@ namespace BeatLeader_Server.Models
             Bpm = info.Metadata.Bpm;
             MapperId = info.Uploader.Id;
             UploadTime = (int)info.Uploaded?.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-            if (info.Tags != null)
-            {
+            if (info.Tags != null) {
                 Tags = string.Join(",", info.Tags);
             }
-            if (info.Curator != null)
-            {
+            if (info.Curator != null) {
 
                 ExternalStatuses = new List<ExternalStatus>() {
                     new ExternalStatus {
@@ -82,8 +75,7 @@ namespace BeatLeader_Server.Models
                 };
             }
 
-            if (info.Collaborators?.Count > 0)
-            {
+            if (info.Collaborators?.Count > 0) {
                 CollaboratorIds = string.Join(",", info.Collaborators.Select(c => c.Id));
             }
 
@@ -92,18 +84,15 @@ namespace BeatLeader_Server.Models
             DownloadUrl = currentVersion.DownloadURL;
             Hash = currentVersion.Hash;
 
-            if (info.Id != null)
-            {
+            if (info.Id != null) {
                 Id = info.Id;
-            } else
-            {
+            } else {
                 Id = currentVersion.Key;
             }
 
             List<DifficultyDescription> difficulties = new List<DifficultyDescription>();
             var diffs = currentVersion.Diffs;
-            foreach (var diff in diffs)
-            {
+            foreach (var diff in diffs) {
                 DifficultyDescription difficulty = new DifficultyDescription();
                 difficulty.ModeName = diff.Characteristic;
                 difficulty.Mode = ModeForModeName(diff.Characteristic);
@@ -117,20 +106,16 @@ namespace BeatLeader_Server.Models
                 difficulty.Walls = diff.Obstacles;
                 difficulty.MaxScore = diff.MaxScore;
                 difficulty.Duration = info.Metadata.Duration;
-                if (diff.Chroma)
-                {
+                if (diff.Chroma) {
                     difficulty.Requirements |= Requirements.Chroma;
                 }
-                if (diff.Me)
-                {
+                if (diff.Me) {
                     difficulty.Requirements |= Requirements.MappingExtensions;
                 }
-                if (diff.Ne)
-                {
+                if (diff.Ne) {
                     difficulty.Requirements |= Requirements.Noodles;
                 }
-                if (diff.Cinema)
-                {
+                if (diff.Cinema) {
                     difficulty.Requirements |= Requirements.Cinema;
                 }
 
@@ -139,10 +124,8 @@ namespace BeatLeader_Server.Models
             Difficulties = difficulties;
         }
 
-        public static int ModeForModeName(string modeName)
-        {
-            switch (modeName)
-            {
+        public static int ModeForModeName(string modeName) {
+            switch (modeName) {
                 case "Standard":
                     return 1;
                 case "OneSaber":
@@ -162,10 +145,8 @@ namespace BeatLeader_Server.Models
             return 0;
         }
 
-        public static int DiffForDiffName(string diffName)
-        {
-            switch (diffName)
-            {
+        public static int DiffForDiffName(string diffName) {
+            switch (diffName) {
                 case "Easy":
                 case "easy":
                     return 1;
@@ -186,10 +167,8 @@ namespace BeatLeader_Server.Models
             return 0;
         }
 
-        public static string DiffNameForDiff(int diff)
-        {
-            switch (diff)
-            {
+        public static string DiffNameForDiff(int diff) {
+            switch (diff) {
                 case 1:
                     return "Easy";
                 case 3:

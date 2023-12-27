@@ -1,4 +1,4 @@
-﻿namespace BeatLeader_Server.Models {
+﻿namespace BeatLeader.Models {
     public class AchievementLevel {
         public int Id { get; set; }
 
@@ -18,7 +18,7 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public string? Link { get; set; }
-        
+
         public ICollection<Achievement>? Achievements { get; set; }
         public ICollection<AchievementLevel>? Levels { get; set; }
     }
@@ -33,5 +33,5 @@
         public AchievementLevel? Level { get; set; }
         public int Timeset { get; set; }
         public int Count { get; set; }
-    }   
+    }
 }

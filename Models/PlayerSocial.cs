@@ -1,7 +1,5 @@
-﻿namespace BeatLeader_Server.Models
-{
-    public class PlayerSocial
-    {
+﻿namespace BeatLeader.Models {
+    public class PlayerSocial {
         public int Id { get; set; }
         public string Service { get; set; }
         public string Link { get; set; }
