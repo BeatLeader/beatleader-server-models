@@ -1,11 +1,11 @@
-﻿namespace BeatLeader.Models {
-    public class PlayerSocial {
-        public int Id { get; set; }
-        public string Service { get; set; }
-        public string Link { get; set; }
-        public string User { get; set; }
+﻿namespace BeatLeader.Models;
 
-        public string UserId { get; set; }
-        public string? PlayerId { get; set; }
-    }
+public class PlayerSocial {
+    public int Id { get; set; }
+    public string Service { get; set; } = null!;
+    public string Link { get; set; } = null!;
+    public string User { get; set; } = null!;
+
+    public string UserId { get; set; } = null!;
+    public string? PlayerId { get; set; }
 }

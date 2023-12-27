@@ -1,9 +1,9 @@
-﻿namespace BeatLeader.Models.SongSuggest {
-    public class Top10kPlayer {
-        public String id { get; set; }
-        public String name { get; set; }
-        public int rank { get; set; }
+﻿namespace BeatLeader.Models.SongSuggest;
 
-        public List<Top10kScore> top10kScore { get; set; }
-    }
+public class Top10kPlayer {
+    public string id { get; set; } = null!;
+    public string name { get; set; } = null!;
+    public int rank { get; set; }
+
+    public List<Top10kScore> top10kScore { get; set; } = null!;
 }

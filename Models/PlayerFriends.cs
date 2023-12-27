@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BeatLeader.Models {
-    public class PlayerFriends {
-        public string Id { get; set; }
+namespace BeatLeader.Models;
 
-        [ForeignKey("PlayerFriendsId")]
-        public ICollection<Player> Friends { get; set; } = new List<Player>();
-    }
+public class PlayerFriends {
+    public string Id { get; set; } = null!;
+
+    [ForeignKey("PlayerFriendsId")]
+    public ICollection<Player> Friends { get; set; } = new List<Player>();
 }
