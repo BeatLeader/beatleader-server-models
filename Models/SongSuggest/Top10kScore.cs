@@ -3,7 +3,7 @@
 namespace BeatLeader.Models.SongSuggest;
 
 public class Top10kScore {
-    public string songID { get; set; } = null!;
+    public required string songID { get; set; }
     public float pp { get; set; }
     public int rank { get; set; }
 

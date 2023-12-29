@@ -59,7 +59,7 @@ public class ModifiersMap {
         };
 
     public bool EqualTo(ModifiersMap? other)
-        => other != null && Math.Abs(DA - other.DA) < 0.001 && Math.Abs(FS - other.FS) < 0.001 && Math.Abs(SS - other.SS) < 0.001 && Math.Abs(SF - other.SF) < 0.001 && Math.Abs(GN - other.GN) < 0.001 && Math.Abs(NA - other.NA) < 0.001
+        => other is not null && Math.Abs(DA - other.DA) < 0.001 && Math.Abs(FS - other.FS) < 0.001 && Math.Abs(SS - other.SS) < 0.001 && Math.Abs(SF - other.SF) < 0.001 && Math.Abs(GN - other.GN) < 0.001 && Math.Abs(NA - other.NA) < 0.001
             && Math.Abs(NB - other.NB) < 0.001 && Math.Abs(NF - other.NF) < 0.001 && Math.Abs(NO - other.NO) < 0.001 && Math.Abs(PM - other.PM) < 0.001 && Math.Abs(SC - other.SC) < 0.001 && Math.Abs(SA - other.SA) < 0.001
             && Math.Abs(OP - other.OP) < 0.001;
 }

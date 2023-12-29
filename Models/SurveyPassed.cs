@@ -2,7 +2,7 @@
 
 public class SurveyPassed {
     public int Id { get; set; }
-    public string PlayerId { get; set; } = null!;
-    public string SurveyId { get; set; } = null!;
+    public required string PlayerId { get; set; }
+    public required string SurveyId { get; set; }
     public int Timeset { get; set; }
 }

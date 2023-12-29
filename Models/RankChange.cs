@@ -4,7 +4,7 @@ public class LeaderboardChange {
     public int Id { get; set; }
 
     public int Timeset { get; set; } = 0;
-    public string PlayerId { get; set; } = null!;
+    public required string PlayerId { get; set; }
 
     public float OldRankability { get; set; } = 0;
     public float OldStars { get; set; } = 0;
@@ -33,7 +33,7 @@ public class QualificationChange {
     public int Id { get; set; }
 
     public int Timeset { get; set; } = 0;
-    public string PlayerId { get; set; } = null!;
+    public required string PlayerId { get; set; }
 
     public float OldRankability { get; set; } = 0;
     public float OldStars { get; set; } = 0;

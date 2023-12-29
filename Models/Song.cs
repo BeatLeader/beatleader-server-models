@@ -22,19 +22,19 @@ public class ExternalStatus {
 
 [Index(nameof(Hash), IsUnique = true)]
 public class Song {
-    public string Id { get; set; } = null!;
-    public string Hash { get; set; } = null!;
-    public string Name { get; set; } = null!;
+    public required string Id { get; set; }
+    public required string Hash { get; set; }
+    public required string Name { get; set; }
     [JsonIgnore]
     public string? Description { get; set; }
     public string? SubName { get; set; }
-    public string Author { get; set; } = null!;
-    public string Mapper { get; set; } = null!;
+    public required string Author { get; set; }
+    public required string Mapper { get; set; }
     public int MapperId { get; set; }
     public string? CollaboratorIds { get; set; }
-    public string CoverImage { get; set; } = null!;
+    public required string CoverImage { get; set; }
     public string? FullCoverImage { get; set; }
-    public string DownloadUrl { get; set; } = null!;
+    public required string DownloadUrl { get; set; }
     public double Bpm { get; set; }
     public double Duration { get; set; }
     public string? Tags { get; set; }
@@ -42,7 +42,7 @@ public class Song {
     [JsonIgnore]
     public string CreatedTime { get; set; } = "";
     public int UploadTime { get; set; }
-    public ICollection<DifficultyDescription> Difficulties { get; set; } = null!;
+    public required ICollection<DifficultyDescription> Difficulties { get; set; }
     public ICollection<ExternalStatus>? ExternalStatuses { get; set; }
 
     [JsonIgnore]
@@ -51,7 +51,7 @@ public class Song {
     public bool Refreshed { get; set; }
 
     [JsonIgnore]
-    public ICollection<SongSearch> Searches { get; set; } = null!;
+    public required ICollection<SongSearch> Searches { get; set; }
 
     public void FromMapDetails(MapDetail info) {
         Author = info.Metadata.SongAuthorName;
@@ -132,63 +132,41 @@ public class Song {
         Difficulties = difficulties;
     }
 
-    public static int ModeForModeName(string modeName) {
-        switch (modeName) {
-            case "Standard":
-                return 1;
-            case "OneSaber":
-                return 2;
-            case "NoArrows":
-                return 3;
-            case "90Degree":
-                return 4;
-            case "360Degree":
-                return 5;
-            case "Lightshow":
-                return 6;
-            case "Lawless":
-                return 7;
-        }
+    public static int ModeForModeName(string modeName)
+        => modeName switch {
+            "Standard" => 1,
+            "OneSaber" => 2,
+            "NoArrows" => 3,
+            "90Degree" => 4,
+            "360Degree" => 5,
+            "Lightshow" => 6,
+            "Lawless" => 7,
+            _ => 0
+        };
 
-        return 0;
-    }
 
-    public static int DiffForDiffName(string diffName) {
-        switch (diffName) {
-            case "Easy":
-            case "easy":
-                return 1;
-            case "Normal":
-            case "normal":
-                return 3;
-            case "Hard":
-            case "hard":
-                return 5;
-            case "Expert":
-            case "expert":
-                return 7;
-            case "ExpertPlus":
-            case "expertPlus":
-                return 9;
-        }
+    public static int DiffForDiffName(string diffName)
+        => diffName switch {
+            "Easy" => 1,
+            "easy" => 1,
+            "Normal" => 3,
+            "normal" => 3,
+            "Hard" => 5,
+            "hard" => 5,
+            "Expert" => 7,
+            "expert" => 7,
+            "ExpertPlus" => 9,
+            "expertPlus" => 9,
+            _ => 0
+        };
 
-        return 0;
-    }
-
-    public static string DiffNameForDiff(int diff) {
-        switch (diff) {
-            case 1:
-                return "Easy";
-            case 3:
-                return "Normal";
-            case 5:
-                return "Hard";
-            case 7:
-                return "Expert";
-            case 9:
-                return "ExpertPlus";
-        }
-
-        return "";
-    }
+    public static string DiffNameForDiff(int diff)
+        => diff switch {
+            1 => "Easy",
+            3 => "Normal",
+            5 => "Hard",
+            7 => "Expert",
+            9 => "ExpertPlus",
+            _ => ""
+        };
 }

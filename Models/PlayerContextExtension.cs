@@ -9,15 +9,15 @@ public class PlayerContextExtension : IPlayer {
     public int Id { get; set; }
     public LeaderboardContexts Context { get; set; }
 
-    public string PlayerId { get; set; } = null!;
-    public Player Player { get; set; } = null!;
+    public required string PlayerId { get; set; }
+    public Player? Player { get; set; }
     public float Pp { get; set; }
     public float AccPp { get; set; }
     public float TechPp { get; set; }
     public float PassPp { get; set; }
 
     public int Rank { get; set; }
-    public string Country { get; set; } = null!;
+    public required string Country { get; set; }
     public int CountryRank { get; set; }
 
     public float LastWeekPp { get; set; }
@@ -28,6 +28,12 @@ public class PlayerContextExtension : IPlayer {
 
     [NotMapped]
     [JsonIgnore]
-    // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
-    public string Name { get => Player != null ? Player.Name : ""; set => Player.Name = value; }
+    public string Name {
+        get => Player != null ? Player.Name : "";
+        set {
+            if (Player is null) return;
+
+            Player.Name = value;
+        }
+    }
 }

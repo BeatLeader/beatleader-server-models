@@ -1,12 +1,12 @@
 ﻿namespace BeatLeader.Models;
 
 public class Leaderboard {
-    public string Id { get; set; } = null!;
+    public required string Id { get; set; }
     public string? SongId { get; set; }
-    public Song Song { get; set; } = null!;
-    public DifficultyDescription Difficulty { get; set; } = null!;
-    public ICollection<Score> Scores { get; set; } = null!;
-    public ICollection<ScoreContextExtension> ContextExtensions { get; set; } = null!;
+    public required Song Song { get; set; }
+    public required DifficultyDescription Difficulty { get; set; }
+    public required ICollection<Score> Scores { get; set; }
+    public required ICollection<ScoreContextExtension> ContextExtensions { get; set; }
     public RankQualification? Qualification { get; set; }
     public RankUpdate? Reweight { get; set; }
 
@@ -34,5 +34,5 @@ public class Leaderboard {
 
 public class LeaderboardGroup {
     public int Id { get; set; }
-    public ICollection<Leaderboard> Leaderboards { get; set; } = null!;
+    public required ICollection<Leaderboard> Leaderboards { get; set; }
 }

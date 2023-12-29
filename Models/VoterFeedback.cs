@@ -2,6 +2,6 @@
 
 public class VoterFeedback {
     public int Id { get; set; }
-    public string RTMember { get; set; } = null!;
+    public required string RTMember { get; set; }
     public float Value { get; set; }
 }

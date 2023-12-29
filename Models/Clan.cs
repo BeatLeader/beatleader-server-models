@@ -4,13 +4,13 @@ namespace BeatLeader.Models;
 
 public class Clan {
     public int Id { get; set; }
-    public string Name { get; set; } = null!;
-    public string Color { get; set; } = null!;
-    public string Icon { get; set; } = null!;
-    public string Tag { get; set; } = null!;
-    public string LeaderID { get; set; } = null!;
-    public string Description { get; set; } = null!;
-    public string Bio { get; set; } = null!;
+    public required string Name { get; set; }
+    public required string Color { get; set; }
+    public required string Icon { get; set; }
+    public required string Tag { get; set; }
+    public required string LeaderID { get; set; }
+    public required string Description { get; set; }
+    public required string Bio { get; set; }
     public int PlayersCount { get; set; }
     public float Pp { get; set; }
     public float AverageRank { get; set; }
@@ -31,5 +31,5 @@ public class Clan {
 
 public class ReservedClanTag {
     public int Id { get; set; }
-    public string Tag { get; set; } = null!;
+    public required string Tag { get; set; }
 }

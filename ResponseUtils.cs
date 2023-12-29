@@ -11,8 +11,8 @@ public class ResponseUtils {
         MapPublished = 4
     }
 
-    public static T RemoveLeaderboard<T>(Score s, int i) where T : ScoreResponse, new() {
-        return new T {
+    public static ScoreResponse RemoveLeaderboard(Score s, int i) {
+        return new ScoreResponse {
             Id = s.Id,
             BaseScore = s.BaseScore,
             ModifiedScore = s.ModifiedScore,
@@ -23,6 +23,7 @@ public class ResponseUtils {
             FcPp = s.FcPp,
             BonusPp = s.BonusPp,
             Rank = s.Rank,
+            Weight = s.Weight,
             Replay = s.Replay ?? "",
             Modifiers = s.Modifiers ?? "",
             BadCuts = s.BadCuts,
@@ -39,7 +40,6 @@ public class ResponseUtils {
             Timepost = s.Timepost,
             LeaderboardId = s.LeaderboardId,
             Platform = s.Platform,
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
             Player = s.Player is not null
                 ? new PlayerResponse {
                     Id = s.Player.Id,
@@ -80,20 +80,80 @@ public class ResponseUtils {
         };
     }
 
-    public static ScoreResponse RemoveLeaderboard(Score s, int i)
-        => RemoveLeaderboard<ScoreResponse>(s, i);
-
     public static ScoreResponseWithAcc ToScoreResponseWithAcc(Score s, int i) {
-        var result = RemoveLeaderboard<ScoreResponseWithAcc>(s, i);
-        result.Weight = s.Weight;
-        result.AccLeft = s.AccLeft;
-        result.AccRight = s.AccRight;
+        return new ScoreResponseWithAcc {
+            Id = s.Id,
+            BaseScore = s.BaseScore,
+            ModifiedScore = s.ModifiedScore,
+            PlayerId = s.PlayerId,
+            Accuracy = s.Accuracy,
+            Pp = s.Pp,
+            FcAccuracy = s.FcAccuracy,
+            FcPp = s.FcPp,
+            BonusPp = s.BonusPp,
+            Rank = s.Rank,
+            Weight = s.Weight,
+            Replay = s.Replay ?? "",
+            Modifiers = s.Modifiers ?? "",
+            BadCuts = s.BadCuts,
+            MissedNotes = s.MissedNotes,
+            BombCuts = s.BombCuts,
+            WallsHit = s.WallsHit,
+            Pauses = s.Pauses,
+            FullCombo = s.FullCombo,
+            Hmd = s.Hmd,
+            Controller = s.Controller,
+            MaxCombo = s.MaxCombo,
+            Timeset = s.Timeset ?? "",
+            ReplaysWatched = s.AnonimusReplayWatched + s.AuthorizedReplayWatched,
+            Timepost = s.Timepost,
+            LeaderboardId = s.LeaderboardId,
+            Platform = s.Platform,
+            Player = s.Player is not null
+                ? new PlayerResponse {
+                    Id = s.Player.Id,
+                    Name = s.Player.Name,
+                    Platform = s.Player.Platform,
+                    Avatar = s.Player.Avatar,
+                    Country = s.Player.Country,
 
-        return result;
+                    Pp = s.Player.Pp,
+                    Rank = s.Player.Rank,
+                    CountryRank = s.Player.CountryRank,
+                    Role = s.Player.Role,
+                    Socials = s.Player.Socials,
+                    PatreonFeatures = s.Player.PatreonFeatures,
+                    ProfileSettings = s.Player.ProfileSettings,
+                    ContextExtensions = s.Player.ContextExtensions?.Select(ce => new PlayerContextExtension {
+                        Context = ce.Context,
+                        Pp = ce.Pp,
+                        AccPp = ce.AccPp,
+                        TechPp = ce.TechPp,
+                        PassPp = ce.PassPp,
+                        PlayerId = ce.PlayerId,
+
+                        Rank = ce.Rank,
+                        Country = ce.Country,
+                        CountryRank = ce.CountryRank
+                    }).ToList(),
+                    Clans = s.Player.Clans?.OrderBy(c => s.Player.ClanOrder.IndexOf(c.Tag, StringComparison.Ordinal))
+                        .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
+                }
+                : null,
+            ScoreImprovement = s.ScoreImprovement,
+            RankVoting = s.RankVoting,
+            Metadata = s.Metadata,
+            Country = s.Country,
+            Offsets = s.ReplayOffsets,
+            MaxStreak = s.MaxStreak,
+            /* Fields of ResponseWithAcc */
+            AccLeft = s.AccLeft,
+            AccRight = s.AccRight
+        };
     }
 
-    public static T RemoveLeaderboardCE<T>(ScoreContextExtension s, int i) where T : ScoreResponse, new() {
-        return new T {
+    public static ScoreResponse RemoveLeaderboardCE(ScoreContextExtension s, int i)
+        => new() {
             Id = s.Id,
             BaseScore = s.BaseScore,
             ModifiedScore = s.ModifiedScore,
@@ -104,6 +164,7 @@ public class ResponseUtils {
             FcPp = s.Score.FcPp,
             BonusPp = s.BonusPp,
             Rank = s.Rank,
+            Weight = s.Weight,
             Replay = s.Score.Replay!,
             Modifiers = s.Modifiers!,
             BadCuts = s.Score.BadCuts,
@@ -120,8 +181,7 @@ public class ResponseUtils {
             Timepost = s.Timeset,
             LeaderboardId = s.LeaderboardId,
             Platform = s.Score.Platform,
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
-            Player = s.Player != null
+            Player = s.Player is not null
                 ? new PlayerResponse {
                     Id = s.Player.Id,
                     Name = s.Player.Name,
@@ -137,6 +197,7 @@ public class ResponseUtils {
                     PatreonFeatures = s.Player.PatreonFeatures,
                     ProfileSettings = s.Player.ProfileSettings,
                     ContextExtensions = s.Player.ContextExtensions?.Select(ce => new PlayerContextExtension {
+                        PlayerId = ce.PlayerId,
                         Context = ce.Context,
                         Pp = ce.Pp,
                         AccPp = ce.AccPp,
@@ -158,19 +219,78 @@ public class ResponseUtils {
             Offsets = s.Score.ReplayOffsets,
             MaxStreak = s.Score.MaxStreak
         };
-    }
 
-    public static ScoreResponse RemoveLeaderboardCE(ScoreContextExtension s, int i)
-        => RemoveLeaderboardCE<ScoreResponse>(s, i);
 
-    public static ScoreResponseWithAcc ToScoreCEResponseWithAcc(ScoreContextExtension s, int i) {
-        var result = RemoveLeaderboardCE<ScoreResponseWithAcc>(s, i);
-        result.Weight = s.Weight;
-        result.AccLeft = s.Score?.AccLeft ?? 0;
-        result.AccRight = s.Score?.AccRight ?? 0;
+    public static ScoreResponseWithAcc ToScoreCEResponseWithAcc(ScoreContextExtension s, int i)
+        => new() {
+            Id = s.Id,
+            BaseScore = s.BaseScore,
+            ModifiedScore = s.ModifiedScore,
+            PlayerId = s.PlayerId,
+            Accuracy = s.Accuracy,
+            Pp = s.Pp,
+            FcAccuracy = s.Score!.FcAccuracy,
+            FcPp = s.Score.FcPp,
+            BonusPp = s.BonusPp,
+            Rank = s.Rank,
+            Weight = s.Weight,
+            Replay = s.Score.Replay!,
+            Modifiers = s.Modifiers!,
+            BadCuts = s.Score.BadCuts,
+            MissedNotes = s.Score.MissedNotes,
+            BombCuts = s.Score.BombCuts,
+            WallsHit = s.Score.WallsHit,
+            Pauses = s.Score.Pauses,
+            FullCombo = s.Score.FullCombo,
+            Hmd = s.Score.Hmd,
+            Controller = s.Score.Controller,
+            MaxCombo = s.Score.MaxCombo,
+            Timeset = s.Score.Timeset!,
+            ReplaysWatched = s.Score.AnonimusReplayWatched + s.Score.AuthorizedReplayWatched,
+            Timepost = s.Timeset,
+            LeaderboardId = s.LeaderboardId,
+            Platform = s.Score.Platform,
+            Player = s.Player is not null
+                ? new PlayerResponse {
+                    Id = s.Player.Id,
+                    Name = s.Player.Name,
+                    Platform = s.Player.Platform,
+                    Avatar = s.Player.Avatar,
+                    Country = s.Player.Country,
 
-        return result;
-    }
+                    Pp = s.Player.Pp,
+                    Rank = s.Player.Rank,
+                    CountryRank = s.Player.CountryRank,
+                    Role = s.Player.Role,
+                    Socials = s.Player.Socials,
+                    PatreonFeatures = s.Player.PatreonFeatures,
+                    ProfileSettings = s.Player.ProfileSettings,
+                    ContextExtensions = s.Player.ContextExtensions?.Select(ce => new PlayerContextExtension {
+                        PlayerId = ce.PlayerId,
+                        Context = ce.Context,
+                        Pp = ce.Pp,
+                        AccPp = ce.AccPp,
+                        TechPp = ce.TechPp,
+                        PassPp = ce.PassPp,
+
+                        Rank = ce.Rank,
+                        Country = ce.Country,
+                        CountryRank = ce.CountryRank
+                    }).ToList(),
+                    Clans = s.Player.Clans?.OrderBy(c => s.Player.ClanOrder.IndexOf(c.Tag, StringComparison.Ordinal))
+                        .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
+                }
+                : null,
+            ScoreImprovement = s.ScoreImprovement,
+            RankVoting = s.Score.RankVoting,
+            Metadata = s.Score.Metadata,
+            Country = s.Score.Country,
+            Offsets = s.Score.ReplayOffsets,
+            MaxStreak = s.Score.MaxStreak,
+            /* Fields of ResponseWithAcc */
+            AccLeft = s.Score?.AccLeft ?? 0,
+            AccRight = s.Score?.AccRight ?? 0
+        };
 
     public static ScoreResponseWithMyScore ScoreWithMyScore(Score s, int i) {
         return new ScoreResponseWithMyScore {
@@ -184,6 +304,7 @@ public class ResponseUtils {
             FcPp = s.FcPp,
             BonusPp = s.BonusPp,
             Rank = s.Rank,
+            Weight = s.Weight,
             Replay = s.Replay!,
             Modifiers = s.Modifiers!,
             BadCuts = s.BadCuts,
@@ -261,7 +382,6 @@ public class ResponseUtils {
                     }
                     : null
             },
-            Weight = s.Weight,
             AccLeft = s.AccLeft,
             AccRight = s.AccRight,
             MaxStreak = s.MaxStreak,
@@ -269,31 +389,27 @@ public class ResponseUtils {
         };
     }
 
-    public static T? GeneralResponseFromPlayer<T>(Player? p) where T : PlayerResponse, new() {
-        if (p == null) return null;
+    public static PlayerResponse? ResponseFromPLayer(Player? p)
+        => p is null
+            ? null
+            : new PlayerResponse {
+                Id = p.Id,
+                Name = p.Name,
+                Platform = p.Platform,
+                Avatar = p.Avatar,
+                Country = p.Country,
 
-        return new T {
-            Id = p.Id,
-            Name = p.Name,
-            Platform = p.Platform,
-            Avatar = p.Avatar,
-            Country = p.Country,
-
-            Pp = p.Pp,
-            Rank = p.Rank,
-            CountryRank = p.CountryRank,
-            Role = p.Role,
-            Socials = p.Socials,
-            PatreonFeatures = p.PatreonFeatures,
-            ProfileSettings = p.ProfileSettings,
-            ContextExtensions = p.ContextExtensions,
-            Clans = p.Clans?.OrderBy(c => p.ClanOrder.IndexOf(c.Tag, StringComparison.Ordinal))
-                .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
-        };
-    }
-
-    public static PlayerResponse? ResponseFromPlayer(Player? p)
-        => GeneralResponseFromPlayer<PlayerResponse>(p);
+                Pp = p.Pp,
+                Rank = p.Rank,
+                CountryRank = p.CountryRank,
+                Role = p.Role,
+                Socials = p.Socials,
+                PatreonFeatures = p.PatreonFeatures,
+                ProfileSettings = p.ProfileSettings,
+                ContextExtensions = p.ContextExtensions,
+                Clans = p.Clans?.OrderBy(c => p.ClanOrder.IndexOf(c.Tag, StringComparison.Ordinal))
+                    .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
+            };
 
     public static LeaderboardResponse ResponseFromLeaderboard(Leaderboard l) {
         return new LeaderboardResponse {
@@ -344,6 +460,7 @@ public class ResponseUtils {
         };
     }
 
+
     public static PlayerResponseWithStats ResponseWithStatsFromPlayer(Player p) {
         return new PlayerResponseWithStats {
             Id = p.Id,
@@ -368,11 +485,13 @@ public class ResponseUtils {
         };
     }
 
+
     public static PlayerResponseFull? ResponseFullFromPlayerNullable(Player? p) {
         if (p == null) return null;
 
         return ResponseFullFromPlayer(p);
     }
+
 
     public static PlayerResponseFull ResponseFullFromPlayer(Player p) {
         return new PlayerResponseFull {
@@ -416,6 +535,7 @@ public class ResponseUtils {
         };
     }
 
+
     public static DiffModResponse DiffModResponseFromDiffAndVotes(DifficultyDescription diff, float[] votes)
         => new() {
             DifficultyName = diff.DifficultyName,
@@ -431,6 +551,7 @@ public class ResponseUtils {
             TechRating = diff.TechRating
         };
 
+
     public static T? PostProcessSettings<T>(T input) where T : PlayerResponse? {
         if (input == null) return null;
 
@@ -441,12 +562,13 @@ public class ResponseUtils {
         return input;
     }
 
+
     public static void PostProcessSettings(string role, ProfileSettings? settings, PatreonFeatures? patreonFeatures, bool hideStarredFriends = true) {
         if (settings != null && hideStarredFriends) {
             settings.StarredFriends = "";
         }
 
-        if (settings != null && settings.ProfileAppearance == null) {
+        if (settings is { ProfileAppearance: null }) {
             settings.ProfileAppearance = "topPp,averageRankedAccuracy,topPlatform,topHMD";
         }
 
@@ -520,12 +642,12 @@ public class ResponseUtils {
 
     public class ClanResponse {
         public int Id { get; set; }
-        public string Tag { get; set; } = null!;
-        public string Color { get; set; } = null!;
+        public required string Tag { get; set; }
+        public required string Color { get; set; }
     }
 
     public class PlayerResponse {
-        public string Id { get; set; } = null!;
+        public required string Id { get; set; }
         public string Name { get; set; } = "";
         public string Platform { get; set; } = "";
         public string Avatar { get; set; } = "";
@@ -536,7 +658,7 @@ public class ResponseUtils {
         public float Pp { get; set; }
         public int Rank { get; set; }
         public int CountryRank { get; set; }
-        public string Role { get; set; } = null!;
+        public required string Role { get; set; }
         public ICollection<PlayerSocial>? Socials { get; set; }
         public ICollection<PlayerContextExtension>? ContextExtensions { get; set; }
 
@@ -600,20 +722,19 @@ public class ResponseUtils {
         public ICollection<PlayerChange>? Changes { get; set; }
     }
 
-
     public class ScoreSongResponse {
-        public string Id { get; set; } = null!;
-        public string Hash { get; set; } = null!;
-        public string Cover { get; set; } = null!;
-        public string Name { get; set; } = null!;
+        public required string Id { get; set; }
+        public required string Hash { get; set; }
+        public required string Cover { get; set; }
+        public required string Name { get; set; }
         public string? SubName { get; set; }
-        public string Author { get; set; } = null!;
-        public string Mapper { get; set; } = null!;
+        public required string Author { get; set; }
+        public required string Mapper { get; set; }
     }
 
     public class ScoreResponseWithDifficulty : ScoreResponse {
-        public DifficultyDescription Difficulty { get; set; } = null!;
-        public ScoreSongResponse Song { get; set; } = null!;
+        public required DifficultyDescription Difficulty { get; set; }
+        public required ScoreSongResponse Song { get; set; }
     }
 
     public class SaverScoreResponse {
@@ -623,30 +744,30 @@ public class ResponseUtils {
         public float Accuracy { get; set; }
         public float Pp { get; set; }
         public int Rank { get; set; }
-        public string Modifiers { get; set; } = null!;
-        public string LeaderboardId { get; set; } = null!;
-        public string Timeset { get; set; } = null!;
+        public required string Modifiers { get; set; }
+        public required string LeaderboardId { get; set; }
+        public required string Timeset { get; set; }
         public int Timepost { get; set; }
-        public string Player { get; set; } = null!;
+        public required string Player { get; set; }
     }
 
     public class SaverContainerResponse {
-        public string LeaderboardId { get; set; } = null!;
+        public required string LeaderboardId { get; set; }
         public bool Ranked { get; set; }
     }
 
     public class LeaderboardsResponse {
-        public Song Song { get; set; } = null!;
-        public ICollection<LeaderboardsInfoResponse> Leaderboards { get; set; } = null!;
+        public required Song Song { get; set; }
+        public ICollection<LeaderboardsInfoResponse> Leaderboards { get; set; } = new List<LeaderboardsInfoResponse>();
     }
 
     public class LeaderboardsInfoResponse {
-        public string Id { get; set; } = null!;
-        public DifficultyResponse Difficulty { get; set; } = null!;
+        public required string Id { get; set; }
+        public required DifficultyResponse Difficulty { get; set; }
         public RankQualification? Qualification { get; set; }
         public RankUpdate? Reweight { get; set; }
         public bool ClanRankingContested { get; set; }
-        public Clan Clan { get; set; } = null!;
+        public required Clan Clan { get; set; }
 
         public void HideRatings() {
             Difficulty.HideRatings();
@@ -654,7 +775,7 @@ public class ResponseUtils {
     }
 
     public class LeaderboardsResponseWithScores : LeaderboardsResponse {
-        public new ICollection<LeaderboardsInfoResponseWithScore> Leaderboards { get; set; } = null!;
+        public new required ICollection<LeaderboardsInfoResponseWithScore> Leaderboards { get; set; }
     }
 
     public class LeaderboardsInfoResponseWithScore : LeaderboardsInfoResponse {
@@ -663,11 +784,11 @@ public class ResponseUtils {
 
     public class ClanReturn {
         public int Id { get; set; }
-        public string Name { get; set; } = null!;
-        public string Color { get; set; } = null!;
-        public string Icon { get; set; } = null!;
-        public string Tag { get; set; } = null!;
-        public string LeaderID { get; set; } = null!;
+        public required string Name { get; set; }
+        public required string Color { get; set; }
+        public required string Icon { get; set; }
+        public required string Tag { get; set; }
+        public required string LeaderID { get; set; }
 
         public int PlayersCount { get; set; }
         public float Pp { get; set; }
@@ -682,13 +803,13 @@ public class ResponseUtils {
     }
 
     public class BanReturn {
-        public string Reason { get; set; } = null!;
+        public required string Reason { get; set; }
         public int Timeset { get; set; }
         public int Duration { get; set; }
     }
 
     public class UserReturn {
-        public PlayerResponseFull Player { get; set; } = null!;
+        public required PlayerResponseFull Player { get; set; }
 
         public ClanReturn? Clan { get; set; }
 
@@ -708,8 +829,8 @@ public class ResponseUtils {
         public int Id { get; set; }
         public int Value { get; set; }
         public int Mode { get; set; }
-        public string DifficultyName { get; set; } = null!;
-        public string ModeName { get; set; } = null!;
+        public required string DifficultyName { get; set; }
+        public required string ModeName { get; set; }
         public DifficultyStatus Status { get; set; }
         public ModifiersMap? ModifierValues { get; set; } = new();
         public ModifiersRating? ModifiersRating { get; set; }
@@ -738,8 +859,8 @@ public class ResponseUtils {
         public int Id { get; set; }
         public int Value { get; set; }
         public int Mode { get; set; }
-        public string DifficultyName { get; set; } = null!;
-        public string ModeName { get; set; } = null!;
+        public required string DifficultyName { get; set; }
+        public required string ModeName { get; set; }
         public DifficultyStatus Status { get; set; }
         public ModifiersMap? ModifierValues { get; set; } = new();
         public ModifiersRating? ModifiersRating { get; set; }
@@ -801,28 +922,28 @@ public class ResponseUtils {
 
     public class ClanRankingResponse {
         public int Id { get; set; }
-        public Clan Clan { get; set; } = null!;
+        public required Clan Clan { get; set; }
         public int LastUpdateTime { get; set; }
         public float AverageRank { get; set; }
         public float Pp { get; set; }
         public float AverageAccuracy { get; set; }
         public float TotalScore { get; set; }
-        public string LeaderboardId { get; set; } = null!;
-        public Leaderboard Leaderboard { get; set; } = null!;
+        public required string LeaderboardId { get; set; }
+        public required Leaderboard Leaderboard { get; set; }
         public ICollection<ScoreResponse>? AssociatedScores { get; set; }
         public int AssociatedScoresCount { get; set; }
     }
 
     public class LeaderboardGroupEntry {
-        public string Id { get; set; } = null!;
+        public required string Id { get; set; }
         public DifficultyStatus Status { get; set; }
         public long Timestamp { get; set; }
     }
 
     public class LeaderboardInfoResponse {
-        public string Id { get; set; } = null!;
-        public Song Song { get; set; } = null!;
-        public DifficultyResponse Difficulty { get; set; } = null!;
+        public required string Id { get; set; }
+        public required Song Song { get; set; }
+        public required DifficultyResponse Difficulty { get; set; }
         public int Plays { get; set; }
         public int PositiveVotes { get; set; }
         public int StarVotes { get; set; }
@@ -840,12 +961,12 @@ public class ResponseUtils {
     }
 
     public class DiffModResponse {
-        public string DifficultyName { get; set; } = null!;
-        public string ModeName { get; set; } = null!;
+        public required string DifficultyName { get; set; }
+        public required string ModeName { get; set; }
         public float? Stars { get; set; }
         public DifficultyStatus Status { get; set; }
         public int Type { get; set; }
-        public float[] Votes { get; set; } = null!;
+        public required float[] Votes { get; set; }
         public ModifiersMap? ModifierValues { get; set; }
         public ModifiersRating? ModifiersRating { get; set; }
         public float? PassRating { get; set; }
@@ -866,7 +987,7 @@ public class ResponseUtils {
         public int Id { get; set; }
         public int BaseScore { get; set; }
         public int ModifiedScore { get; set; }
-        public string Modifiers { get; set; } = null!;
+        public required string Modifiers { get; set; }
         public bool FullCombo { get; set; }
         public int MaxCombo { get; set; }
         public int MissedNotes { get; set; }
@@ -880,31 +1001,31 @@ public class ResponseUtils {
     }
 
     public class CompactLeaderboard {
-        public string Id { get; set; } = null!;
-        public string SongHash { get; set; } = null!;
-        public string ModeName { get; set; } = null!;
+        public required string Id { get; set; }
+        public required string SongHash { get; set; }
+        public required string ModeName { get; set; }
         public int Difficulty { get; set; }
     }
 
     public class CompactScoreResponse {
-        public CompactScore Score { get; set; } = null!;
-        public CompactLeaderboard Leaderboard { get; set; } = null!;
+        public required CompactScore Score { get; set; }
+        public required CompactLeaderboard Leaderboard { get; set; }
     }
 
     public class EventResponse {
         public int Id { get; set; }
-        public string Name { get; set; } = null!;
+        public required string Name { get; set; }
         public int EndDate { get; set; }
         public int PlaylistId { get; set; }
-        public string Image { get; set; } = null!;
+        public required string Image { get; set; }
 
         public int PlayerCount { get; set; }
-        public PlayerResponse Leader { get; set; } = null!;
+        public required PlayerResponse Leader { get; set; }
     }
 
     public class FriendActivity {
-        public PlayerResponse Player { get; set; } = null!;
+        public required PlayerResponse Player { get; set; }
         public FriendActivityType Type { get; set; }
-        public dynamic ActivityObject { get; set; } = null!;
+        public required dynamic ActivityObject { get; set; }
     }
 }

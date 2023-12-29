@@ -5,10 +5,10 @@ namespace BeatLeader.Models;
 [Index(nameof(PlayerId), nameof(LeaderboardId), nameof(Context), IsUnique = true)]
 public class ScoreContextExtension {
     public int Id { get; set; }
-    public string PlayerId { get; set; } = null!;
-    public Player Player { get; set; } = null!;
-    public string LeaderboardId { get; set; } = null!;
-    public Leaderboard Leaderboard { get; set; } = null!;
+    public required string PlayerId { get; set; }
+    public Player? Player { get; set; }
+    public required string LeaderboardId { get; set; }
+    public required Leaderboard Leaderboard { get; set; }
     public float Weight { get; set; }
     public int Rank { get; set; }
     public int BaseScore { get; set; }

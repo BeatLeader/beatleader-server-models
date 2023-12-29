@@ -39,7 +39,7 @@ public interface IPlayer {
 [Index(nameof(Banned), IsUnique = false)]
 public class Player : IPlayer {
     [Key]
-    public string Id { get; set; } = null!;
+    public required string Id { get; set; }
     public string Platform { get; set; } = "";
     public string Avatar { get; set; } = "";
 

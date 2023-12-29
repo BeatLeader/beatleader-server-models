@@ -4,5 +4,5 @@ namespace BeatLeader.Models;
 
 public class DeveloperProfile {
     public int Id { get; set; }
-    public ICollection<OpenIddictEntityFrameworkCoreApplication> OauthApps { get; set; } = null!;
+    public required ICollection<OpenIddictEntityFrameworkCoreApplication> OauthApps { get; set; }
 }

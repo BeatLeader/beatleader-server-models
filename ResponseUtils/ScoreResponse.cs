@@ -12,7 +12,7 @@ public class ScoreResponse {
     public int BaseScore { get; set; }
     public int ModifiedScore { get; set; }
     public float Accuracy { get; set; }
-    public string PlayerId { get; set; } = null!;
+    public required string PlayerId { get; set; }
     public float Pp { get; set; }
     public float BonusPp { get; set; }
     public float PassPP { get; set; }
@@ -23,21 +23,21 @@ public class ScoreResponse {
     public float FcAccuracy { get; set; }
     public float FcPp { get; set; }
     public float Weight { get; set; }
-    public string Replay { get; set; } = null!;
-    public string Modifiers { get; set; } = null!;
+    public required string Replay { get; set; }
+    public required string Modifiers { get; set; }
     public int BadCuts { get; set; }
     public int MissedNotes { get; set; }
     public int BombCuts { get; set; }
     public int WallsHit { get; set; }
     public int Pauses { get; set; }
     public bool FullCombo { get; set; }
-    public string Platform { get; set; } = null!;
+    public required string Platform { get; set; }
     public int MaxCombo { get; set; }
     public int? MaxStreak { get; set; }
     public HMD Hmd { get; set; }
     public ControllerEnum Controller { get; set; }
-    public string LeaderboardId { get; set; } = null!;
-    public string Timeset { get; set; } = null!;
+    public required string LeaderboardId { get; set; }
+    public required string Timeset { get; set; }
     public int Timepost { get; set; }
     public int ReplaysWatched { get; set; }
     public int PlayCount { get; set; }
@@ -74,8 +74,8 @@ public class ScoreResponseWithMyScore : ScoreResponseWithAcc {
     public ScoreResponseWithAcc? MyScore { get; set; }
     public LeaderboardContexts ValidContexts { get; set; }
 
-    public LeaderboardResponse Leaderboard { get; set; } = null!;
-    public ICollection<ScoreContextExtension> ContextExtensions { get; set; } = null!;
+    public required LeaderboardResponse Leaderboard { get; set; }
+    public ICollection<ScoreContextExtension>? ContextExtensions { get; set; }
 }
 
 public static class ScoreResponseQuery {
@@ -110,25 +110,32 @@ public static class ScoreResponseQuery {
             Timepost = s.Timepost,
             LeaderboardId = s.LeaderboardId,
             Platform = s.Platform,
-            Player = new PlayerResponse {
-                Id = s.Player.Id,
-                Name = s.Player.Name,
-                Platform = s.Player.Platform,
-                Avatar = s.Player.Avatar,
-                Country = s.Player.Country,
+            Player = s.Player != null
+                ? new PlayerResponse {
+                    Id = s.Player.Id,
+                    Name = s.Player.Name,
+                    Platform = s.Player.Platform,
+                    Avatar = s.Player.Avatar,
+                    Country = s.Player.Country,
 
-                Pp = s.Player.Pp,
-                Rank = s.Player.Rank,
-                CountryRank = s.Player.CountryRank,
-                Role = s.Player.Role,
-                Socials = s.Player.Socials,
-                PatreonFeatures = s.Player.PatreonFeatures,
-                ProfileSettings = s.Player.ProfileSettings,
-                Clans = s.Player.Clans!
-                    .OrderBy(c => s.Player.ClanOrder.IndexOf(c.Tag, StringComparison.Ordinal))
-                    .ThenBy(c => c.Id)
-                    .Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
-            },
+                    Pp = s.Player.Pp,
+                    Rank = s.Player.Rank,
+                    CountryRank = s.Player.CountryRank,
+                    Role = s.Player.Role,
+                    Socials = s.Player.Socials,
+                    PatreonFeatures = s.Player.PatreonFeatures,
+                    ProfileSettings = s.Player.ProfileSettings,
+                    Clans = s.Player.Clans!
+                        .OrderBy(c => s.Player.ClanOrder.IndexOf(c.Tag,
+                            StringComparison.Ordinal))
+                        .ThenBy(c => c.Id)
+                        .Select(c => new ClanResponse {
+                            Id = c.Id,
+                            Tag = c.Tag,
+                            Color = c.Color
+                        })
+                }
+                : null,
             ScoreImprovement = s.ScoreImprovement,
             RankVoting = s.RankVoting,
             Metadata = s.Metadata,
@@ -206,25 +213,27 @@ public static class ScoreResponseQuery {
             Timepost = s.Timepost,
             LeaderboardId = s.LeaderboardId,
             Platform = s.Platform,
-            Player = new PlayerResponse {
-                Id = s.Player.Id,
-                Name = s.Player.Name,
-                Platform = s.Player.Platform,
-                Avatar = s.Player.Avatar,
-                Country = s.Player.Country,
+            Player = s.Player != null
+                ? new PlayerResponse {
+                    Id = s.Player.Id,
+                    Name = s.Player.Name,
+                    Platform = s.Player.Platform,
+                    Avatar = s.Player.Avatar,
+                    Country = s.Player.Country,
 
-                Pp = s.Player.Pp,
-                Rank = s.Player.Rank,
-                CountryRank = s.Player.CountryRank,
-                Role = s.Player.Role,
-                Socials = s.Player.Socials,
-                PatreonFeatures = s.Player.PatreonFeatures,
-                ProfileSettings = s.Player.ProfileSettings,
-                Clans = s.Player.Clans!
-                    .OrderBy(c => s.Player.ClanOrder.IndexOf(c.Tag, StringComparison.Ordinal))
-                    .ThenBy(c => c.Id)
-                    .Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
-            },
+                    Pp = s.Player.Pp,
+                    Rank = s.Player.Rank,
+                    CountryRank = s.Player.CountryRank,
+                    Role = s.Player.Role,
+                    Socials = s.Player.Socials,
+                    PatreonFeatures = s.Player.PatreonFeatures,
+                    ProfileSettings = s.Player.ProfileSettings,
+                    Clans = s.Player.Clans!
+                        .OrderBy(c => s.Player.ClanOrder.IndexOf(c.Tag, StringComparison.Ordinal))
+                        .ThenBy(c => c.Id)
+                        .Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
+                }
+                : null,
             ScoreImprovement = s.ScoreImprovement,
             RankVoting = s.RankVoting,
             Metadata = s.Metadata,

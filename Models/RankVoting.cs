@@ -5,7 +5,7 @@ namespace BeatLeader.Models;
 public class RankVoting {
     [Key]
     public int ScoreId { get; set; }
-    public string PlayerId { get; set; } = null!;
+    public required string PlayerId { get; set; }
     public string Hash { get; set; } = "";
     public string Diff { get; set; } = "";
     public string Mode { get; set; } = "";

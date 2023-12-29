@@ -3,15 +3,15 @@
 namespace BeatLeader.Models;
 
 public class GraphResponse {
-    public string LeaderboardId { get; set; } = null!;
-    public string Diff { get; set; } = null!;
-    public string Mode { get; set; } = null!;
-    public string Modifiers { get; set; } = null!;
-    public string SongName { get; set; } = null!;
-    public string Hash { get; set; } = null!;
-    public string Mapper { get; set; } = null!;
+    public required string LeaderboardId { get; set; }
+    public required string Diff { get; set; }
+    public required string Mode { get; set; }
+    public required string Modifiers { get; set; }
+    public required string SongName { get; set; }
+    public required string Hash { get; set; }
+    public required string Mapper { get; set; }
     public float Acc { get; set; }
-    public string Timeset { get; set; } = null!;
+    public required string Timeset { get; set; }
     public float? Stars { get; set; }
 
     [JsonIgnore]

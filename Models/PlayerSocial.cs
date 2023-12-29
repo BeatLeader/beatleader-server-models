@@ -2,10 +2,10 @@
 
 public class PlayerSocial {
     public int Id { get; set; }
-    public string Service { get; set; } = null!;
-    public string Link { get; set; } = null!;
-    public string User { get; set; } = null!;
+    public required string Service { get; set; }
+    public required string Link { get; set; }
+    public required string User { get; set; }
 
-    public string UserId { get; set; } = null!;
+    public required string UserId { get; set; }
     public string? PlayerId { get; set; }
 }

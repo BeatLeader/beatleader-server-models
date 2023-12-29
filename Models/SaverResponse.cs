@@ -5,15 +5,15 @@ namespace BeatLeader.Models;
 [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global")]
 public class MapDetail {
     public string? Id { get; set; }
-    public string Name { get; set; } = null!;
-    public string Description { get; set; } = null!;
-    public UserDetail Uploader { get; set; } = null!;
-    public MapDetailMetadata Metadata { get; set; } = null!;
+    public required string Name { get; set; }
+    public required string Description { get; set; }
+    public required UserDetail Uploader { get; set; }
+    public required MapDetailMetadata Metadata { get; set; }
     public DateTime? Uploaded { get; set; }
     public bool Automapper { get; set; }
     public bool Ranked { get; set; }
     public bool Qualified { get; set; }
-    public List<MapVersion> Versions { get; set; } = null!;
+    public required List<MapVersion> Versions { get; set; }
     public UserDetail? Curator { get; set; }
     public DateTime? CuratedAt { get; set; }
     public DateTime CreatedAt { get; set; }
@@ -26,17 +26,17 @@ public class MapDetail {
 }
 
 public class SearchResponse {
-    public List<MapDetail> Docs { get; set; } = null!;
+    public required List<MapDetail> Docs { get; set; }
 }
 
 public class UserDetail {
     public int Id { get; set; }
-    public string Name { get; set; } = null!;
+    public required string Name { get; set; }
     public string? Description { get; set; }
     public bool UniqueSet { get; set; }
     public string? Hash { get; set; }
     public bool? Testplay { get; set; }
-    public string Avatar { get; set; } = null!;
+    public required string Avatar { get; set; }
     public string? Email { get; set; }
     public int? UploadLimit { get; set; }
     public bool? Admin { get; set; }
@@ -48,16 +48,16 @@ public class UserDetail {
 }
 
 public class MapVersion {
-    public string Hash { get; set; } = null!;
+    public required string Hash { get; set; }
     public string? Key { get; set; }
-    public string State { get; set; } = null!;
+    public required string State { get; set; }
     public DateTimeOffset CreatedAt { get; set; }
     public short? SageScore { get; set; }
-    public List<MapDifficulty> Diffs { get; set; } = null!;
+    public required List<MapDifficulty> Diffs { get; set; }
     public string? Feedback { get; set; }
-    public string DownloadURL { get; set; } = null!;
-    public string CoverURL { get; set; } = null!;
-    public string PreviewURL { get; set; } = null!;
+    public required string DownloadURL { get; set; }
+    public required string CoverURL { get; set; }
+    public required string PreviewURL { get; set; }
 }
 
 public class MapDifficulty {
@@ -68,8 +68,8 @@ public class MapDifficulty {
     public int Obstacles { get; set; }
     public float Nps { get; set; }
     public double Length { get; set; }
-    public string Characteristic { get; set; } = null!;
-    public string Difficulty { get; set; } = null!;
+    public required string Characteristic { get; set; }
+    public required string Difficulty { get; set; }
     public int Events { get; set; }
     public bool Chroma { get; set; }
     public bool Me { get; set; }
@@ -84,8 +84,8 @@ public class MapDifficulty {
 public class MapDetailMetadata {
     public float Bpm { get; set; }
     public int Duration { get; set; }
-    public string SongName { get; set; } = null!;
-    public string SongSubName { get; set; } = null!;
-    public string SongAuthorName { get; set; } = null!;
-    public string LevelAuthorName { get; set; } = null!;
+    public required string SongName { get; set; }
+    public required string SongSubName { get; set; }
+    public required string SongAuthorName { get; set; }
+    public required string LevelAuthorName { get; set; }
 }

@@ -13,7 +13,7 @@ public enum EndType {
 
 public class PlayerLeaderboardStats {
     public int Id { get; set; }
-    public string PlayerId { get; set; } = null!;
+    public required string PlayerId { get; set; }
     public EndType Type { get; set; }
     public int Timeset { get; set; }
     public float Time { get; set; }

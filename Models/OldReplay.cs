@@ -269,7 +269,7 @@ internal static class ReplayEncoder {
     }
 
     private static void EncodeString(string value, BinaryWriter stream) {
-        var toEncode = value != null ? value : "";
+        var toEncode = value ?? "";
         stream.Write(toEncode.Length);
         stream.Write(Encoding.UTF8.GetBytes(toEncode));
     }
@@ -332,36 +332,31 @@ internal static class ReplayDecoder {
     }
 
     private static ReplayInfo DecodeInfo(byte[] buffer, ref int pointer) {
-        var result = new ReplayInfo();
-
-        result.version = DecodeString(buffer, ref pointer);
-        result.gameVersion = DecodeString(buffer, ref pointer);
-        result.timestamp = DecodeString(buffer, ref pointer);
-
-        result.playerID = DecodeString(buffer, ref pointer);
-        result.playerName = DecodeString(buffer, ref pointer);
-        result.platform = DecodeString(buffer, ref pointer);
-
-        result.trackingSytem = DecodeString(buffer, ref pointer);
-        result.hmd = DecodeString(buffer, ref pointer);
-        result.controller = DecodeString(buffer, ref pointer);
-
-        result.hash = DecodeString(buffer, ref pointer);
-        result.songName = DecodeString(buffer, ref pointer);
-        result.mapper = DecodeString(buffer, ref pointer);
-        result.difficulty = DecodeString(buffer, ref pointer);
-
-        result.score = DecodeInt(buffer, ref pointer);
-        result.mode = DecodeString(buffer, ref pointer);
-        result.environment = DecodeString(buffer, ref pointer);
-        result.modifiers = DecodeString(buffer, ref pointer);
-        result.jumpDistance = DecodeFloat(buffer, ref pointer);
-        result.leftHanded = DecodeBool(buffer, ref pointer);
-        result.height = DecodeFloat(buffer, ref pointer);
-
-        result.startTime = DecodeFloat(buffer, ref pointer);
-        result.failTime = DecodeFloat(buffer, ref pointer);
-        result.speed = DecodeFloat(buffer, ref pointer);
+        var result = new ReplayInfo {
+            version = DecodeString(buffer, ref pointer),
+            gameVersion = DecodeString(buffer, ref pointer),
+            timestamp = DecodeString(buffer, ref pointer),
+            playerID = DecodeString(buffer, ref pointer),
+            playerName = DecodeString(buffer, ref pointer),
+            platform = DecodeString(buffer, ref pointer),
+            trackingSytem = DecodeString(buffer, ref pointer),
+            hmd = DecodeString(buffer, ref pointer),
+            controller = DecodeString(buffer, ref pointer),
+            hash = DecodeString(buffer, ref pointer),
+            songName = DecodeString(buffer, ref pointer),
+            mapper = DecodeString(buffer, ref pointer),
+            difficulty = DecodeString(buffer, ref pointer),
+            score = DecodeInt(buffer, ref pointer),
+            mode = DecodeString(buffer, ref pointer),
+            environment = DecodeString(buffer, ref pointer),
+            modifiers = DecodeString(buffer, ref pointer),
+            jumpDistance = DecodeFloat(buffer, ref pointer),
+            leftHanded = DecodeBool(buffer, ref pointer),
+            height = DecodeFloat(buffer, ref pointer),
+            startTime = DecodeFloat(buffer, ref pointer),
+            failTime = DecodeFloat(buffer, ref pointer),
+            speed = DecodeFloat(buffer, ref pointer)
+        };
 
         return result;
     }
@@ -378,12 +373,13 @@ internal static class ReplayDecoder {
     }
 
     private static Frame DecodeFrame(byte[] buffer, ref int pointer) {
-        var result = new Frame();
-        result.time = DecodeFloat(buffer, ref pointer);
-        result.fps = DecodeInt(buffer, ref pointer);
-        result.head = DecodeEuler(buffer, ref pointer);
-        result.leftHand = DecodeEuler(buffer, ref pointer);
-        result.rightHand = DecodeEuler(buffer, ref pointer);
+        var result = new Frame {
+            time = DecodeFloat(buffer, ref pointer),
+            fps = DecodeInt(buffer, ref pointer),
+            head = DecodeEuler(buffer, ref pointer),
+            leftHand = DecodeEuler(buffer, ref pointer),
+            rightHand = DecodeEuler(buffer, ref pointer)
+        };
 
         return result;
     }
@@ -404,11 +400,12 @@ internal static class ReplayDecoder {
         var result = new List<WallEvent>();
 
         for (var i = 0; i < length; i++) {
-            var wall = new WallEvent();
-            wall.wallID = DecodeInt(buffer, ref pointer);
-            wall.energy = DecodeFloat(buffer, ref pointer);
-            wall.time = DecodeFloat(buffer, ref pointer);
-            wall.spawnTime = DecodeFloat(buffer, ref pointer);
+            var wall = new WallEvent {
+                wallID = DecodeInt(buffer, ref pointer),
+                energy = DecodeFloat(buffer, ref pointer),
+                time = DecodeFloat(buffer, ref pointer),
+                spawnTime = DecodeFloat(buffer, ref pointer)
+            };
             result.Add(wall);
         }
 
@@ -420,9 +417,10 @@ internal static class ReplayDecoder {
         var result = new List<AutomaticHeight>();
 
         for (var i = 0; i < length; i++) {
-            var height = new AutomaticHeight();
-            height.height = DecodeFloat(buffer, ref pointer);
-            height.time = DecodeFloat(buffer, ref pointer);
+            var height = new AutomaticHeight {
+                height = DecodeFloat(buffer, ref pointer),
+                time = DecodeFloat(buffer, ref pointer)
+            };
             result.Add(height);
         }
 
@@ -444,11 +442,12 @@ internal static class ReplayDecoder {
     }
 
     private static NoteEvent DecodeNote(byte[] buffer, ref int pointer) {
-        var result = new NoteEvent();
-        result.noteID = DecodeInt(buffer, ref pointer);
-        result.eventTime = DecodeFloat(buffer, ref pointer);
-        result.spawnTime = DecodeFloat(buffer, ref pointer);
-        result.eventType = (NoteEventType)DecodeInt(buffer, ref pointer);
+        var result = new NoteEvent {
+            noteID = DecodeInt(buffer, ref pointer),
+            eventTime = DecodeFloat(buffer, ref pointer),
+            spawnTime = DecodeFloat(buffer, ref pointer),
+            eventType = (NoteEventType)DecodeInt(buffer, ref pointer)
+        };
 
         if (result.eventType == NoteEventType.good || result.eventType == NoteEventType.bad) {
             result.noteCutInfo = DecodeCutInfo(buffer, ref pointer);
@@ -458,48 +457,52 @@ internal static class ReplayDecoder {
     }
 
     private static NoteCutInfo DecodeCutInfo(byte[] buffer, ref int pointer) {
-        var result = new NoteCutInfo();
-        result.speedOK = DecodeBool(buffer, ref pointer);
-        result.directionOK = DecodeBool(buffer, ref pointer);
-        result.saberTypeOK = DecodeBool(buffer, ref pointer);
-        result.wasCutTooSoon = DecodeBool(buffer, ref pointer);
-        result.saberSpeed = DecodeFloat(buffer, ref pointer);
-        result.saberDir = DecodeVector3(buffer, ref pointer);
-        result.saberType = DecodeInt(buffer, ref pointer);
-        result.timeDeviation = DecodeFloat(buffer, ref pointer);
-        result.cutDirDeviation = DecodeFloat(buffer, ref pointer);
-        result.cutPoint = DecodeVector3(buffer, ref pointer);
-        result.cutNormal = DecodeVector3(buffer, ref pointer);
-        result.cutDistanceToCenter = DecodeFloat(buffer, ref pointer);
-        result.cutAngle = DecodeFloat(buffer, ref pointer);
-        result.beforeCutRating = DecodeFloat(buffer, ref pointer);
-        result.afterCutRating = DecodeFloat(buffer, ref pointer);
+        var result = new NoteCutInfo {
+            speedOK = DecodeBool(buffer, ref pointer),
+            directionOK = DecodeBool(buffer, ref pointer),
+            saberTypeOK = DecodeBool(buffer, ref pointer),
+            wasCutTooSoon = DecodeBool(buffer, ref pointer),
+            saberSpeed = DecodeFloat(buffer, ref pointer),
+            saberDir = DecodeVector3(buffer, ref pointer),
+            saberType = DecodeInt(buffer, ref pointer),
+            timeDeviation = DecodeFloat(buffer, ref pointer),
+            cutDirDeviation = DecodeFloat(buffer, ref pointer),
+            cutPoint = DecodeVector3(buffer, ref pointer),
+            cutNormal = DecodeVector3(buffer, ref pointer),
+            cutDistanceToCenter = DecodeFloat(buffer, ref pointer),
+            cutAngle = DecodeFloat(buffer, ref pointer),
+            beforeCutRating = DecodeFloat(buffer, ref pointer),
+            afterCutRating = DecodeFloat(buffer, ref pointer)
+        };
         return result;
     }
 
     private static Transform DecodeEuler(byte[] buffer, ref int pointer) {
-        var result = new Transform();
-        result.position = DecodeVector3(buffer, ref pointer);
-        result.rotation = DecodeQuaternion(buffer, ref pointer);
+        var result = new Transform {
+            position = DecodeVector3(buffer, ref pointer),
+            rotation = DecodeQuaternion(buffer, ref pointer)
+        };
 
         return result;
     }
 
     private static Vector3 DecodeVector3(byte[] buffer, ref int pointer) {
-        var result = new Vector3();
-        result.x = DecodeFloat(buffer, ref pointer);
-        result.y = DecodeFloat(buffer, ref pointer);
-        result.z = DecodeFloat(buffer, ref pointer);
+        var result = new Vector3 {
+            x = DecodeFloat(buffer, ref pointer),
+            y = DecodeFloat(buffer, ref pointer),
+            z = DecodeFloat(buffer, ref pointer)
+        };
 
         return result;
     }
 
     private static Quaternion DecodeQuaternion(byte[] buffer, ref int pointer) {
-        var result = new Quaternion();
-        result.x = DecodeFloat(buffer, ref pointer);
-        result.y = DecodeFloat(buffer, ref pointer);
-        result.z = DecodeFloat(buffer, ref pointer);
-        result.w = DecodeFloat(buffer, ref pointer);
+        var result = new Quaternion {
+            x = DecodeFloat(buffer, ref pointer),
+            y = DecodeFloat(buffer, ref pointer),
+            z = DecodeFloat(buffer, ref pointer),
+            w = DecodeFloat(buffer, ref pointer)
+        };
 
         return result;
     }

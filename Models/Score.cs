@@ -53,7 +53,7 @@ public class Score {
     public int BaseScore { get; set; }
     public int ModifiedScore { get; set; }
     public float Accuracy { get; set; }
-    public string PlayerId { get; set; } = null!;
+    public required string PlayerId { get; set; }
     public float Pp { get; set; }
     public float BonusPp { get; set; }
     public float PassPP { get; set; }
@@ -81,17 +81,17 @@ public class Score {
     public string? Timeset { get; set; }
     public int Timepost { get; set; }
     public string Platform { get; set; } = "";
-    public Player Player { get; set; } = null!;
+    public Player? Player { get; set; }
     public LeaderboardContexts ValidContexts { get; set; }
-    public ICollection<ScoreContextExtension> ContextExtensions { get; set; } = null!;
-    public string LeaderboardId { get; set; } = null!;
-    public Leaderboard Leaderboard { get; set; } = null!;
+    public required ICollection<ScoreContextExtension> ContextExtensions { get; set; }
+    public required string LeaderboardId { get; set; }
+    public required Leaderboard Leaderboard { get; set; }
     public int AuthorizedReplayWatched { get; set; }
     public int AnonimusReplayWatched { get; set; }
     public int? ReplayOffsetsId { get; set; }
     public ReplayOffsets? ReplayOffsets { get; set; }
     public string? Country { get; set; }
-    public int? MaxStreak { get; set; } = null;
+    public required int? MaxStreak { get; set; }
     public int PlayCount { get; set; } = 1;
     public float LeftTiming { get; set; }
     public float RightTiming { get; set; }
@@ -135,13 +135,13 @@ public class FailedScore {
     public int BaseScore { get; set; }
     public int ModifiedScore { get; set; }
     public float Accuracy { get; set; }
-    public string PlayerId { get; set; } = null!;
+    public required string PlayerId { get; set; }
     public float Pp { get; set; }
     public float Weight { get; set; }
     public int Rank { get; set; }
     public int CountryRank { get; set; }
-    public string Replay { get; set; } = null!;
-    public string Modifiers { get; set; } = null!;
+    public required string Replay { get; set; }
+    public required string Modifiers { get; set; }
     public int BadCuts { get; set; }
     public int MissedNotes { get; set; }
     public int BombCuts { get; set; }
@@ -149,9 +149,9 @@ public class FailedScore {
     public int Pauses { get; set; }
     public bool FullCombo { get; set; }
     public HMD Hmd { get; set; }
-    public string Timeset { get; set; } = null!;
-    public Player Player { get; set; } = null!;
-    public Leaderboard Leaderboard { get; set; } = null!;
-    public string Error { get; set; } = null!;
+    public required string Timeset { get; set; }
+    public required Player Player { get; set; }
+    public required Leaderboard Leaderboard { get; set; }
+    public required string Error { get; set; }
     public bool FalsePositive { get; set; }
 }

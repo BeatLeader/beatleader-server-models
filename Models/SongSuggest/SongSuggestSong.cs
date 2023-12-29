@@ -1,10 +1,10 @@
 ﻿namespace BeatLeader.Models.SongSuggest;
 
 public class SongSuggestSong {
-    public string ID { get; set; } = null!;
-    public string name { get; set; } = null!;
-    public string hash { get; set; } = null!;
-    public string difficulty { get; set; } = null!;
-    public string mode { get; set; } = null!;
-    public float stars { get; set; }
+    public required string ID { get; set; }
+    public required string name { get; set; }
+    public required string hash { get; set; }
+    public required string difficulty { get; set; }
+    public required string mode { get; set; }
+    public required float stars { get; set; }
 }

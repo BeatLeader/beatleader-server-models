@@ -2,9 +2,9 @@
 
 public class QualificationCommentary {
     public int Id { get; set; }
-    public string PlayerId { get; set; } = null!;
+    public required string PlayerId { get; set; }
     public int Timeset { get; set; }
-    public string Value { get; set; } = null!;
+    public required string Value { get; set; }
 
     public int? EditTimeset { get; set; }
     public bool Edited { get; set; }
@@ -17,9 +17,9 @@ public class QualificationCommentary {
 
 public class CriteriaCommentary {
     public int Id { get; set; }
-    public string PlayerId { get; set; } = null!;
+    public required string PlayerId { get; set; }
     public int Timeset { get; set; }
-    public string Value { get; set; } = null!;
+    public required string Value { get; set; }
 
     public int? EditTimeset { get; set; }
     public bool Edited { get; set; }
@@ -38,7 +38,7 @@ public enum MapQuality {
 
 public class QualificationVote {
     public int Id { get; set; }
-    public string PlayerId { get; set; } = null!;
+    public required string PlayerId { get; set; }
     public int Timeset { get; set; }
     public MapQuality Value { get; set; }
 
@@ -54,7 +54,7 @@ public class QualificationVote {
 public class RankQualification {
     public int Id { get; set; }
     public int Timeset { get; set; }
-    public string RTMember { get; set; } = null!;
+    public required string RTMember { get; set; }
 
     public int CriteriaTimeset { get; set; }
     public int CriteriaMet { get; set; }

@@ -12,5 +12,5 @@ public class AccountLinkRequest {
     public string OculusID { get; set; } = "";
 
     public int Random { get; set; }
-    public string IP { get; set; } = null!;
+    public required string IP { get; set; }
 }

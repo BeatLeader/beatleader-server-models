@@ -31,8 +31,8 @@ public class DifficultyDescription {
     public int Id { get; set; }
     public int Value { get; set; }
     public int Mode { get; set; }
-    public string DifficultyName { get; set; } = null!;
-    public string ModeName { get; set; } = null!;
+    public required string DifficultyName { get; set; }
+    public required string ModeName { get; set; }
     public DifficultyStatus Status { get; set; }
     public ModifiersMap? ModifierValues { get; set; } = new();
     public ModifiersRating? ModifiersRating { get; set; }

@@ -3,7 +3,7 @@
 public class RankUpdate {
     public int Id { get; set; }
     public int Timeset { get; set; }
-    public string RTMember { get; set; } = null!;
+    public required string RTMember { get; set; }
     public bool Keep { get; set; }
 
     public float Stars { get; set; }
@@ -15,7 +15,7 @@ public class RankUpdate {
     public string? CriteriaCommentary { get; set; }
     public bool Finished { get; set; }
 
-    public ModifiersMap Modifiers { get; set; } = null!;
+    public required ModifiersMap Modifiers { get; set; }
     public ModifiersRating? ModifiersRating { get; set; }
 
     public ICollection<RankUpdateChange>? Changes { get; set; }
@@ -25,7 +25,7 @@ public class RankUpdateChange {
     public int Id { get; set; }
 
     public int Timeset { get; set; } = 0;
-    public string PlayerId { get; set; } = null!;
+    public required string PlayerId { get; set; }
 
     public bool OldKeep { get; set; }
     public float OldStars { get; set; } = 0;
