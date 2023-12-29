@@ -1,7 +1,7 @@
-﻿namespace BeatLeader.Models {
-    public class VRController {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Player { get; set; }
-    }
+﻿namespace BeatLeader.Models;
+
+public class VRController {
+    public int Id { get; set; }
+    public required string Name { get; set; }
+    public required string Player { get; set; }
 }

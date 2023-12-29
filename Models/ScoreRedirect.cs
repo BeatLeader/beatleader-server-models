@@ -1,8 +1,8 @@
-﻿namespace BeatLeader.Models {
-    public class ScoreRedirect {
-        public int Id { get; set; }
+﻿namespace BeatLeader.Models;
 
-        public int OldScoreId { get; set; }
-        public int NewScoreId { get; set; }
-    }
+public class ScoreRedirect {
+    public int Id { get; set; }
+
+    public int OldScoreId { get; set; }
+    public int NewScoreId { get; set; }
 }
