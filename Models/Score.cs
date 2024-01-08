@@ -126,6 +126,7 @@ namespace BeatLeader_Server.Models
         }
     }
 
+    [Index(nameof(ScoreId), IsUnique = false)]
     public class ReplayWatchingSession {
         public int Id { get; set; }
         public int ScoreId { get; set; }

@@ -27,6 +27,9 @@ namespace BeatLeader_Server.Utils {
 
             public PatreonFeatures? PatreonFeatures { get; set; }
             public ProfileSettings? ProfileSettings { get; set; }
+
+            [JsonIgnore]
+            public string ClanOrder { get; set; } = "";
             public IEnumerable<ClanResponse>? Clans { get; set; }
 
             public virtual void ToContext(PlayerContextExtension extension) {
@@ -812,6 +815,13 @@ namespace BeatLeader_Server.Utils {
             }
 
             PostProcessSettings(input.Role, input.ProfileSettings, input.PatreonFeatures);
+
+            if (input.ClanOrder.Length > 0) {
+                input.Clans = input.Clans
+                                .OrderBy(c => input.ClanOrder.IndexOf(c.Tag))
+                                .ThenBy(c => c.Id)
+                                .ToList();
+            }
 
             return input;
         }

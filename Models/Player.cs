@@ -35,6 +35,8 @@ namespace BeatLeader_Server.Models {
     }
 
     [Index(nameof(Banned), IsUnique = false)]
+    [Index(nameof(Rank), IsUnique = false)]
+    [Index(nameof(Banned), nameof(Pp), nameof(ScoreStatsId), IsUnique = false)]
     public class Player : IPlayer {
         [Key]
         public string Id { get; set; }
@@ -64,6 +66,7 @@ namespace BeatLeader_Server.Models {
 
         public string ExternalProfileUrl { get; set; } = "";
 
+        public int? ScoreStatsId { get; set; }
         public PlayerScoreStats? ScoreStats { get; set; }
         public ICollection<Clan>? Clans { get; set; }
         public string ClanOrder { get; set; } = "";

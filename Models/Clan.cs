@@ -17,10 +17,6 @@ namespace BeatLeader_Server.Models
         public float AverageRank { get; set; }
         public float AverageAccuracy { get; set; }
 
-        public int CaptureLeaderboardsCount { get; set; }
-        public float RankedPoolPercentCaptured { get; set; }
-        public ICollection<Leaderboard>? CapturedLeaderboards { get; set; }
-
         public ICollection<Player> Players { get; set; } = new List<Player>();
 
         [InverseProperty("ClanRequest")]
@@ -28,6 +24,15 @@ namespace BeatLeader_Server.Models
 
         [InverseProperty("BannedClans")]
         public ICollection<User> Banned { get; set; } = new List<User>();
+        
+        public float RankedPoolPercentCaptured { get; set; }
+        public int CaptureLeaderboardsCount { get; set; }
+        public ICollection<Leaderboard>? CapturedLeaderboards { get; set; }
+
+        public float GlobalMapX { get; set; }
+        public float GlobalMapY { get; set; }
+
+        public ICollection<GlobalMapHistory> History { get; set; }
     }
 
     public class ReservedClanTag

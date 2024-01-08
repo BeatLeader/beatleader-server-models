@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 namespace BeatLeader_Server.Models
 {
+    [Index(nameof(LastRankedScoreTime), IsUnique = false)]
+    [Index(nameof(RankedPlayCount), IsUnique = false)]
     public class PlayerScoreStats
     {
         public int Id { get; set; }
