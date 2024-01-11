@@ -48,6 +48,9 @@ namespace BeatLeader_Server.Models
     [Index(nameof(PlayerId), nameof(LeaderboardId), nameof(ValidContexts), IsUnique = true)]
     [Index(nameof(Banned), nameof(Qualification), nameof(Pp), IsUnique = false)]
     [Index(nameof(Timepost), nameof(Replay))]
+    [Index(nameof(Timepost))]
+    [Index(nameof(Pp))]
+    [Index(nameof(Accuracy))]
     [Index(nameof(PlayerId), nameof(Banned), nameof(Qualification), nameof(Pp), IsUnique = false)]
     public class Score
     {
