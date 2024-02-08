@@ -7,6 +7,27 @@ namespace BeatLeader_Server.Utils {
             public int Id { get; set; }
             public string Tag { get; set; }
             public string Color { get; set; }
+            public string Name { get; set; }
+        }
+
+        public class ClanResponseFull {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Color { get; set; }
+            public string Icon { get; set; }
+            public string Tag { get; set; }
+            public string LeaderID { get; set; }
+            public string Description { get; set; }
+            public string Bio { get; set; }
+            public int PlayersCount { get; set; }
+            public float Pp { get; set; }
+            public int Rank { get; set; }
+            public float AverageRank { get; set; }
+            public float AverageAccuracy { get; set; }
+            public float RankedPoolPercentCaptured { get; set; }
+            public int CaptureLeaderboardsCount { get; set; }
+            public string? PlayerChangesCallback { get; set; }
+            public string? ClanRankingDiscordHook { get; set; }
         }
 
         public class PlayerResponse {
@@ -97,6 +118,7 @@ namespace BeatLeader_Server.Utils {
             public string? SubName { get; set; }
             public string Author { get; set; }
             public string Mapper { get; set; }
+            public string DownloadUrl { get; set; }
         }
 
         public class ScoreResponseWithDifficulty : ScoreResponse {
@@ -269,6 +291,7 @@ namespace BeatLeader_Server.Utils {
             public DifficultyResponse? Difficulty { get; set; }
             public List<ScoreResponse>? Scores { get; set; }
             public IEnumerable<LeaderboardChange>? Changes { get; set; }
+            public ICollection<FeaturedPlaylist>? FeaturedPlaylists { get; set; }
 
             public RankQualification? Qualification { get; set; }
             public RankUpdate? Reweight { get; set; }
@@ -295,6 +318,7 @@ namespace BeatLeader_Server.Utils {
             public Clan Clan { get; set; }
             public int LastUpdateTime { get; set; }
             public float AverageRank { get; set; }
+            public int Rank { get; set; }
             public float Pp { get; set; }
             public float AverageAccuracy { get; set; }
             public float TotalScore { get; set; }
@@ -302,6 +326,8 @@ namespace BeatLeader_Server.Utils {
             public Leaderboard Leaderboard { get; set; }
             public ICollection<ScoreResponse>? AssociatedScores { get; set; }
             public int AssociatedScoresCount { get; set; }
+            public ScoreResponseWithAcc? MyScore { get; set; }
+
         }
 
         public class LeaderboardGroupEntry {
@@ -330,6 +356,12 @@ namespace BeatLeader_Server.Utils {
             }
         }
 
+        public class ClanRankingStatus {
+            public ClanResponse? Clan { get; set; }
+            public bool ClanRankingContested { get; set; }
+            public bool Applicable { get; set; }
+        }
+
         public class DiffModResponse {
             public string DifficultyName { get; set; }
             public string ModeName { get; set; }
@@ -342,6 +374,7 @@ namespace BeatLeader_Server.Utils {
             public float? PassRating { get; set; }
             public float? AccRating { get; set; }
             public float? TechRating { get; set; }
+            public ClanRankingStatus ClanStatus { get; set; } = new();
 
             public void HideRatings() {
                 this.AccRating = null;
@@ -662,7 +695,7 @@ namespace BeatLeader_Server.Utils {
                 ProfileSettings = p.ProfileSettings,
                 ContextExtensions = p.ContextExtensions,
                 Clans = p.Clans?.OrderBy(c => p.ClanOrder.IndexOf(c.Tag))
-                            .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
+                            .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color, Name = c.Name })
             };
         }
 
@@ -816,7 +849,7 @@ namespace BeatLeader_Server.Utils {
 
             PostProcessSettings(input.Role, input.ProfileSettings, input.PatreonFeatures);
 
-            if (input.ClanOrder.Length > 0) {
+            if (input.ClanOrder.Length > 0 && input.Clans != null) {
                 input.Clans = input.Clans
                                 .OrderBy(c => input.ClanOrder.IndexOf(c.Tag))
                                 .ThenBy(c => c.Id)

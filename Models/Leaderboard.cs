@@ -8,6 +8,7 @@
         public ICollection<ScoreContextExtension> ContextExtensions { get; set; }
         public RankQualification? Qualification { get; set; }
         public RankUpdate? Reweight { get; set; }
+        public ICollection<FeaturedPlaylist>? FeaturedPlaylists { get; set; }
 
         public long Timestamp { get; set; }
 

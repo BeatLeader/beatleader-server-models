@@ -71,6 +71,9 @@ namespace BeatLeader_Server.Models
         public string TopPlatform { get; set; } = "";
         public HMD TopHMD { get ; set; }
 
+        public float TopPercentile { get; set; }
+        public float CountryTopPercentile { get; set; }
+
         public int DailyImprovements { get; set; }
         public int AuthorizedReplayWatched { get; set; }
         public int AnonimusReplayWatched { get; set; }

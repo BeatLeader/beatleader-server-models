@@ -14,8 +14,10 @@ namespace BeatLeader_Server.Models
         public string Bio { get; set; }
         public int PlayersCount { get; set; }
         public float Pp { get; set; }
+        public int Rank { get; set; }
         public float AverageRank { get; set; }
         public float AverageAccuracy { get; set; }
+        public ICollection<FeaturedPlaylist>? FeaturedPlaylists { get; set; }
 
         public ICollection<Player> Players { get; set; } = new List<Player>();
 
@@ -33,6 +35,9 @@ namespace BeatLeader_Server.Models
         public float GlobalMapY { get; set; }
 
         public ICollection<GlobalMapHistory> History { get; set; }
+
+        public string? PlayerChangesCallback { get; set; }
+        public string? ClanRankingDiscordHook { get; set; }
     }
 
     public class ReservedClanTag
