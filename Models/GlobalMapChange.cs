@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace BeatLeader_Server.Models
 {
-    public enum PlayerClanAction {
+    public enum GlobalMapEvent {
         create = 0,
         dismantle = 1,
         kick = 2,
         join = 3,
         reject = 4,
         leave = 5,
-        score = 6
+
+        score = 6,
+        ranked = 7,
+        priorityChange = 8
     }
 
     public class GlobalMapChange
@@ -49,7 +52,7 @@ namespace BeatLeader_Server.Models
         public float? NewClan3Pp { get; set; }
         
         public string? PlayerId { get; set; }
-        public PlayerClanAction? PlayerAction { get; set; }
+        public GlobalMapEvent? PlayerAction { get; set; }
         public int? ScoreId { get; set; }
     }
 }
