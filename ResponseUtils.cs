@@ -840,7 +840,7 @@ namespace BeatLeader_Server.Utils {
             };
         }
 
-        public static T PostProcessSettings<T>(T input) where T : PlayerResponse? {
+        public static T PostProcessSettings<T>(T input, bool allClans) where T : PlayerResponse? {
             if (input == null) return null;
 
             if (input.ProfileSettings == null) {
@@ -849,11 +849,15 @@ namespace BeatLeader_Server.Utils {
 
             PostProcessSettings(input.Role, input.ProfileSettings, input.PatreonFeatures);
 
-            if (input.ClanOrder.Length > 0 && input.Clans != null) {
+            if (input.Clans != null && input.Clans.Count() > 0) {
                 input.Clans = input.Clans
-                                .OrderBy(c => input.ClanOrder.IndexOf(c.Tag))
-                                .ThenBy(c => c.Id)
-                                .ToList();
+                            .OrderBy(c => input.ClanOrder.IndexOf(c.Tag))
+                            .ThenBy(c => c.Id)
+                            .ToList();
+
+                if (!allClans) {
+                    input.Clans = input.Clans.Take(1).ToList();
+                }
             }
 
             return input;
