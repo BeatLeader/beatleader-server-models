@@ -12,6 +12,7 @@ namespace BeatLeader_Server.Models
         public string LeaderID { get; set; }
         public string Description { get; set; }
         public string Bio { get; set; }
+        public string RichBio { get; set; }
         public int PlayersCount { get; set; }
         public float Pp { get; set; }
         public int Rank { get; set; }
@@ -26,6 +27,8 @@ namespace BeatLeader_Server.Models
 
         [InverseProperty("BannedClans")]
         public ICollection<User> Banned { get; set; } = new List<User>();
+        public ICollection<ClanManager>? Managers { get; set; }
+        public ICollection<ClanUpdate>? Updates { get; set; }
         
         public float RankedPoolPercentCaptured { get; set; }
         public int CaptureLeaderboardsCount { get; set; }

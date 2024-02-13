@@ -19,6 +19,7 @@ namespace BeatLeader_Server.Utils {
             public string LeaderID { get; set; }
             public string Description { get; set; }
             public string Bio { get; set; }
+            public string RichBio { get; set; }
             public int PlayersCount { get; set; }
             public float Pp { get; set; }
             public int Rank { get; set; }
