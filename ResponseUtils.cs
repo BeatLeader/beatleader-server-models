@@ -198,6 +198,19 @@ namespace BeatLeader_Server.Utils {
             public int Duration { get; set; }
         }
 
+        public class ValentineMessageResponse {
+            public int Id { get; set; }
+            public string? SenderId { get; set; }
+            public string? ReceiverId { get; set; }
+
+            public string Message { get; set; }
+            public int Timeset { get; set; }
+            public bool Viewed { get; set; }
+
+            public int ViewCount { get; set; }
+            public bool Followed { get; set; }
+        }
+
         public class UserReturn {
             public PlayerResponseFull Player { get; set; }
 
@@ -208,6 +221,7 @@ namespace BeatLeader_Server.Utils {
             public ICollection<Clan> BannedClans { get; set; } = new List<Clan>();
             public ICollection<Playlist>? Playlists { get; set; }
             public ICollection<PlayerResponseFull>? Friends { get; set; }
+            public List<ValentineMessageResponse>? Valentines { get; set; }
 
             public string? Login { get; set; }
 
