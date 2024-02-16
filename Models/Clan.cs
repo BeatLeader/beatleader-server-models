@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BeatLeader_Server.Models
 {
@@ -39,7 +40,9 @@ namespace BeatLeader_Server.Models
 
         public ICollection<GlobalMapHistory> History { get; set; }
 
+        [JsonIgnore]
         public string? PlayerChangesCallback { get; set; }
+        [JsonIgnore]
         public string? ClanRankingDiscordHook { get; set; }
     }
 
