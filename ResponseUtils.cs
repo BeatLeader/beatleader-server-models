@@ -221,7 +221,6 @@ namespace BeatLeader_Server.Utils {
             public ICollection<Clan> BannedClans { get; set; } = new List<Clan>();
             public ICollection<Playlist>? Playlists { get; set; }
             public ICollection<PlayerResponseFull>? Friends { get; set; }
-            public List<ValentineMessageResponse>? Valentines { get; set; }
 
             public string? Login { get; set; }
 
