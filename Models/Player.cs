@@ -121,5 +121,13 @@ namespace BeatLeader_Server.Models {
         public bool AnySupporter() {
             return RoleIsAnySupporter(Role);
         }
+
+        
+        public void RefreshClanOrder() {
+            ClanOrder = string.Join(",", Clans
+                 .OrderBy(c => ClanOrder.IndexOf(c.Tag))
+                 .ThenBy(c => c.Id)
+                 .Select(c => c.Tag));
+        }
     }
 }
