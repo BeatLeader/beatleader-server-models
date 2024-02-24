@@ -7,5 +7,8 @@
         public string Link { get; set; }
         public string OwnerId { get; set; }
         public string? Hash { get; set; }
+
+        public Guid Guid { get; set; } = Guid.NewGuid();
+        public bool Deleted { get; set; }
     }
 }
