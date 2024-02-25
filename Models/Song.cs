@@ -11,6 +11,7 @@ namespace BeatLeader_Server.Models
         MapOfTheWeek = 1 << 2,
         NoodleMonday = 1 << 3,
         FeaturedOnCC = 1 << 4,
+        BeastSaberAwarded = 1 << 5
     }
 
     public class ExternalStatus
@@ -20,6 +21,9 @@ namespace BeatLeader_Server.Models
         public int Timeset { get; set; }
         public string? Link { get; set; }
         public string? Responsible { get; set; }
+        public string? Details { get; set; }
+        public string? Title { get; set; }
+        public string? TitleColor { get; set; }
     }
 
     [Index(nameof(Hash), IsUnique = true)]
