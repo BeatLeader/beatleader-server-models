@@ -10,6 +10,17 @@ namespace BeatLeader_Server.Utils {
             public string Name { get; set; }
         }
 
+        public class FeaturedPlaylistResponse {
+            public int Id { get; set; }
+            public string PlaylistLink { get; set; }
+            public string Cover { get; set; }
+            public string Title { get; set; }
+            public string? Description { get; set; }
+
+            public string? Owner { get; set; }
+            public string? OwnerCover { get; set; }
+            public string? OwnerLink { get; set; }
+        }
         public class ClanResponseFull {
             public int Id { get; set; }
             public string Name { get; set; }
@@ -29,6 +40,7 @@ namespace BeatLeader_Server.Utils {
             public int CaptureLeaderboardsCount { get; set; }
             public string? PlayerChangesCallback { get; set; }
             public string? ClanRankingDiscordHook { get; set; }
+            public ICollection<FeaturedPlaylistResponse>? FeaturedPlaylists { get; set; }
         }
 
         public class PlayerResponse {
@@ -510,93 +522,6 @@ namespace BeatLeader_Server.Utils {
             return RemoveLeaderboard<ScoreResponse>(s, i);
         }
 
-        public static ScoreResponseWithAcc ToScoreResponseWithAcc(Score s, int i) {
-            var result = RemoveLeaderboard<ScoreResponseWithAcc>(s, i);
-            result.Weight = s.Weight;
-            result.AccLeft = s.AccLeft;
-            result.AccRight = s.AccRight;
-
-            return result;
-        }
-
-        public static T RemoveLeaderboardCE<T>(ScoreContextExtension s, int i) where T : ScoreResponse, new() {
-            return new T {
-                Id = s.Id,
-                BaseScore = s.BaseScore,
-                ModifiedScore = s.ModifiedScore,
-                PlayerId = s.PlayerId,
-                Accuracy = s.Accuracy,
-                Pp = s.Pp,
-                FcAccuracy = s.Score.FcAccuracy,
-                FcPp = s.Score.FcPp,
-                BonusPp = s.BonusPp,
-                Rank = s.Rank,
-                Replay = s.Score.Replay,
-                Modifiers = s.Modifiers,
-                BadCuts = s.Score.BadCuts,
-                MissedNotes = s.Score.MissedNotes,
-                BombCuts = s.Score.BombCuts,
-                WallsHit = s.Score.WallsHit,
-                Pauses = s.Score.Pauses,
-                FullCombo = s.Score.FullCombo,
-                Hmd = s.Score.Hmd,
-                Controller = s.Score.Controller,
-                MaxCombo = s.Score.MaxCombo,
-                Timeset = s.Score.Timeset,
-                ReplaysWatched = s.Score.AnonimusReplayWatched + s.Score.AuthorizedReplayWatched,
-                Timepost = s.Timeset,
-                LeaderboardId = s.LeaderboardId,
-                Platform = s.Score.Platform,
-                Player = s.Player != null ? new PlayerResponse {
-                    Id = s.Player.Id,
-                    Name = s.Player.Name,
-                    Platform = s.Player.Platform,
-                    Avatar = s.Player.Avatar,
-                    Country = s.Player.Country,
-
-                    Pp = s.Player.Pp,
-                    Rank = s.Player.Rank,
-                    CountryRank = s.Player.CountryRank,
-                    Role = s.Player.Role,
-                    Socials = s.Player.Socials,
-                    PatreonFeatures = s.Player.PatreonFeatures,
-                    ProfileSettings = s.Player.ProfileSettings,
-                    ContextExtensions = s.Player.ContextExtensions != null ? s.Player.ContextExtensions.Select(ce => new PlayerContextExtension {
-                        Context = ce.Context,
-                        Pp = ce.Pp,
-                        AccPp = ce.AccPp,
-                        TechPp = ce.TechPp,
-                        PassPp = ce.PassPp,
-
-                        Rank = ce.Rank,
-                        Country  = ce.Country,
-                        CountryRank  = ce.CountryRank,
-                    }).ToList() : null,
-                    Clans = s.Player.Clans?.OrderBy(c => s.Player.ClanOrder.IndexOf(c.Tag))
-                            .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
-                } : null,
-                ScoreImprovement = s.ScoreImprovement,
-                RankVoting = s.Score.RankVoting,
-                Metadata = s.Score.Metadata,
-                Country = s.Score.Country,
-                Offsets = s.Score.ReplayOffsets,
-                MaxStreak = s.Score.MaxStreak
-            };
-        }
-
-        public static ScoreResponse RemoveLeaderboardCE(ScoreContextExtension s, int i) {
-            return RemoveLeaderboardCE<ScoreResponse>(s, i);
-        }
-
-        public static ScoreResponseWithAcc ToScoreCEResponseWithAcc(ScoreContextExtension s, int i) {
-            var result = RemoveLeaderboardCE<ScoreResponseWithAcc>(s, i);
-            result.Weight = s.Weight;
-            result.AccLeft = s.Score.AccLeft;
-            result.AccRight = s.Score.AccRight;
-
-            return result;
-        }
-
         public static ScoreResponseWithMyScore ScoreWithMyScore(Score s, int i) {
 
             return new ScoreResponseWithMyScore {
@@ -763,30 +688,6 @@ namespace BeatLeader_Server.Utils {
                         Timestamp = it.Timestamp
                     }
                 )
-            };
-        }
-
-        public static PlayerResponseWithStats ResponseWithStatsFromPlayer(Player p) {
-            return new PlayerResponseWithStats {
-                Id = p.Id,
-                Name = p.Name,
-                Platform = p.Platform,
-                Avatar = p.Avatar,
-                Country = p.Country,
-                ScoreStats = p.ScoreStats,
-
-                Pp = p.Pp,
-                Rank = p.Rank,
-                CountryRank = p.CountryRank,
-                LastWeekPp = p.LastWeekPp,
-                LastWeekRank = p.LastWeekRank,
-                LastWeekCountryRank = p.LastWeekCountryRank,
-                Role = p.Role,
-                EventsParticipating = p.EventsParticipating,
-                PatreonFeatures = p.PatreonFeatures,
-                ProfileSettings = p.ProfileSettings,
-                Clans = p.Clans?.OrderBy(c => p.ClanOrder.IndexOf(c.Tag))
-                            .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
             };
         }
 
