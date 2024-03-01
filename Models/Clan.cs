@@ -13,7 +13,10 @@ namespace BeatLeader_Server.Models
         public string LeaderID { get; set; }
         public string Description { get; set; }
         public string Bio { get; set; }
+        [JsonIgnore]
         public string RichBio { get; set; }
+        [JsonIgnore]
+        public string DiscordInvite { get; set; }
         public int PlayersCount { get; set; }
         public float Pp { get; set; }
         public int Rank { get; set; }
