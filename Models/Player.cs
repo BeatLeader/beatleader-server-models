@@ -125,7 +125,7 @@ namespace BeatLeader_Server.Models {
         
         public void RefreshClanOrder() {
             ClanOrder = string.Join(",", Clans
-                 .OrderBy(c => ClanOrder.IndexOf(c.Tag))
+                 .OrderBy(c => ClanOrder.IndexOf(c.Tag) >= 0 ? ClanOrder.IndexOf(c.Tag) : 1000)
                  .ThenBy(c => c.Id)
                  .Select(c => c.Tag));
         }
