@@ -77,7 +77,7 @@ namespace BeatLeader_Server.Utils
         public ScoreResponseWithAcc? MyScore { get; set; }
         public LeaderboardContexts ValidContexts { get; set; }
 
-        public LeaderboardResponse Leaderboard { get; set; }
+        public CompactLeaderboardResponse Leaderboard { get; set; }
         public ICollection<ScoreContextExtension> ContextExtensions { get; set; }
     }
 
@@ -139,10 +139,21 @@ namespace BeatLeader_Server.Utils
                 Metadata = s.Metadata,
                 Country = s.Country,
                 Offsets = s.ReplayOffsets,
-                Leaderboard = new LeaderboardResponse
+                Leaderboard = new CompactLeaderboardResponse
                 {
                     Id = s.LeaderboardId,
-                    Song = s.Leaderboard.Song,
+                    Song = new CompactSongResponse {
+                        Id = s.Leaderboard.Song.Id,
+                        Hash = s.Leaderboard.Song.Hash,
+                        Name = s.Leaderboard.Song.Name,
+            
+                        SubName = s.Leaderboard.Song.SubName,
+                        Author = s.Leaderboard.Song.Author,
+                        Mapper = s.Leaderboard.Song.Mapper,
+                        MapperId = s.Leaderboard.Song.MapperId,
+                        CollaboratorIds = s.Leaderboard.Song.CollaboratorIds,
+                        CoverImage = s.Leaderboard.Song.CoverImage,
+                    },
                     Difficulty = new DifficultyResponse
                     {
                         Id = s.Leaderboard.Difficulty.Id,

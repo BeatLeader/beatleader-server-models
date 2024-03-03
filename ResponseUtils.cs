@@ -312,6 +312,30 @@ namespace BeatLeader_Server.Utils {
             }
         }
 
+        public class CompactSongResponse
+        {
+            public string Id { get; set; }
+            public string Hash { get; set; }
+            public string Name { get; set; }
+            
+            public string? SubName { get; set; }
+            public string Author { get; set; }
+            public string Mapper { get; set; }
+            public int MapperId { get; set; }
+            public string? CollaboratorIds { get; set; }
+            public string CoverImage { get; set; }
+        }
+
+        public class CompactLeaderboardResponse {
+            public string? Id { get; set; }
+            public CompactSongResponse? Song { get; set; }
+            public DifficultyResponse? Difficulty { get; set; }
+            public void HideRatings()
+            {
+                this.Difficulty.HideRatings();
+            }
+        }
+
         public class LeaderboardResponse {
             public string? Id { get; set; }
             public Song? Song { get; set; }
@@ -574,9 +598,20 @@ namespace BeatLeader_Server.Utils {
                 Metadata = s.Metadata,
                 Country = s.Country,
                 Offsets = s.ReplayOffsets,
-                Leaderboard = new LeaderboardResponse {
+                Leaderboard = new CompactLeaderboardResponse {
                     Id = s.LeaderboardId,
-                    Song = s.Leaderboard?.Song,
+                    Song = new CompactSongResponse {
+                        Id = s.Leaderboard.Song.Id,
+                        Hash = s.Leaderboard.Song.Hash,
+                        Name = s.Leaderboard.Song.Name,
+            
+                        SubName = s.Leaderboard.Song.SubName,
+                        Author = s.Leaderboard.Song.Author,
+                        Mapper = s.Leaderboard.Song.Mapper,
+                        MapperId = s.Leaderboard.Song.MapperId,
+                        CollaboratorIds = s.Leaderboard.Song.CollaboratorIds,
+                        CoverImage = s.Leaderboard.Song.CoverImage,
+                    },
                     Difficulty = s.Leaderboard?.Difficulty != null ? new DifficultyResponse {
                         Id = s.Leaderboard.Difficulty.Id,
                         Value = s.Leaderboard.Difficulty.Value,
@@ -779,7 +814,7 @@ namespace BeatLeader_Server.Utils {
             return input;
         }
 
-        public static void PostProcessSettings(string role, ProfileSettings? settings, PatreonFeatures? patreonFeatures, bool hideStarredFriends = true) {
+        public static void PostProcessSettings(string? role, ProfileSettings? settings, PatreonFeatures? patreonFeatures, bool hideStarredFriends = true) {
             if (settings != null && hideStarredFriends) {
                 settings.StarredFriends = "";
             }
@@ -787,6 +822,8 @@ namespace BeatLeader_Server.Utils {
             if (settings != null && settings.ProfileAppearance == null) {
                 settings.ProfileAppearance = "topPp,averageRankedAccuracy,topPlatform,topHMD";
             }
+
+            if (role == null) return;
 
             if (!role.Contains("sponsor")) {
                 if (settings != null) {
