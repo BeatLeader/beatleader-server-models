@@ -324,6 +324,9 @@ namespace BeatLeader_Server.Utils {
             public int MapperId { get; set; }
             public string? CollaboratorIds { get; set; }
             public string CoverImage { get; set; }
+            public double Bpm { get; set; }
+            public double Duration { get; set; }
+            public string? FullCoverImage { get; set; }
         }
 
         public class CompactLeaderboardResponse {
@@ -611,6 +614,9 @@ namespace BeatLeader_Server.Utils {
                         MapperId = s.Leaderboard.Song.MapperId,
                         CollaboratorIds = s.Leaderboard.Song.CollaboratorIds,
                         CoverImage = s.Leaderboard.Song.CoverImage,
+                        FullCoverImage = s.Leaderboard.Song.FullCoverImage,
+                        Bpm = s.Leaderboard.Song.Bpm,
+                        Duration = s.Leaderboard.Song.Duration,
                     },
                     Difficulty = s.Leaderboard?.Difficulty != null ? new DifficultyResponse {
                         Id = s.Leaderboard.Difficulty.Id,

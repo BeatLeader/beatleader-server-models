@@ -153,6 +153,9 @@ namespace BeatLeader_Server.Utils
                         MapperId = s.Leaderboard.Song.MapperId,
                         CollaboratorIds = s.Leaderboard.Song.CollaboratorIds,
                         CoverImage = s.Leaderboard.Song.CoverImage,
+                        FullCoverImage = s.Leaderboard.Song.FullCoverImage,
+                        Bpm = s.Leaderboard.Song.Bpm,
+                        Duration = s.Leaderboard.Song.Duration,
                     },
                     Difficulty = new DifficultyResponse
                     {
