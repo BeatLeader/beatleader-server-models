@@ -86,7 +86,6 @@ namespace BeatLeader_Server.Utils {
             public float LastWeekPp { get; set; }
             public int LastWeekRank { get; set; }
             public int LastWeekCountryRank { get; set; }
-            public IEnumerable<EventPlayer>? EventsParticipating { get; set; }
 
             public override void ToContext(PlayerContextExtension extension) {
                 Pp = extension.Pp;
@@ -480,6 +479,11 @@ namespace BeatLeader_Server.Utils {
             public PlayerResponse Leader { get; set; }
         }
 
+        public class ParticipatingEventResponse {
+            public int? Id { get; set; }
+            public string Name { get; set; }
+        }
+
         public static T RemoveLeaderboard<T>(Score s, int i) where T : ScoreResponse, new() {
             return new T {
                 Id = s.Id,
@@ -550,9 +554,9 @@ namespace BeatLeader_Server.Utils {
             return RemoveLeaderboard<ScoreResponse>(s, i);
         }
 
-        public static ScoreResponseWithMyScore ScoreWithMyScore(Score s, int i) {
+        public static ScoreResponseWithMyScoreAndContexts ScoreWithMyScore(Score s, int i) {
 
-            return new ScoreResponseWithMyScore {
+            return new ScoreResponseWithMyScoreAndContexts {
                 Id = s.Id,
                 BaseScore = s.BaseScore,
                 ModifiedScore = s.ModifiedScore,
@@ -603,7 +607,7 @@ namespace BeatLeader_Server.Utils {
                 Offsets = s.ReplayOffsets,
                 Leaderboard = new CompactLeaderboardResponse {
                     Id = s.LeaderboardId,
-                    Song = new CompactSongResponse {
+                    Song = s.Leaderboard.Song != null ? new CompactSongResponse {
                         Id = s.Leaderboard.Song.Id,
                         Hash = s.Leaderboard.Song.Hash,
                         Name = s.Leaderboard.Song.Name,
@@ -617,7 +621,7 @@ namespace BeatLeader_Server.Utils {
                         FullCoverImage = s.Leaderboard.Song.FullCoverImage,
                         Bpm = s.Leaderboard.Song.Bpm,
                         Duration = s.Leaderboard.Song.Duration,
-                    },
+                    } : null,
                     Difficulty = s.Leaderboard?.Difficulty != null ? new DifficultyResponse {
                         Id = s.Leaderboard.Difficulty.Id,
                         Value = s.Leaderboard.Difficulty.Value,
@@ -653,7 +657,26 @@ namespace BeatLeader_Server.Utils {
                 AccLeft = s.AccLeft,
                 AccRight = s.AccRight,
                 MaxStreak = s.MaxStreak,
-                ValidContexts = s.ValidContexts
+                ValidContexts = s.ValidContexts,
+                ContextExtensions = s.ContextExtensions.Select(ce => new ScoreContextExtensionResponse {
+                    Id = ce.Id,
+                    PlayerId = ce.PlayerId,
+        
+                    Weight = ce.Weight,
+                    Rank = ce.Rank,
+                    BaseScore = ce.BaseScore,
+                    ModifiedScore = ce.ModifiedScore,
+                    Accuracy = ce.Accuracy,
+                    Pp = ce.Pp,
+                    PassPP = ce.PassPP,
+                    AccPP = ce.AccPP,
+                    TechPP = ce.TechPP,
+                    BonusPp = ce.BonusPp,
+                    Modifiers = ce.Modifiers,
+
+                    Context = ce.Context,
+                    ScoreImprovement = ce.ScoreImprovement,
+                }).ToList()
             };
         }
 
@@ -733,12 +756,6 @@ namespace BeatLeader_Server.Utils {
             };
         }
 
-        public static PlayerResponseFull? ResponseFullFromPlayerNullable(Player? p) {
-            if (p == null) return null;
-
-            return ResponseFullFromPlayer(p);
-        }
-
         public static PlayerResponseFull ResponseFullFromPlayer(Player p) {
             return new PlayerResponseFull {
                 Id = p.Id,
@@ -772,7 +789,6 @@ namespace BeatLeader_Server.Utils {
                 LastWeekCountryRank = p.LastWeekCountryRank,
                 Role = p.Role,
                 Socials = p.Socials,
-                EventsParticipating = p.EventsParticipating,
                 PatreonFeatures = p.PatreonFeatures,
                 ProfileSettings = p.ProfileSettings,
                 ContextExtensions = p.ContextExtensions,

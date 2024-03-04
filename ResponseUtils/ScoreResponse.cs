@@ -78,7 +78,32 @@ namespace BeatLeader_Server.Utils
         public LeaderboardContexts ValidContexts { get; set; }
 
         public CompactLeaderboardResponse Leaderboard { get; set; }
-        public ICollection<ScoreContextExtension> ContextExtensions { get; set; }
+    }
+
+    public class ScoreContextExtensionResponse
+    {
+        public int Id { get; set; }
+        public string PlayerId { get; set; }
+        
+        public float Weight { get; set; }
+        public int Rank { get; set; }
+        public int BaseScore { get; set; }
+        public int ModifiedScore { get; set; }
+        public float Accuracy { get; set; }
+        public float Pp { get; set; }
+        public float PassPP { get; set; }
+        public float AccPP { get; set; }
+        public float TechPP { get; set; }
+        public float BonusPp { get; set; }
+        public string? Modifiers { get; set; }
+
+        public LeaderboardContexts Context { get; set; }
+        public ScoreImprovement? ScoreImprovement { get; set; }
+    }
+
+    public class ScoreResponseWithMyScoreAndContexts : ScoreResponseWithMyScore
+    {
+        public ICollection<ScoreContextExtensionResponse> ContextExtensions { get; set; }
     }
 
     public static class ScoreResponseQuery
