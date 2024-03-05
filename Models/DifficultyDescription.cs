@@ -43,6 +43,12 @@ namespace BeatLeader_Server.Models
         public int QualifiedTime { get; set; }
         public int RankedTime { get; set; }
 
+
+        public int SpeedTags { get; set; }
+        public int StyleTags { get; set; }
+        public int FeatureTags { get; set; }
+        
+
         public float? Stars { get; set; }
         public float? PredictedAcc { get; set; }
         public float? PassRating { get; set; }

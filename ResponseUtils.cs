@@ -284,6 +284,10 @@ namespace BeatLeader_Server.Utils {
             public int QualifiedTime { get; set; }
             public int RankedTime { get; set; }
 
+            public int SpeedTags { get; set; }
+            public int StyleTags { get; set; }
+            public int FeatureTags { get; set; }
+
             public float? Stars { get; set; }
             public float? PredictedAcc { get; set; }
             public float? PassRating { get; set; }
@@ -406,6 +410,12 @@ namespace BeatLeader_Server.Utils {
 
             public void HideRatings() {
                 this.Difficulty.HideRatings();
+            }
+
+            public void HideTags() {
+                this.Difficulty.SpeedTags = 0;
+                this.Difficulty.StyleTags = 0;
+                this.Difficulty.FeatureTags = 0;
             }
         }
 
