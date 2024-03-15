@@ -65,6 +65,7 @@ namespace BeatLeader_Server.Models {
         public bool Inactive { get; set; }
 
         public string ExternalProfileUrl { get; set; } = "";
+        public int RichBioTimeset { get; set; }
 
         public int? ScoreStatsId { get; set; }
         public PlayerScoreStats? ScoreStats { get; set; }

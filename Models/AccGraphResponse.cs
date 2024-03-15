@@ -9,7 +9,6 @@ namespace BeatLeader_Server.Models {
         public string SongName { get; set; }
         public string Hash { get; set; }
         public string Mapper { get; set; }
-        public float Acc { get; set; }
         public string Timeset { get; set; }
         public float? Stars { get; set; }
 
@@ -23,5 +22,15 @@ namespace BeatLeader_Server.Models {
         public float? AccRating { get; set; }
         [JsonIgnore]
         public float? TechRating { get; set; }
+    }
+
+    public class AccGraphResponse : GraphResponse {
+        public float Acc { get; set; }
+    }
+
+    public class RankGraphResponse : GraphResponse {
+        public int Rank { get; set; }
+        public int ScoreCount { get; set; }
+        public float Ratio { get; set; }
     }
 }
