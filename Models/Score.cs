@@ -44,6 +44,17 @@ namespace BeatLeader_Server.Models
         public string? Link { get; set; }
     }
 
+    public interface IScore {
+        public float Accuracy { get; set; }
+        public float Weight { get; set; }
+        public int Rank { get; set; }
+        public float Pp { get; set; }
+        public string? Modifiers { get; set; }
+        public int Timepost { get; set; }
+        public string LeaderboardId { get; set; }
+        public Leaderboard Leaderboard { get; set; }
+    }
+
     [Index(nameof(PlayerId))]
     [Index(nameof(PlayerId), nameof(LeaderboardId), nameof(ValidContexts), IsUnique = true)]
     [Index(nameof(Banned), nameof(Qualification), nameof(Pp), IsUnique = false)]
@@ -52,7 +63,7 @@ namespace BeatLeader_Server.Models
     [Index(nameof(Pp))]
     [Index(nameof(Accuracy))]
     [Index(nameof(PlayerId), nameof(Banned), nameof(Qualification), nameof(Pp), IsUnique = false)]
-    public class Score
+    public class Score : IScore
     {
         [Key]
         public int Id { get; set; }
