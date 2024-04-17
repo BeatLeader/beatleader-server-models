@@ -43,6 +43,7 @@ namespace BeatLeader_Server.Models {
         public string Name { get; set; } = "";
         public string Platform { get; set; } = "";
         public string Avatar { get; set; } = "";
+        public string WebAvatar { get; set; } = "";
         public string Country { get; set; } = "not set";
 
         public string Role { get; set; } = "";
