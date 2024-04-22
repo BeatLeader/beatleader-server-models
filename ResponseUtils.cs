@@ -113,6 +113,7 @@ namespace BeatLeader_Server.Utils {
             public Ban? BanDescription { get; set; }
 
             public string ExternalProfileUrl { get; set; } = "";
+            public int RichBioTimeset { get; set; }
 
 
             public ICollection<PlayerScoreStatsHistory>? History { get; set; }
