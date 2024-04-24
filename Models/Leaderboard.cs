@@ -31,6 +31,8 @@
 
         public ICollection<ClanRanking>? ClanRanking { get; set; }
         public bool ClanRankingContested { get; set; }
+
+        public ICollection<PredictedScore> PredictedScores { get; set; }
     }
 
     public class LeaderboardGroup {

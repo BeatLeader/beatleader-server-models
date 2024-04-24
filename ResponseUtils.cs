@@ -139,6 +139,8 @@ namespace BeatLeader_Server.Utils {
         public class ScoreResponseWithDifficulty : ScoreResponse {
             public DifficultyDescription Difficulty { get; set; }
             public ScoreSongResponse Song { get; set; }
+            public LeaderboardContexts ValidContexts { get; set; }
+            public ICollection<ScoreContextExtensionResponse> ContextExtensions { get; set; }
         }
 
         public class SaverScoreResponse {
