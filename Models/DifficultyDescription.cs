@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BeatLeader_Server.Models
 {
@@ -39,6 +40,8 @@ namespace BeatLeader_Server.Models
         public DifficultyStatus Status { get; set; }
         public ModifiersMap? ModifierValues { get; set; } = new ModifiersMap();
         public ModifiersRating? ModifiersRating { get; set; }
+        [JsonIgnore]
+        public MaxScoreGraph? MaxScoreGraph { get; set; }
         public int NominatedTime { get; set; }
         public int QualifiedTime { get; set; }
         public int RankedTime { get; set; }
