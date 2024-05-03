@@ -756,7 +756,7 @@ namespace BeatLeader_Server.Utils {
 
                     Requirements = l.Difficulty.Requirements,
                 },
-                Scores = l.Scores.Select(RemoveLeaderboard).ToList(),
+                Scores = l.Scores?.Select(RemoveLeaderboard).ToList(),
                 Plays = l.Plays,
                 Qualification = l.Qualification,
                 Reweight = l.Reweight,
