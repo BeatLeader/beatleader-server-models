@@ -41,6 +41,7 @@ namespace BeatLeader_Server.Utils
         public int Timepost { get; set; }
         public int ReplaysWatched { get; set; }
         public int PlayCount { get; set; }
+        public int LastTryTime { get; set; }
         [JsonIgnore]
         public int Priority { get; set; }
         public PlayerResponse? Player { get; set; }

@@ -32,10 +32,19 @@ namespace BeatLeader_Server.Models
         };
     }
 
+    [Flags]
+    public enum InfoToHighlight
+    {
+        None = 0,
+        WatchCount = 1 << 1,
+        PlayCount = 1 << 2,
+    }
+
     public class ScoreMetadata 
     {
         public int Id { get; set; }
         public LeaderboardContexts PinnedContexts { get; set; }
+        public InfoToHighlight HighlightedInfo { get; set; } = InfoToHighlight.WatchCount;
         public int Priority { get; set; }
         public string? Description { get; set; }
 
@@ -110,6 +119,7 @@ namespace BeatLeader_Server.Models
         public string? Country { get; set; }
         public int? MaxStreak { get; set; } = null;
         public int PlayCount { get; set; } = 1;
+        public int LastTryTime { get; set; }
         public float LeftTiming { get; set; }
         public float RightTiming { get; set; }
         public int Priority { get; set; } = 0;
