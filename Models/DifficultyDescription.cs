@@ -4,15 +4,26 @@ using System.Text.Json.Serialization;
 
 namespace BeatLeader_Server.Models
 {
+    /// <summary>
+    /// Represents the difficulty status of a map.
+    /// </summary>
     public enum DifficultyStatus
     {
+        /// <summary>Unranked (0)</summary>
         unranked = 0,
+        /// <summary>Nominated (1)</summary>
         nominated = 1,
+        /// <summary>Qualified (2)</summary>
         qualified = 2,
+        /// <summary>Ranked (3)</summary>
         ranked = 3,
+        /// <summary>Unrankable (4)</summary>
         unrankable = 4,
+        /// <summary>Outdated (5)</summary>
         outdated = 5,
+        /// <summary>In Event (6)</summary>
         inevent = 6,
+        /// <summary>Official Soundtrack (7)</summary>
         OST = 7
     }
 
