@@ -1,4 +1,6 @@
-﻿namespace BeatLeader_Server.Models {
+﻿using System.Text.Json.Serialization;
+
+namespace BeatLeader_Server.Models {
     public class AchievementLevel {
         public int Id { get; set; }
 
@@ -19,6 +21,7 @@
         public string Description { get; set; }
         public string? Link { get; set; }
         
+        [JsonIgnore]
         public ICollection<Achievement>? Achievements { get; set; }
         public ICollection<AchievementLevel>? Levels { get; set; }
     }
@@ -26,6 +29,7 @@
     public class Achievement {
         public int Id { get; set; }
         public string PlayerId { get; set; }
+        [JsonIgnore]
         public Player Player { get; set; }
         public int AchievementDescriptionId { get; set; }
         public AchievementDescription AchievementDescription { get; set; }

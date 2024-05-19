@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BeatLeader_Server.Models
 {
@@ -23,6 +24,7 @@ namespace BeatLeader_Server.Models
     {
         public int Id { get; set; }
         public string AuthorId { get; set; }
+        [JsonIgnore]
         public Player Author { get; set; }
         public int Timeset { get; set; }
 
@@ -34,6 +36,7 @@ namespace BeatLeader_Server.Models
         public int Id { get; set; }
 
         public string PlayerId { get; set; }
+        [JsonIgnore]
         public Player Player { get; set; }
         public int Timeset { get; set; }
         public bool Edited { get; set; } 
@@ -47,6 +50,7 @@ namespace BeatLeader_Server.Models
     {
         public int Id { get; set; }
         public string OwnerId { get; set; }
+        [JsonIgnore]
         public Player Owner { get; set; }
 
         public string Name { get; set; }
@@ -74,9 +78,11 @@ namespace BeatLeader_Server.Models
         public ICollection<ReeSabersComment> Comments { get; set; }
 
         public int? RemixId { get; set; }
+        [JsonIgnore]
         public ReeSabersPreset? Remix { get; set; }
 
         [ForeignKey("RemixId")]
+        [JsonIgnore]
         public ICollection<ReeSabersPreset>? Remixes { get; set; }
     }
 

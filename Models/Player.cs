@@ -70,9 +70,12 @@ namespace BeatLeader_Server.Models {
 
         public int? ScoreStatsId { get; set; }
         public PlayerScoreStats? ScoreStats { get; set; }
+        [JsonIgnore]
         public ICollection<Clan>? Clans { get; set; }
+        [JsonIgnore]
         public ICollection<ClanManager>? ManagingClans { get; set; }
         public string ClanOrder { get; set; } = "";
+        [JsonIgnore]
         public ICollection<PlayerFriends>? Friends { get; set; }
 
         public ICollection<Badge>? Badges { get; set; }
@@ -89,7 +92,9 @@ namespace BeatLeader_Server.Models {
         public ICollection<EventPlayer>? EventsParticipating { get; set; }
         public ICollection<PlayerSocial>? Socials { get; set; }
         public ICollection<Achievement>? Achievements { get; set; }
+        [JsonIgnore]
         public ICollection<PlayerContextExtension>? ContextExtensions { get; set; }
+        [JsonIgnore]
         public ICollection<ReeSabersPreset>? Presets { get; set; }
 
         public void SetDefaultAvatar() {

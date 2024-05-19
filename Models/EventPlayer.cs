@@ -1,4 +1,6 @@
-﻿namespace BeatLeader_Server.Models
+﻿using System.Text.Json.Serialization;
+
+namespace BeatLeader_Server.Models
 {
     public class EventPlayer
     {
@@ -10,6 +12,7 @@
         public string PlayerName { get; set; }
 
         public string PlayerId { get; set; }
+        [JsonIgnore]
         public Player Player { get; set; }
         public string Country { get; set; }
         public int Rank { get; set; }

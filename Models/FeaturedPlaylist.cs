@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BeatLeader_Server.Models
@@ -18,7 +19,9 @@ namespace BeatLeader_Server.Models
         public string? OwnerCover { get; set; }
         public string? OwnerLink { get; set; }
 
+        [JsonIgnore]
         public ICollection<Clan>? Clans { get; set; }
+        [JsonIgnore]
         public ICollection<Leaderboard>? Leaderboards { get; set; }
     }
 }

@@ -1,19 +1,26 @@
-﻿namespace BeatLeader_Server.Models {
+﻿using System.Text.Json.Serialization;
+
+namespace BeatLeader_Server.Models {
     public class Leaderboard {
         public string Id { get; set; }
         public string? SongId { get; set; }
         public Song Song { get; set; }
         public DifficultyDescription Difficulty { get; set; }
+        [JsonIgnore]
         public ICollection<Score> Scores { get; set; }
+        [JsonIgnore]
         public ICollection<ScoreContextExtension> ContextExtensions { get; set; }
         public RankQualification? Qualification { get; set; }
         public RankUpdate? Reweight { get; set; }
+        [JsonIgnore]
         public ICollection<FeaturedPlaylist>? FeaturedPlaylists { get; set; }
 
         public long Timestamp { get; set; }
 
+        [JsonIgnore]
         public LeaderboardGroup? LeaderboardGroup { get; set; }
         public ICollection<LeaderboardChange>? Changes { get; set; }
+        [JsonIgnore]
         public ICollection<PlayerLeaderboardStats>? PlayerStats { get; set; }
 
         public ICollection<EventRanking>? Events { get; set; }
@@ -26,12 +33,15 @@
         public float VoteStars { get; set; }
 
         public int? ClanId { get; set; }
+        [JsonIgnore]
         public Clan? Clan { get; set; }
         public int? CapturedTime { get; set; }
 
+        [JsonIgnore]
         public ICollection<ClanRanking>? ClanRanking { get; set; }
         public bool ClanRankingContested { get; set; }
 
+        [JsonIgnore]
         public ICollection<PredictedScore> PredictedScores { get; set; }
     }
 
