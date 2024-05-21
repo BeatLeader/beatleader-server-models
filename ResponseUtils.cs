@@ -10,6 +10,31 @@ namespace BeatLeader_Server.Utils {
             public string Name { get; set; }
         }
 
+        public class ClanBiggerResponse {
+            public int Id { get; set; }
+            public string Tag { get; set; }
+            public string Color { get; set; }
+            public string Name { get; set; }
+            public string Icon { get; set; }
+            public float RankedPoolPercentCaptured { get; set; }
+            public int PlayersCount { get; set; }
+            public bool Joined { get; set; }
+        }
+
+        public class RankedMap {
+            public string Name { get; set; }
+            public string SongId { get; set; }
+            public string Cover { get; set; }
+            public float? Stars { get; set; }
+        }
+
+        public class RankedMapperResponse {
+            public int PlayersCount { get; set; }
+            public float TotalPp { get; set; }
+            public ICollection<RankedMap> Maps { get; set; }
+            public int TotalMapCount { get; set; }
+        }
+
         public class FeaturedPlaylistResponse {
             public int Id { get; set; }
             public string PlaylistLink { get; set; }
@@ -30,7 +55,7 @@ namespace BeatLeader_Server.Utils {
             public string LeaderID { get; set; }
             public string Description { get; set; }
             public string Bio { get; set; }
-            public string RichBio { get; set; }
+            public int RichBioTimeset { get; set; }
             public string DiscordInvite { get; set; }
             public int PlayersCount { get; set; }
             public float Pp { get; set; }
@@ -50,6 +75,7 @@ namespace BeatLeader_Server.Utils {
             public string Platform { get; set; } = "";
             public string Avatar { get; set; } = "";
             public string Country { get; set; } = "not set";
+            public string? Alias { get; set; }
 
             public bool Bot { get; set; }
 
@@ -122,8 +148,6 @@ namespace BeatLeader_Server.Utils {
             public ICollection<ScoreResponseWithMyScore>? PinnedScores { get; set; }
             public ICollection<PlayerChange>? Changes { get; set; }
         }
-
-        
 
         public class ScoreSongResponse {
             public string Id { get; set; }
@@ -237,6 +261,8 @@ namespace BeatLeader_Server.Utils {
             public ICollection<Clan> BannedClans { get; set; } = new List<Clan>();
             public ICollection<Playlist>? Playlists { get; set; }
             public ICollection<PlayerResponseFull>? Friends { get; set; }
+            public bool HideFriends { get; set; }
+            public AliasRequest? AliasRequest { get; set; }
 
             public string? Login { get; set; }
 
@@ -499,6 +525,26 @@ namespace BeatLeader_Server.Utils {
             public string Name { get; set; }
         }
 
+        public class PlayerFollower {
+            public string Id { get; set; }
+            public string Name { get; set; }
+            public string Avatar { get; set; }
+        }
+        public class PlayerFollowersResponse {
+            public ICollection<PlayerFollower>? Following { get; set; }
+            public ICollection<PlayerFollower>? Followers { get; set; }
+        }
+
+        public class PlayerFollowersInfoResponse {
+            public int? FollowingCount { get; set; }
+            public bool MeFollowing { get; set; }
+            public ICollection<PlayerFollower>? Following { get; set; }
+
+            public int? FollowersCount { get; set; }
+            public bool IFollow { get; set; }
+            public ICollection<PlayerFollower>? Followers { get; set; }
+        }
+
         public static T RemoveLeaderboard<T>(Score s, int i) where T : ScoreResponse, new() {
             return new T {
                 Id = s.Id,
@@ -530,6 +576,7 @@ namespace BeatLeader_Server.Utils {
                 Player = s.Player != null ? new PlayerResponse {
                     Id = s.Player.Id,
                     Name = s.Player.Name,
+                    Alias = s.Player.Alias,
                     Platform = s.Player.Platform,
                     Avatar = s.Player.Avatar,
                     Country = s.Player.Country,
@@ -601,6 +648,7 @@ namespace BeatLeader_Server.Utils {
                 Player = s.Player != null ? new PlayerResponse {
                     Id = s.Player.Id,
                     Name = s.Player.Name,
+                    Alias = s.Player.Alias,
                     Platform = s.Player.Platform,
                     Avatar = s.Player.Avatar,
                     Country = s.Player.Country,
@@ -620,7 +668,7 @@ namespace BeatLeader_Server.Utils {
                 Metadata = s.Metadata,
                 Country = s.Country,
                 Offsets = s.ReplayOffsets,
-                Leaderboard = new CompactLeaderboardResponse {
+                Leaderboard = s.Leaderboard != null ? new CompactLeaderboardResponse {
                     Id = s.LeaderboardId,
                     Song = s.Leaderboard.Song != null ? new CompactSongResponse {
                         Id = s.Leaderboard.Song.Id,
@@ -667,7 +715,7 @@ namespace BeatLeader_Server.Utils {
 
                         Requirements = s.Leaderboard.Difficulty.Requirements,
                     } : null
-                },
+                } : null,
                 Weight = s.Weight,
                 AccLeft = s.AccLeft,
                 AccRight = s.AccRight,
@@ -701,6 +749,7 @@ namespace BeatLeader_Server.Utils {
             return new T {
                 Id = p.Id,
                 Name = p.Name,
+                Alias = p.Alias,
                 Platform = p.Platform,
                 Avatar = p.Avatar,
                 Country = p.Country,
@@ -775,6 +824,7 @@ namespace BeatLeader_Server.Utils {
             return new PlayerResponseFull {
                 Id = p.Id,
                 Name = p.Name,
+                Alias = p.Alias,
                 Platform = p.Platform,
                 Avatar = p.Avatar,
                 Country = p.Country,

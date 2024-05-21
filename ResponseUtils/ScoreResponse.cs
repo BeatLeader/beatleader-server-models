@@ -146,6 +146,7 @@ namespace BeatLeader_Server.Utils
                 {
                     Id = s.Player.Id,
                     Name = s.Player.Name,
+                    Alias = s.Player.Alias,
                     Platform = s.Player.Platform,
                     Avatar = s.Player.Avatar,
                     Country = s.Player.Country,
@@ -259,6 +260,7 @@ namespace BeatLeader_Server.Utils
                 {
                     Id = s.Player.Id,
                     Name = s.Player.Name,
+                    Alias = s.Player.Alias,
                     Platform = s.Player.Platform,
                     Avatar = s.Player.Avatar,
                     Country = s.Player.Country,

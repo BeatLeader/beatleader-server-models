@@ -45,6 +45,9 @@ namespace BeatLeader_Server.Models {
         public string Avatar { get; set; } = "";
         public string WebAvatar { get; set; } = "";
         public string Country { get; set; } = "not set";
+        
+        public string? Alias { get; set; }
+        public string? OldAlias { get; set; }
 
         public string Role { get; set; } = "";
         public int MapperId { get; set; }
@@ -67,6 +70,7 @@ namespace BeatLeader_Server.Models {
 
         public string ExternalProfileUrl { get; set; } = "";
         public int RichBioTimeset { get; set; }
+        public int CreatedAt { get; set; }
 
         public int? ScoreStatsId { get; set; }
         public PlayerScoreStats? ScoreStats { get; set; }
@@ -115,14 +119,14 @@ namespace BeatLeader_Server.Models {
             }
         }
 
-        public static bool RoleIsAnySupporter(string role) {
-            return role.Contains("tipper") ||
+        public static bool RoleIsAnySupporter(string? role) {
+            return role != null && (role.Contains("tipper") ||
             role.Contains("supporter") ||
             role.Contains("sponsor") ||
             role.Contains("booster") ||
             role.Contains("creator") ||
             role.Contains("rankedteam") || 
-            role.Contains("qualityteam");
+            role.Contains("qualityteam"));
         }
 
         public bool AnySupporter() {

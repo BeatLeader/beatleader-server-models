@@ -8,5 +8,6 @@ namespace BeatLeader_Server.Models
 
         [ForeignKey("PlayerFriendsId")]
         public ICollection<Player> Friends { get; set; } = new List<Player>();
+        public bool HideFriends { get; set; }
     }
 }
