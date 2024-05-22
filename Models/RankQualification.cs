@@ -1,4 +1,6 @@
-﻿namespace BeatLeader_Server.Models
+﻿using System.Text.Json.Serialization;
+
+namespace BeatLeader_Server.Models
 {
     public class QualificationCommentary 
     {
@@ -11,6 +13,7 @@
         public bool Edited { get; set; }
 
         public int? RankQualificationId { get; set; }
+        [JsonIgnore]
         public RankQualification? RankQualification { get; set; }
 
         public string DiscordMessageId { get; set; } = "";
@@ -27,6 +30,7 @@
         public bool Edited { get; set; }
 
         public int? RankQualificationId { get; set; }
+        [JsonIgnore]
         public RankQualification? RankQualification { get; set; }
 
         public string DiscordMessageId { get; set; } = "";
@@ -50,6 +54,7 @@
         public bool Edited { get; set; }
 
         public int? RankQualificationId { get; set; }
+        [JsonIgnore]
         public RankQualification? RankQualification { get; set; }
 
         public string? DiscordRTMessageId { get; set; }

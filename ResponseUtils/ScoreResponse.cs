@@ -8,7 +8,7 @@ namespace BeatLeader_Server.Utils
 {
     public class ScoreResponse
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public int BaseScore { get; set; }
         public int ModifiedScore { get; set; }
         public float Accuracy { get; set; }

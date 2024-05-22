@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using ReplayDecoder;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BeatLeader_Server.Models
 {
@@ -54,14 +56,58 @@ namespace BeatLeader_Server.Models
     }
 
     public interface IScore {
+        public int? ScoreId { get; set; }
         public float Accuracy { get; set; }
         public float Weight { get; set; }
         public int Rank { get; set; }
         public float Pp { get; set; }
+        public float PassPP { get; set; }
+        public float AccPP { get; set; }
+        public float TechPP { get; set; }
+        public string Time { get; set; }
+
+        public string? Replay { get; set; }
+        public string Platform { get; set; }
+
+        public int MaxCombo { get; set; }
+        public float BonusPp { get; set; }
+        public int BaseScore { get; set; }
+        public int ModifiedScore { get; set; }
         public string? Modifiers { get; set; }
+        public int BadCuts { get; set; }
+        public int MissedNotes { get; set; }
+        public int BombCuts { get; set; }
+        public int WallsHit { get; set; }
+        public int Pauses { get; set; }
+        public bool FullCombo { get; set; }
         public int Timepost { get; set; }
         public string LeaderboardId { get; set; }
         public Leaderboard Leaderboard { get; set; }
+        public HMD Hmd { get; set; }
+        public ControllerEnum Controller { get; set; }
+        public float AccRight { get; set; }
+        public float AccLeft { get; set; }
+        public string PlayerId { get; set; }
+        public Player Player { get; set; }
+        public int? MaxStreak { get; set; }
+        public float FcAccuracy { get; set; }
+        public float FcPp { get; set; }
+
+        public int PlayCount { get; set; }
+        public int LastTryTime { get; set; }
+        public float LeftTiming { get; set; }
+        public float RightTiming { get; set; }
+        public bool Banned { get; set; }
+        public bool Suspicious { get; set; }
+        public bool IgnoreForStats { get; set; }
+
+        public int AuthorizedReplayWatched { get; set; }
+        public int AnonimusReplayWatched { get; set; }
+
+        public ScoreImprovement? ScoreImprovement { get; set; }
+        public ReplayOffsets? ReplayOffsets { get; set; }
+        public RankVoting? RankVoting { get; set; }
+        public ScoreMetadata? Metadata { get; set; }
     }
 
     [Index(nameof(PlayerId))]
@@ -76,6 +122,12 @@ namespace BeatLeader_Server.Models
     {
         [Key]
         public int Id { get; set; }
+        [NotMapped]
+        [JsonIgnore]
+        public int? ScoreId { get => Id; set => Id = value ?? 0; }
+        [NotMapped]
+        [JsonIgnore]
+        public string Time { get => Timepost.ToString(); set => Timepost = 0; }
         public int BaseScore { get; set; }
         public int ModifiedScore { get; set; }
         public float Accuracy { get; set; }

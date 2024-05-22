@@ -41,7 +41,7 @@ namespace BeatLeader_Server.Models
 
         public float GlobalMapX { get; set; }
         public float GlobalMapY { get; set; }
-
+        [JsonIgnore]
         public ICollection<GlobalMapHistory> History { get; set; }
 
         [JsonIgnore]
