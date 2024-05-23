@@ -1,4 +1,5 @@
-﻿using ReplayDecoder;
+﻿using Microsoft.EntityFrameworkCore;
+using ReplayDecoder;
 
 namespace BeatLeader_Server.Models {
     public enum EndType {
@@ -10,6 +11,8 @@ namespace BeatLeader_Server.Models {
         Practice = 5
     }
 
+    [Index(nameof(Replay), nameof(PlayerId), IsUnique = false)]
+    [Index(nameof(LeaderboardId), nameof(PlayerId), IsUnique = false)]
     public class PlayerLeaderboardStats {
         public int Id { get; set; }
         public string PlayerId { get; set; }
