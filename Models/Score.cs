@@ -56,6 +56,7 @@ namespace BeatLeader_Server.Models
     }
 
     public interface IScore {
+        public int Id { get; set; }
         public int? ScoreId { get; set; }
         public float Accuracy { get; set; }
         public float Weight { get; set; }
@@ -108,6 +109,7 @@ namespace BeatLeader_Server.Models
         public ReplayOffsets? ReplayOffsets { get; set; }
         public RankVoting? RankVoting { get; set; }
         public ScoreMetadata? Metadata { get; set; }
+        public Score? ScoreInstance { get; set; }
     }
 
     [Index(nameof(PlayerId))]
@@ -122,6 +124,9 @@ namespace BeatLeader_Server.Models
     {
         [Key]
         public int Id { get; set; }
+        [NotMapped]
+        [JsonIgnore]
+        public Score? ScoreInstance { get => this; set => _ = value; }
         [NotMapped]
         [JsonIgnore]
         public int? ScoreId { get => Id; set => Id = value ?? 0; }

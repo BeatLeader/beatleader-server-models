@@ -30,7 +30,8 @@ namespace BeatLeader_Server.Models {
         public int Priority { get; set; }
 
         public int? ScoreId { get; set; }
-        public Score? Score { get; set; }
+        [ForeignKey("ScoreId")]
+        public Score? ScoreInstance { get; set; }
         public bool Qualification { get; set; }
         public bool Banned { get; set; }
 
@@ -38,87 +39,87 @@ namespace BeatLeader_Server.Models {
         public ScoreImprovement? ScoreImprovement { get; set; }
         [NotMapped]
         [JsonIgnore]
-        public string? Replay { get => Score != null ? Score.Replay : null; set => Score.Replay = value; }
+        public string? Replay { get => ScoreInstance != null ? ScoreInstance.Replay : null; set => ScoreInstance.Replay = value; }
         [NotMapped]
         [JsonIgnore]
-        public string Platform { get => Score != null ? Score.Platform : ""; set => Score.Platform = value; }
+        public string Platform { get => ScoreInstance != null ? ScoreInstance.Platform : ""; set => ScoreInstance.Platform = value; }
         [NotMapped]
         [JsonIgnore]
-        public int MaxCombo { get => Score != null ? Score.MaxCombo : 0; set => Score.MaxCombo = value; }
+        public int MaxCombo { get => ScoreInstance != null ? ScoreInstance.MaxCombo : 0; set => ScoreInstance.MaxCombo = value; }
         [NotMapped]
         [JsonIgnore]
-        public int BadCuts { get => Score != null ? Score.BadCuts : 0; set => Score.BadCuts = value; }
+        public int BadCuts { get => ScoreInstance != null ? ScoreInstance.BadCuts : 0; set => ScoreInstance.BadCuts = value; }
         [NotMapped]
         [JsonIgnore]
-        public int MissedNotes { get => Score != null ? Score.MissedNotes : 0; set => Score.MissedNotes = value; }
+        public int MissedNotes { get => ScoreInstance != null ? ScoreInstance.MissedNotes : 0; set => ScoreInstance.MissedNotes = value; }
         [NotMapped]
         [JsonIgnore]
-        public int BombCuts { get => Score != null ? Score.BombCuts : 0; set => Score.BombCuts = value; }
+        public int BombCuts { get => ScoreInstance != null ? ScoreInstance.BombCuts : 0; set => ScoreInstance.BombCuts = value; }
         [NotMapped]
         [JsonIgnore]
-        public int WallsHit { get => Score != null ? Score.WallsHit : 0; set => Score.WallsHit = value; }
+        public int WallsHit { get => ScoreInstance != null ? ScoreInstance.WallsHit : 0; set => ScoreInstance.WallsHit = value; }
         [NotMapped]
         [JsonIgnore]
-        public int Pauses { get => Score != null ? Score.Pauses : 0; set => Score.Pauses = value; }
+        public int Pauses { get => ScoreInstance != null ? ScoreInstance.Pauses : 0; set => ScoreInstance.Pauses = value; }
         [NotMapped]
         [JsonIgnore]
-        public bool FullCombo { get => Score != null ? Score.FullCombo : false; set => Score.FullCombo = value; }
+        public bool FullCombo { get => ScoreInstance != null ? ScoreInstance.FullCombo : false; set => ScoreInstance.FullCombo = value; }
         [NotMapped]
         [JsonIgnore]
-        public HMD Hmd { get => Score != null ? Score.Hmd : HMD.unknown; set => Score.Hmd = value; }
+        public HMD Hmd { get => ScoreInstance != null ? ScoreInstance.Hmd : HMD.unknown; set => ScoreInstance.Hmd = value; }
         [NotMapped]
         [JsonIgnore]
-        public ControllerEnum Controller { get => Score != null ? Score.Controller : ControllerEnum.unknown; set => Score.Controller = value; }
+        public ControllerEnum Controller { get => ScoreInstance != null ? ScoreInstance.Controller : ControllerEnum.unknown; set => ScoreInstance.Controller = value; }
         [NotMapped]
         [JsonIgnore]
-        public float AccRight { get => Score != null ? Score.AccRight : 0; set => Score.AccRight = value; }
+        public float AccRight { get => ScoreInstance != null ? ScoreInstance.AccRight : 0; set => ScoreInstance.AccRight = value; }
         [NotMapped]
         [JsonIgnore]
-        public float AccLeft { get => Score != null ? Score.AccLeft : 0; set => Score.AccLeft = value; }
+        public float AccLeft { get => ScoreInstance != null ? ScoreInstance.AccLeft : 0; set => ScoreInstance.AccLeft = value; }
         [NotMapped]
         [JsonIgnore]
-        public int? MaxStreak { get => Score != null ? Score.MaxStreak : 0; set => Score.MaxStreak = value; }
+        public int? MaxStreak { get => ScoreInstance != null ? ScoreInstance.MaxStreak : 0; set => ScoreInstance.MaxStreak = value; }
         [NotMapped]
         [JsonIgnore]
-        public float FcAccuracy { get => Score != null ? Score.FcAccuracy : 0; set => Score.FcAccuracy = value; }
+        public float FcAccuracy { get => ScoreInstance != null ? ScoreInstance.FcAccuracy : 0; set => ScoreInstance.FcAccuracy = value; }
         [NotMapped]
         [JsonIgnore]
-        public float FcPp { get => Score != null ? Score.FcPp : 0; set => Score.FcPp = value; }
+        public float FcPp { get => ScoreInstance != null ? ScoreInstance.FcPp : 0; set => ScoreInstance.FcPp = value; }
         [NotMapped]
         [JsonIgnore]
-        public int PlayCount { get => Score != null ? Score.PlayCount : 0; set => Score.PlayCount = value; }
+        public int PlayCount { get => ScoreInstance != null ? ScoreInstance.PlayCount : 0; set => ScoreInstance.PlayCount = value; }
         [NotMapped]
         [JsonIgnore]
-        public int LastTryTime { get => Score != null ? Score.LastTryTime : 0; set => Score.LastTryTime = value; }
+        public int LastTryTime { get => ScoreInstance != null ? ScoreInstance.LastTryTime : 0; set => ScoreInstance.LastTryTime = value; }
         [NotMapped]
         [JsonIgnore]
-        public float LeftTiming { get => Score != null ? Score.LeftTiming : 0; set => Score.LeftTiming = value; }
+        public float LeftTiming { get => ScoreInstance != null ? ScoreInstance.LeftTiming : 0; set => ScoreInstance.LeftTiming = value; }
         [NotMapped]
         [JsonIgnore]
-        public float RightTiming { get => Score != null ? Score.RightTiming : 0; set => Score.RightTiming = value; }
+        public float RightTiming { get => ScoreInstance != null ? ScoreInstance.RightTiming : 0; set => ScoreInstance.RightTiming = value; }
         [NotMapped]
         [JsonIgnore]
-        public bool Suspicious { get => Score != null ? Score.Suspicious : false; set => Score.Suspicious = value; }
+        public bool Suspicious { get => ScoreInstance != null ? ScoreInstance.Suspicious : false; set => ScoreInstance.Suspicious = value; }
         [NotMapped]
         [JsonIgnore]
-        public bool IgnoreForStats { get => Score != null ? Score.IgnoreForStats : false; set => Score.IgnoreForStats = value; }
+        public bool IgnoreForStats { get => ScoreInstance != null ? ScoreInstance.IgnoreForStats : false; set => ScoreInstance.IgnoreForStats = value; }
         [NotMapped]
         [JsonIgnore]
-        public int AuthorizedReplayWatched { get => Score != null ? Score.AuthorizedReplayWatched : 0; set => Score.AuthorizedReplayWatched = value; }
+        public int AuthorizedReplayWatched { get => ScoreInstance != null ? ScoreInstance.AuthorizedReplayWatched : 0; set => ScoreInstance.AuthorizedReplayWatched = value; }
         [NotMapped]
         [JsonIgnore]
-        public int AnonimusReplayWatched { get => Score != null ? Score.AnonimusReplayWatched : 0; set => Score.AnonimusReplayWatched = value; }
+        public int AnonimusReplayWatched { get => ScoreInstance != null ? ScoreInstance.AnonimusReplayWatched : 0; set => ScoreInstance.AnonimusReplayWatched = value; }
         [NotMapped]
         [JsonIgnore]
-        public ReplayOffsets? ReplayOffsets { get => Score != null ? Score.ReplayOffsets : null; set => Score.ReplayOffsets = value; }
+        public ReplayOffsets? ReplayOffsets { get => ScoreInstance != null ? ScoreInstance.ReplayOffsets : null; set => ScoreInstance.ReplayOffsets = value; }
         [NotMapped]
         [JsonIgnore]
-        public RankVoting? RankVoting { get => Score != null ? Score.RankVoting : null; set => Score.RankVoting = value; }
+        public RankVoting? RankVoting { get => ScoreInstance != null ? ScoreInstance.RankVoting : null; set => ScoreInstance.RankVoting = value; }
         [NotMapped]
         [JsonIgnore]
-        public ScoreMetadata? Metadata { get => Score != null ? Score.Metadata : null; set => Score.Metadata = value; }
+        public ScoreMetadata? Metadata { get => ScoreInstance != null ? ScoreInstance.Metadata : null; set => ScoreInstance.Metadata = value; }
         [NotMapped]
         [JsonIgnore]
-        public string Time { get => Timepost.ToString(); set => Timepost = 0; }
+        public string Time { get => ScoreInstance != null ? ScoreInstance.Timepost.ToString() : Timeset.ToString(); set => Timepost = 0; }
     }
 }
