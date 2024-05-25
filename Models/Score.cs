@@ -14,7 +14,9 @@ namespace BeatLeader_Server.Models
         NoMods = 1 << 2,
         NoPause = 1 << 3,
         Golf = 1 << 4,
-        SCPM = 1 << 5
+        SCPM = 1 << 5,
+        Speedrun = 1 << 6,
+        SpeedrunBackup = 1 << 7,
     }
 
     public static class ContextExtensions {
@@ -30,7 +32,8 @@ namespace BeatLeader_Server.Models
             LeaderboardContexts.NoMods,
             LeaderboardContexts.NoPause,
             LeaderboardContexts.Golf,
-            LeaderboardContexts.SCPM
+            LeaderboardContexts.SCPM,
+            LeaderboardContexts.Speedrun
         };
     }
 

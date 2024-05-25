@@ -3,20 +3,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace BeatLeader_Server.Models {
-    public class PlayerChange {
-        public int Id { get; set; }
-        public int Timestamp { get; set; }
-        public string? PlayerId { get; set; }
-
-        public string? OldName { get; set; }
-        public string? NewName { get; set; }
-
-        public string? OldCountry { get; set; }
-        public string? NewCountry { get; set; }
-
-        public string? Changer { get; set; }
-    }
-
     public interface IPlayer {
         public string Name { get; set; }
         public string Country { get; set; }
@@ -71,6 +57,7 @@ namespace BeatLeader_Server.Models {
         public string ExternalProfileUrl { get; set; } = "";
         public int RichBioTimeset { get; set; }
         public int CreatedAt { get; set; }
+        public int SpeedrunStart { get; set; }
 
         public int? ScoreStatsId { get; set; }
         public PlayerScoreStats? ScoreStats { get; set; }
@@ -132,7 +119,6 @@ namespace BeatLeader_Server.Models {
         public bool AnySupporter() {
             return RoleIsAnySupporter(Role);
         }
-
         
         public void RefreshClanOrder() {
             ClanOrder = string.Join(",", Clans
