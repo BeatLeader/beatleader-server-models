@@ -24,8 +24,6 @@ namespace BeatLeader_Server.Models {
         public float TechPP { get; set; }
         public float BonusPp { get; set; }
         public string? Modifiers { get; set; }
-        
-        public int Timeset { get; set; }
         public int Timepost { get; set; }
         public int Priority { get; set; }
 
@@ -120,6 +118,6 @@ namespace BeatLeader_Server.Models {
         public ScoreMetadata? Metadata { get => ScoreInstance != null ? ScoreInstance.Metadata : null; set => ScoreInstance.Metadata = value; }
         [NotMapped]
         [JsonIgnore]
-        public string Time { get => ScoreInstance != null ? ScoreInstance.Timepost.ToString() : Timeset.ToString(); set => Timepost = 0; }
+        public string Time { get => ScoreInstance != null ? ScoreInstance.Timepost.ToString() : Timepost.ToString(); set => Timepost = 0; }
     }
 }

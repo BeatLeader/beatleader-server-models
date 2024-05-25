@@ -140,6 +140,7 @@ namespace BeatLeader_Server.Utils {
 
             public string ExternalProfileUrl { get; set; } = "";
             public int RichBioTimeset { get; set; }
+            public int SpeedrunStart { get; set; }
 
 
             public ICollection<PlayerScoreStatsHistory>? History { get; set; }
