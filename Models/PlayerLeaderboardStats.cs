@@ -1,4 +1,6 @@
-﻿using ReplayDecoder;
+﻿using Microsoft.EntityFrameworkCore;
+using ReplayDecoder;
+using System.ComponentModel.DataAnnotations;
 
 namespace BeatLeader_Server.Models {
     public enum EndType {
@@ -10,6 +12,7 @@ namespace BeatLeader_Server.Models {
         Practice = 5
     }
 
+    [Index(nameof(ReplayCopy), nameof(PlayerIdCopy))]
     public class PlayerLeaderboardStats {
         public int Id { get; set; }
         public string PlayerId { get; set; }
@@ -17,7 +20,13 @@ namespace BeatLeader_Server.Models {
         public int Timeset { get; set; }
         public float Time { get; set; }
         public int Score { get; set; }
+
         public string? Replay { get; set; }
+
+        [StringLength(25, MinimumLength = 0)]
+        public string PlayerIdCopy { get; set; } = "";
+        [StringLength(200, MinimumLength = 0)]
+        public string? ReplayCopy { get; set; }
 
         public string? LeaderboardId { get; set; }
         public Leaderboard? Leaderboard { get; set; }
