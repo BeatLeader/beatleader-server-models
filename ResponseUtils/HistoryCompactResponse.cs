@@ -22,5 +22,9 @@ namespace BeatLeader_Server.Utils {
         public int RankedPlayCount { get; set; }
         public int UnrankedPlayCount { get; set; }
         public int TotalPlayCount { get; set; }
+
+        public int RankedImprovementsCount { get; set; }
+        public int UnrankedImprovementsCount { get; set; }
+        public int TotalImprovementsCount { get; set; }
     }
 }
