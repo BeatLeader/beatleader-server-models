@@ -908,7 +908,7 @@ namespace BeatLeader_Server.Utils {
             }
 
             if (settings != null && settings.ProfileAppearance == null) {
-                settings.ProfileAppearance = "topPp,averageRankedAccuracy,topPlatform,topHMD";
+                settings.ProfileAppearance = "topPp,averageRankedAccuracy,totalPlayCount,ssPlays,spPlays,sPlays,rankedPlayCount,averageRank,sspPlays";
             }
 
             if (role == null) return;
