@@ -104,6 +104,7 @@ namespace BeatLeader_Server.Models
         public bool Banned { get; set; }
         public bool Suspicious { get; set; }
         public bool IgnoreForStats { get; set; }
+        public string? Country { get; set; }
 
         public int AuthorizedReplayWatched { get; set; }
         public int AnonimusReplayWatched { get; set; }

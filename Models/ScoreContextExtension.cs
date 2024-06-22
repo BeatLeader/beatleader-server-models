@@ -119,5 +119,8 @@ namespace BeatLeader_Server.Models {
         [NotMapped]
         [JsonIgnore]
         public string Time { get => ScoreInstance != null ? ScoreInstance.Timepost.ToString() : Timepost.ToString(); set => Timepost = 0; }
+        [NotMapped]
+        [JsonIgnore]
+        public string? Country { get => ScoreInstance != null ? ScoreInstance.Country : null; set => ScoreInstance.Country = value; }
     }
 }

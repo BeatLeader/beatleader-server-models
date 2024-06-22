@@ -23,6 +23,7 @@
         public string? RightSaberColor { get; set; }
         public string? ProfileCover { get; set; }
         public string? StarredFriends { get; set; }
+        public bool HorizontalRichBio { get; set; }
 
         public bool ShowBots { get; set; }
         public bool ShowAllRatings { get; set; }
