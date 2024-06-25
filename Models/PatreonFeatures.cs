@@ -24,6 +24,7 @@
         public string? ProfileCover { get; set; }
         public string? StarredFriends { get; set; }
         public bool HorizontalRichBio { get; set; }
+        public string? RankedMapperSort { get; set; }
 
         public bool ShowBots { get; set; }
         public bool ShowAllRatings { get; set; }

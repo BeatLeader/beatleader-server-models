@@ -262,6 +262,7 @@ namespace BeatLeader_Server.Utils {
             public ICollection<Clan> BannedClans { get; set; } = new List<Clan>();
             public ICollection<Playlist>? Playlists { get; set; }
             public ICollection<PlayerResponseFull>? Friends { get; set; }
+            public ICollection<string?>? Ids { get; set; }
             public bool HideFriends { get; set; }
             public AliasRequest? AliasRequest { get; set; }
 
@@ -528,8 +529,10 @@ namespace BeatLeader_Server.Utils {
 
         public class PlayerFollower {
             public string Id { get; set; }
+            public string? Alias { get; set; }
             public string Name { get; set; }
             public string Avatar { get; set; }
+            public int? Count { get; set; }
         }
         public class PlayerFollowersResponse {
             public ICollection<PlayerFollower>? Following { get; set; }
@@ -539,11 +542,11 @@ namespace BeatLeader_Server.Utils {
         public class PlayerFollowersInfoResponse {
             public int? FollowingCount { get; set; }
             public bool MeFollowing { get; set; }
-            public ICollection<PlayerFollower>? Following { get; set; }
+            public ICollection<string>? Following { get; set; }
 
             public int? FollowersCount { get; set; }
             public bool IFollow { get; set; }
-            public ICollection<PlayerFollower>? Followers { get; set; }
+            public ICollection<string>? Followers { get; set; }
         }
 
         public static T RemoveLeaderboard<T>(Score s, int i) where T : ScoreResponse, new() {
