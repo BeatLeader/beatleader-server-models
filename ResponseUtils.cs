@@ -103,6 +103,7 @@ namespace BeatLeader_Server.Utils {
         public class PlayerResponseWithFriends : PlayerResponse {
             public ICollection<string>? Friends { get; set; }
             public string? QuestId { get; set; }
+            public string? PlaylistsToInstall { get; set; }
         }
 
         public class PlayerResponseWithStats : PlayerResponse {

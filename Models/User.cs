@@ -9,6 +9,7 @@
         public ICollection<Clan> ClanRequest { get; set; } = new List<Clan>();
         public ICollection<Clan> BannedClans { get; set; } = new List<Clan>();
         public ICollection<Playlist> Playlists { get; set; }
+        public string? PlaylistsToInstall { get; set; }
     }
 
     public class OculusUser {
