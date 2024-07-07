@@ -268,6 +268,7 @@ namespace BeatLeader_Server.Utils {
             public AliasRequest? AliasRequest { get; set; }
 
             public string? Login { get; set; }
+            public string? PlaylistsToInstall { get; set; }
 
             public bool Migrated { get; set; }
             public bool Patreoned { get; set; }
