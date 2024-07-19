@@ -9,5 +9,6 @@
 
         public string UserId { get; set; }
         public string? PlayerId { get; set; }
+        public bool Hidden { get; set; }
     }
 }
