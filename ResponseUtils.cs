@@ -131,6 +131,12 @@ namespace BeatLeader_Server.Utils {
             }
         }
 
+        public class LinkResponse {
+            public int? QuestId { get; set; }
+            public string? SteamId { get; set; }
+            public string? OculusPCId { get; set; }
+        }
+
         public class PlayerResponseFull : PlayerResponseWithStats {
             public int MapperId { get; set; }
 
@@ -142,6 +148,7 @@ namespace BeatLeader_Server.Utils {
             public string ExternalProfileUrl { get; set; } = "";
             public int RichBioTimeset { get; set; }
             public int SpeedrunStart { get; set; }
+            public LinkResponse? LinkedIds { get; set; }
 
 
             public ICollection<PlayerScoreStatsHistory>? History { get; set; }
