@@ -542,6 +542,7 @@ namespace BeatLeader_Server.Utils {
             public string Name { get; set; }
             public string Avatar { get; set; }
             public int? Count { get; set; }
+            public bool Mutual { get; set; }
         }
         public class PlayerFollowersResponse {
             public ICollection<PlayerFollower>? Following { get; set; }
