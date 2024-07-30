@@ -38,9 +38,7 @@ namespace BeatLeader_Server.Models {
 
         public string Role { get; set; } = "";
         public int? MapperId { get; set; }
-
-        //public int? MapperCopyId { get; set; }
-        //public Mapper? MapperCopy { get; set; }
+        public Mapper? Mapper { get; set; }
 
         public float Pp { get; set; }
         public float AccPp { get; set; }

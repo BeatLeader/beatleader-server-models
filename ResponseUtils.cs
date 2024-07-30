@@ -383,9 +383,37 @@ namespace BeatLeader_Server.Utils {
             }
         }
 
+        public class MapperResponse {
+            public int? Id { get; set; }
+            public string? PlayerId { get; set; }
+            public string Name { get; set; }
+            public string Avatar { get; set; }
+            public bool? Curator { get; set; }
+            public bool VerifiedMapper { get; set; }
+        }
+
+        public class SongResponse {
+            public string Id { get; set; }
+            public string Hash { get; set; }
+            public string Name { get; set; }
+            public string? SubName { get; set; }
+            public string Author { get; set; }
+            public string Mapper { get; set; }
+            public ICollection<MapperResponse>? Mappers { get; set; }
+            public int MapperId { get; set; }
+            public string CoverImage { get; set; }
+            public string? FullCoverImage { get; set; }
+            public string DownloadUrl { get; set; }
+            public double Bpm { get; set; }
+            public double Duration { get; set; }
+            public int UploadTime { get; set; }
+            public ICollection<DifficultyDescription> Difficulties { get; set; }
+            public ICollection<ExternalStatus>? ExternalStatuses { get; set; }
+        }
+
         public class LeaderboardResponse {
             public string? Id { get; set; }
-            public Song? Song { get; set; }
+            public SongResponse? Song { get; set; }
             public DifficultyResponse? Difficulty { get; set; }
             public List<ScoreResponse>? Scores { get; set; }
             public IEnumerable<LeaderboardChange>? Changes { get; set; }
@@ -788,7 +816,31 @@ namespace BeatLeader_Server.Utils {
         public static LeaderboardResponse ResponseFromLeaderboard(Leaderboard l) {
             return new LeaderboardResponse {
                 Id = l.Id,
-                Song = l.Song,
+                Song = new SongResponse {
+                    Id = l.Song.Id,
+                    Hash = l.Song.Hash,
+                    Name = l.Song.Name,
+                    SubName = l.Song.SubName,
+                    Author = l.Song.Author,
+                    Mapper = l.Song.Mapper,
+                    MapperId  = l.Song.MapperId,
+                    CoverImage   = l.Song.CoverImage,
+                    FullCoverImage = l.Song.FullCoverImage,
+                    DownloadUrl = l.Song.DownloadUrl,
+                    Bpm = l.Song.Bpm,
+                    Duration = l.Song.Duration,
+                    UploadTime = l.Song.UploadTime,
+                    Mappers = l.Song.Mappers?.Select(m => new MapperResponse {
+                        Id = m.Id,
+                        PlayerId = m.Player != null ? m.Player.Id : null,
+                        Name = m.Player != null ? m.Player.Name : m.Name,
+                        Avatar = m.Player != null ? m.Player.Avatar : m.Avatar,
+                        Curator = m.Curator,
+                        VerifiedMapper = m.VerifiedMapper,
+                    }).ToList(),
+                    Difficulties = l.Song.Difficulties,
+                    ExternalStatuses = l.Song.ExternalStatuses,
+                },
                 Difficulty = new DifficultyResponse {
                     Id = l.Difficulty.Id,
                     Value = l.Difficulty.Value,

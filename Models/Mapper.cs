@@ -18,8 +18,7 @@ namespace BeatLeader_Server.Models {
 
         public ICollection<Song>? Songs { get; set; }
 
-        //public string? PlayerId { get; set; }
-        //public Player? Player { get; set; }
+        public Player? Player { get; set; }
 
         public static Mapper MapperFromBeatSaverUser(UserDetail mapper) {
             return new Mapper {
