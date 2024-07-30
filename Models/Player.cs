@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace BeatLeader_Server.Models {
@@ -36,7 +37,10 @@ namespace BeatLeader_Server.Models {
         public string? OldAlias { get; set; }
 
         public string Role { get; set; } = "";
-        public int MapperId { get; set; }
+        public int? MapperId { get; set; }
+
+        //public int? MapperCopyId { get; set; }
+        //public Mapper? MapperCopy { get; set; }
 
         public float Pp { get; set; }
         public float AccPp { get; set; }

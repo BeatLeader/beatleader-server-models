@@ -844,7 +844,7 @@ namespace BeatLeader_Server.Utils {
                 Country = p.Country,
                 ScoreStats = p.ScoreStats,
 
-                MapperId = p.MapperId,
+                MapperId = p.MapperId ?? 0,
 
                 Banned = p.Banned,
                 Inactive = p.Inactive,

@@ -37,6 +37,7 @@ namespace BeatLeader_Server.Models
         public string? SubName { get; set; }
         public string Author { get; set; }
         public string Mapper { get; set; }
+        public ICollection<Mapper>? Mappers { get; set; }
         public int MapperId { get; set; }
         public string? CollaboratorIds { get; set; }
         public string CoverImage { get; set; }
