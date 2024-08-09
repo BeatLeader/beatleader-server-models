@@ -49,6 +49,8 @@
         bigscreenbeyond = 66,
         nolosonic = 67,
         hypereal = 68,
-        varjoaero = 69
+        varjoaero = 69,
+        psvr2 = 70,
+        megane1 = 71
     }
 }
