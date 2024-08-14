@@ -79,5 +79,14 @@ namespace BeatLeader_Server.Models
         public double Duration { get; set; }
 
         public Requirements Requirements { get; set; }
+
+        public void HideRatings() {
+            this.AccRating = null;
+            this.TechRating = null;
+            this.PassRating = null;
+            this.Stars = null;
+
+            this.ModifiersRating = null;
+        }
     }
 }
