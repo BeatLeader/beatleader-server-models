@@ -19,6 +19,7 @@ namespace BeatLeader_Server.Models {
         public int LastWeekCountryRank { get; set; }
         public PlayerScoreStats? ScoreStats { get; set; }
         public bool Banned { get; set; }
+        public ICollection<PlayerSearch> Searches { get; set; }
     }
 
     [Index(nameof(Banned), IsUnique = false)]
@@ -89,6 +90,8 @@ namespace BeatLeader_Server.Models {
         public ICollection<PlayerContextExtension>? ContextExtensions { get; set; }
         [JsonIgnore]
         public ICollection<ReeSabersPreset>? Presets { get; set; }
+        [JsonIgnore]
+        public ICollection<PlayerSearch> Searches { get; set; }
 
         public void SetDefaultAvatar() {
             this.Avatar = "https://cdn.assets.beatleader.xyz/" + this.Platform + "avatar.png";

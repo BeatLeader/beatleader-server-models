@@ -28,6 +28,10 @@ namespace BeatLeader_Server.Models {
 
         [NotMapped]
         [JsonIgnore]
+        public ICollection<PlayerSearch> Searches { get => Player != null ? Player.Searches : new List<PlayerSearch>(); set => Player.Searches = value;  }
+
+        [NotMapped]
+        [JsonIgnore]
         public string Name { get => Player != null ? Player.Name : ""; set => Player.Name = value; }
     }
 }
