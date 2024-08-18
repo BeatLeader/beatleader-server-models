@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BeatLeader_Server.Models
 {
@@ -43,6 +44,15 @@ namespace BeatLeader_Server.Models
         public float SA { get; set; } = 0.0f;
         public float OP { get; set; } = -0.5f;
 
+        [NotMapped]
+        public float EZ { get; set; } = -0.4f;
+        [NotMapped]
+        public float HD { get; set; } = 0.05f;
+        [NotMapped]
+        public float SMC { get; set; } = 0.07f;
+        [NotMapped]
+        public float OHP { get; set; } = 0.0f;
+
         public static ModifiersMap RankedMap() {
             return new ModifiersMap {
                 DA = 0.0f,
@@ -57,6 +67,24 @@ namespace BeatLeader_Server.Models
                 PM = 0.0f,
                 SC = 0.0f,
                 SA = 0.0f,
+                OP = -0.5f,
+            };
+        }
+
+        public static ModifiersMap ReBeatMap() {
+            return new ModifiersMap {
+                FS = 0.07f,
+                SF = 0.15f,
+                SS = -0.5f,
+                PM = 0.12f,
+                DA = 0.0f,
+                GN = 0.0f,
+                NA = -0.7f,
+                NB = -0.4f,
+                NO = -0.4f,
+                SC = 0.0f,
+                SA = 0.0f,
+                NF = -0.5f,
                 OP = -0.5f,
             };
         }
