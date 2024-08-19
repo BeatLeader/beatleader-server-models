@@ -20,6 +20,7 @@ namespace BeatLeader_Server.Models {
         public PlayerScoreStats? ScoreStats { get; set; }
         public bool Banned { get; set; }
         public ICollection<PlayerSearch> Searches { get; set; }
+        public Player PlayerInstance { get; set; }
     }
 
     [Index(nameof(Banned), IsUnique = false)]
@@ -92,6 +93,9 @@ namespace BeatLeader_Server.Models {
         public ICollection<ReeSabersPreset>? Presets { get; set; }
         [JsonIgnore]
         public ICollection<PlayerSearch> Searches { get; set; }
+        [NotMapped]
+        [JsonIgnore]
+        public Player PlayerInstance { get => this; set => _ = value; }
 
         public void SetDefaultAvatar() {
             this.Avatar = "https://cdn.assets.beatleader.xyz/" + this.Platform + "avatar.png";

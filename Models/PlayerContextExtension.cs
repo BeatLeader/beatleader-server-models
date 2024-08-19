@@ -22,16 +22,17 @@ namespace BeatLeader_Server.Models {
 
         public string PlayerId { get; set; }
         [JsonIgnore]
-        public Player Player { get; set; }
+        [ForeignKey("PlayerId")]
+        public Player PlayerInstance { get; set; }
         public PlayerScoreStats? ScoreStats { get; set; }
         public bool Banned { get; set; }
 
         [NotMapped]
         [JsonIgnore]
-        public ICollection<PlayerSearch> Searches { get => Player != null ? Player.Searches : new List<PlayerSearch>(); set => Player.Searches = value;  }
+        public ICollection<PlayerSearch> Searches { get => PlayerInstance != null ? PlayerInstance.Searches : new List<PlayerSearch>(); set => PlayerInstance.Searches = value;  }
 
         [NotMapped]
         [JsonIgnore]
-        public string Name { get => Player != null ? Player.Name : ""; set => Player.Name = value; }
+        public string Name { get => PlayerInstance != null ? PlayerInstance.Name : ""; set => PlayerInstance.Name = value; }
     }
 }

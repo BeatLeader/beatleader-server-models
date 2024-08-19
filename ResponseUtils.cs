@@ -115,6 +115,9 @@ namespace BeatLeader_Server.Utils {
             public int LastWeekRank { get; set; }
             public int LastWeekCountryRank { get; set; }
 
+            [JsonIgnore]
+            public int ExtensionId { get; set; } = 0;
+
             public override void ToContext(PlayerContextExtension extension) {
                 Pp = extension.Pp;
                 AccPp = extension.AccPp;
