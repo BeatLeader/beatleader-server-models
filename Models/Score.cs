@@ -96,6 +96,7 @@ namespace BeatLeader_Server.Models
         public int? MaxStreak { get; set; }
         public float FcAccuracy { get; set; }
         public float FcPp { get; set; }
+        public int Priority { get; set; }
 
         public int PlayCount { get; set; }
         public int LastTryTime { get; set; }
