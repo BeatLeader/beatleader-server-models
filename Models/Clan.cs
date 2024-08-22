@@ -1,15 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace BeatLeader_Server.Models
 {
+    [Index(nameof(Tag), IsUnique = true)]
     public class Clan
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [StringLength(10, MinimumLength = 0)]
         public string Color { get; set; }
         public string Icon { get; set; }
+        [StringLength(6, MinimumLength = 0)]
         public string Tag { get; set; }
+        [StringLength(25, MinimumLength = 0)]
         public string LeaderID { get; set; }
         public string Description { get; set; }
         public string Bio { get; set; }

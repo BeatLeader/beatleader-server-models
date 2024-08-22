@@ -209,7 +209,7 @@ namespace BeatLeader_Server.Utils {
             public RankQualification? Qualification { get; set; }
             public RankUpdate? Reweight { get; set; }
             public bool ClanRankingContested { get; set; }
-            public Clan Clan { get; set; }
+            public ClanResponseFull? Clan { get; set; }
 
             public void HideRatings() {
                 this.Difficulty.HideRatings();
@@ -428,7 +428,7 @@ namespace BeatLeader_Server.Utils {
             public IEnumerable<LeaderboardGroupEntry>? LeaderboardGroup { get; set; }
             public int Plays { get; set; }
 
-            public Clan? Clan { get; set; }
+            public ClanResponseFull? Clan { get; set; }
             public bool ClanRankingContested { get; set; }
             public void HideRatings()
             {
@@ -444,7 +444,7 @@ namespace BeatLeader_Server.Utils {
         public class ClanRankingResponse
         {
             public int Id { get; set; }
-            public Clan Clan { get; set; }
+            public ClanResponseFull? Clan { get; set; }
             public int LastUpdateTime { get; set; }
             public float AverageRank { get; set; }
             public int Rank { get; set; }
@@ -452,7 +452,7 @@ namespace BeatLeader_Server.Utils {
             public float AverageAccuracy { get; set; }
             public float TotalScore { get; set; }
             public string LeaderboardId { get; set; }
-            public Leaderboard Leaderboard { get; set; }
+            public LeaderboardResponse Leaderboard { get; set; }
             public ICollection<ScoreResponse>? AssociatedScores { get; set; }
             public int AssociatedScoresCount { get; set; }
             public ScoreResponseWithAcc? MyScore { get; set; }
@@ -474,7 +474,7 @@ namespace BeatLeader_Server.Utils {
             public int StarVotes { get; set; }
             public int NegativeVotes { get; set; }
             public float VoteStars { get; set; }
-            public Clan? Clan { get; set; }
+            public ClanResponseFull? Clan { get; set; }
             public bool ClanRankingContested { get; set; }
             public ScoreResponseWithAcc? MyScore { get; set; }
             public RankQualification? Qualification { get; set; }
