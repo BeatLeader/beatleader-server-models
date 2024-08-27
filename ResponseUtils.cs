@@ -958,7 +958,7 @@ namespace BeatLeader_Server.Utils {
 
             if (input.Clans != null && input.Clans.Count() > 0) {
                 input.Clans = input.Clans
-                            .OrderBy(c => input.ClanOrder.IndexOf(c.Tag))
+                            .OrderBy(c => input.ClanOrder.IndexOf(c.Tag) >= 0 ? input.ClanOrder.IndexOf(c.Tag) : 1000)
                             .ThenBy(c => c.Id)
                             .ToList();
 
