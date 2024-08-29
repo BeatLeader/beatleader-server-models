@@ -16,7 +16,12 @@ namespace BeatLeader_Server.Models
 
         score = 6,
         ranked = 7,
-        priorityChange = 8
+        priorityChange = 8,
+
+        ban = 9,
+        unban = 10,
+        suspend = 11,
+        unsuspend = 12,
     }
 
     public class GlobalMapChange
