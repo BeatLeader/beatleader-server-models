@@ -51,6 +51,7 @@ namespace BeatLeader_Server.Models
         public string CreatedTime { get; set; } = "";
         public int UploadTime { get; set; }
         public ICollection<DifficultyDescription> Difficulties { get; set; }
+        public ICollection<Leaderboard> Leaderboards { get; set; }
         public ICollection<ExternalStatus>? ExternalStatuses { get; set; }
 
         [JsonIgnore]

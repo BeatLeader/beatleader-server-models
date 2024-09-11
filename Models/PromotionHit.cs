@@ -5,7 +5,7 @@ namespace BeatLeader_Server.Models {
         public int Id { get; set; }
         public int Promotion { get; set; }
         public int Timeset { get; set; }
-        [StringLength(25, MinimumLength = 0)]
+        [StringLength(50, MinimumLength = 0)]
         public string UniqueId { get; set; }
         [StringLength(50, MinimumLength = 0)]
         public string Details { get; set; }

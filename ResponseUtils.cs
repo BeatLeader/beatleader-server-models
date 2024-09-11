@@ -491,6 +491,42 @@ namespace BeatLeader_Server.Utils {
             }
         }
 
+        public class MapDiffResponse : DifficultyResponse {
+            public string LeaderboardId { get; set; }
+            public int Plays { get; set; }
+            public int PositiveVotes { get; set; }
+            public int StarVotes { get; set; }
+            public int NegativeVotes { get; set; }
+            public float VoteStars { get; set; }
+            public ClanResponseFull? Clan { get; set; }
+            public bool ClanRankingContested { get; set; }
+            public ScoreResponseWithAcc? MyScore { get; set; }
+            public RankQualification? Qualification { get; set; }
+            public RankUpdate? Reweight { get; set; }
+        }
+
+        public class MapInfoResponse {
+            public string Id { get; set; }
+            public ICollection<MapDiffResponse> Difficulties { get; set; }
+            public string Hash { get; set; }
+            public string Name { get; set; }
+            public string? SubName { get; set; }
+            public string Author { get; set; }
+            public string Mapper { get; set; }
+            public ICollection<MapperResponse>? Mappers { get; set; }
+            public int MapperId { get; set; }
+            public string? CollaboratorIds { get; set; }
+            public string CoverImage { get; set; }
+            public string? FullCoverImage { get; set; }
+            public string DownloadUrl { get; set; }
+            public double Bpm { get; set; }
+            public double Duration { get; set; }
+            public string? Tags { get; set; }
+            public int UploadTime { get; set; }
+        
+            public ICollection<ExternalStatus>? ExternalStatuses { get; set; }
+        }
+
         public class ClanRankingStatus {
             public ClanResponse? Clan { get; set; }
             public bool ClanRankingContested { get; set; }
