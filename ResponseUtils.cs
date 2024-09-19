@@ -126,6 +126,11 @@ namespace BeatLeader_Server.Utils {
 
                 Rank = extension.Rank;
                 CountryRank = extension.CountryRank;
+                if (ScoreStats != null && extension.ScoreStats != null) {
+                    extension.ScoreStats.WatchedReplays = ScoreStats.WatchedReplays;
+                    extension.ScoreStats.AnonimusReplayWatched = ScoreStats.AnonimusReplayWatched;
+                    extension.ScoreStats.AuthorizedReplayWatched = ScoreStats.AuthorizedReplayWatched;
+                }
                 ScoreStats = extension.ScoreStats;
 
                 LastWeekPp = extension.LastWeekPp;
@@ -738,6 +743,7 @@ namespace BeatLeader_Server.Utils {
                     Rank = s.Player.Rank,
                     CountryRank = s.Player.CountryRank,
                     Role = s.Player.Role,
+                    Bot = s.Player.Bot,
                     Socials = s.Player.Socials,
                     PatreonFeatures = s.Player.PatreonFeatures,
                     ProfileSettings = s.Player.ProfileSettings,

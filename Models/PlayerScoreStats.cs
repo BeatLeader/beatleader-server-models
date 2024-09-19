@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.ComponentModel.DataAnnotations;
 namespace BeatLeader_Server.Models
 {
     [Index(nameof(LastRankedScoreTime), IsUnique = false)]
@@ -70,6 +71,8 @@ namespace BeatLeader_Server.Models
 
         public string TopPlatform { get; set; } = "";
         public HMD TopHMD { get ; set; }
+        [StringLength(50, MinimumLength = 0)]
+        public string AllHMDs { get; set; } = "";
 
         public float TopPercentile { get; set; }
         public float CountryTopPercentile { get; set; }
