@@ -82,8 +82,6 @@ namespace BeatLeader_Server.Models {
         public ProfileSettings? ProfileSettings { get; set; }
         public ICollection<PlayerChange>? Changes { get; set; }
 
-        public ICollection<PlayerScoreStatsHistory>? History { get; set; }
-
         public ICollection<EventPlayer>? EventsParticipating { get; set; }
         public ICollection<PlayerSocial>? Socials { get; set; }
         public ICollection<Achievement>? Achievements { get; set; }

@@ -949,8 +949,6 @@ namespace BeatLeader_Server.Utils {
 
                 ExternalProfileUrl = p.ExternalProfileUrl,
 
-                History = p.History,
-
                 Badges = p.Badges,
                 Changes = p.Changes,
 

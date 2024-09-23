@@ -83,13 +83,15 @@ namespace BeatLeader_Server.Models
         public int WatchedReplays { get; set; }
     }
 
+    [Index(nameof(PlayerId), nameof(Context), nameof(Timestamp), IsUnique = false)]
     public class PlayerScoreStatsHistory
     {
         public int Id { get; set; }
         public LeaderboardContexts Context { get; set; }
         public int Timestamp { get; set; }
 
-        public string? PlayerId { get; set; }
+        [StringLength(25, MinimumLength = 0)]
+        public string PlayerId { get; set; }
 
         public float Pp { get; set; }
 
@@ -146,6 +148,7 @@ namespace BeatLeader_Server.Models
         public int SPlays { get; set; }
         public int APlays { get; set; }
 
+        [StringLength(50, MinimumLength = 0)]
         public string TopPlatform { get; set; } = "";
         public HMD TopHMD { get; set; }
 
