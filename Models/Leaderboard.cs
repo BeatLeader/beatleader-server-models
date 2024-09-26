@@ -20,8 +20,6 @@ namespace BeatLeader_Server.Models {
         [JsonIgnore]
         public LeaderboardGroup? LeaderboardGroup { get; set; }
         public ICollection<LeaderboardChange>? Changes { get; set; }
-        [JsonIgnore]
-        public ICollection<PlayerLeaderboardStats>? PlayerStats { get; set; }
 
         public ICollection<EventRanking>? Events { get; set; }
         public int Plays { get; set; }

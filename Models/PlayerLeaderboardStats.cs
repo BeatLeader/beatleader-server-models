@@ -12,24 +12,21 @@ namespace BeatLeader_Server.Models {
         Practice = 5
     }
 
-    [Index(nameof(ReplayCopy), nameof(PlayerIdCopy))]
+    [Index(nameof(PlayerId), nameof(LeaderboardId), nameof(Timeset), IsUnique = false)]
     public class PlayerLeaderboardStats {
         public int Id { get; set; }
+        [StringLength(25, MinimumLength = 0)]
         public string PlayerId { get; set; }
         public EndType Type { get; set; }
         public int Timeset { get; set; }
         public float Time { get; set; }
         public int Score { get; set; }
 
+        [StringLength(200, MinimumLength = 0)]
         public string? Replay { get; set; }
 
         [StringLength(25, MinimumLength = 0)]
-        public string PlayerIdCopy { get; set; } = "";
-        [StringLength(200, MinimumLength = 0)]
-        public string? ReplayCopy { get; set; }
-
-        public string? LeaderboardId { get; set; }
-        public Leaderboard? Leaderboard { get; set; }
+        public string LeaderboardId { get; set; }
 
         public int? ScoreId { get; set; }
         public int BaseScore { get; set; }
