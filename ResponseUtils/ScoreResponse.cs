@@ -81,6 +81,16 @@ namespace BeatLeader_Server.Utils
         public CompactLeaderboardResponse Leaderboard { get; set; }
     }
 
+    public class AttemptResponseWithMyScore : ScoreResponseWithAcc
+    {
+        public ScoreResponseWithAcc? MyScore { get; set; }
+        public EndType EndType { get; set; }
+        public int AttemptsCount { get; set; }
+        public float Time { get; set; }
+
+        public CompactLeaderboardResponse Leaderboard { get; set; }
+    }
+
     public class ScoreContextExtensionResponse
     {
         public int Id { get; set; }
