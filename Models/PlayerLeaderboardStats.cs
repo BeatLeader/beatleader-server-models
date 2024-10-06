@@ -20,6 +20,7 @@ namespace BeatLeader_Server.Models {
         public EndType Type { get; set; }
         public int Timeset { get; set; }
         public float Time { get; set; }
+        public float StartTime { get; set; }
         public int Score { get; set; }
 
         [StringLength(200, MinimumLength = 0)]

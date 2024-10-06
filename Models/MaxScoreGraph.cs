@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BeatLeader_Server.Models {
+﻿namespace BeatLeader_Server.Models {
     public class MaxScoreGraph {
         public int Id { get; set; }
-        //public string LeaderboardId { get; set; }
         public byte[] Graph { get; set; }
 
         public void SaveList(List<(float, int)> list)
@@ -19,9 +12,6 @@ namespace BeatLeader_Server.Models {
                 bytes.AddRange(BitConverter.GetBytes(i));
             }
             Graph = bytes.ToArray();
-            if (Graph == null) {
-                int x = 10;
-            }
         }
 
         public List<(float, int)> LoadList()

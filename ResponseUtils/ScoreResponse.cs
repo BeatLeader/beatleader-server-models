@@ -87,6 +87,7 @@ namespace BeatLeader_Server.Utils
         public EndType EndType { get; set; }
         public int AttemptsCount { get; set; }
         public float Time { get; set; }
+        public float StartTime { get; set; }
 
         public CompactLeaderboardResponse Leaderboard { get; set; }
     }
