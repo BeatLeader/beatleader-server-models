@@ -8,6 +8,7 @@
         quest = 32,
         quest2 = 256,
         quest3 = 512,
+        quest3s = 513,
         vive = 2,
         vivePro = 4,
         viveCosmos = 128,

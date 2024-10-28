@@ -13,6 +13,10 @@ namespace BeatLeader_Server.Models
         public long TotalUnrankedScore { get; set; }
         public long TotalRankedScore { get; set; }
 
+        public int FirstScoreTime { get; set; }
+        public int FirstUnrankedScoreTime { get; set; }
+        public int FirstRankedScoreTime { get; set; }
+
         public int LastScoreTime { get; set; }
         public int LastUnrankedScoreTime { get; set; }
         public int LastRankedScoreTime { get; set; }

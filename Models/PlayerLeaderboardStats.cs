@@ -110,9 +110,38 @@ namespace BeatLeader_Server.Models {
             LeftTiming = score.LeftTiming;
             RightTiming = score.RightTiming;
             Priority = score.Priority;
-            ReplayOffsets = score.ReplayOffsets;
+            if (score.ReplayOffsets != null) {
+                ReplayOffsets = new ReplayOffsets {
+                    Frames = score.ReplayOffsets.Frames,
+                    Notes = score.ReplayOffsets.Notes,
+                    Walls = score.ReplayOffsets.Walls,
+                    Heights = score.ReplayOffsets.Heights,
+                    Pauses = score.ReplayOffsets.Pauses,
+                };
+            }
 
-            ScoreImprovementId = score.ScoreImprovementId;
+            if (score.ScoreImprovement != null) {
+                ScoreImprovement = new ScoreImprovement { 
+                    Timeset = score.ScoreImprovement.Timeset,
+                    Score = score.ScoreImprovement.Score,
+                    Accuracy = score.ScoreImprovement.Accuracy,
+                    Pp = score.ScoreImprovement.Pp,
+                    BonusPp = score.ScoreImprovement.BonusPp,
+                    Rank = score.ScoreImprovement.Rank,
+                    AccRight = score.ScoreImprovement.AccRight,
+                    AccLeft = score.ScoreImprovement.AccLeft,
+
+                    AverageRankedAccuracy = score.ScoreImprovement.AverageRankedAccuracy,
+                    TotalPp = score.ScoreImprovement.TotalPp,
+                    TotalRank = score.ScoreImprovement.TotalRank,
+
+                    BadCuts = score.ScoreImprovement.BadCuts,
+                    MissedNotes = score.ScoreImprovement.MissedNotes,
+                    BombCuts = score.ScoreImprovement.BombCuts,
+                    WallsHit = score.ScoreImprovement.WallsHit,
+                    Pauses = score.ScoreImprovement.Pauses
+                };
+            }
         }
     }
 }

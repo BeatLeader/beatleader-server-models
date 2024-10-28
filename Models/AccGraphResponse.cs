@@ -28,6 +28,7 @@ namespace BeatLeader_Server.Models {
         public string Mapper { get; set; }
         public int Timeset { get; set; }
         public float? Stars { get; set; }
+        public float Pp { get; set; }
 
         [JsonIgnore]
         public ModifiersRating? ModifiersRating { get; set; }
@@ -54,6 +55,5 @@ namespace BeatLeader_Server.Models {
 
     public class WeightGraphResponse : GraphResponse {
         public float Weight { get; set; }
-        public float Pp { get; set; }
     }
 }
