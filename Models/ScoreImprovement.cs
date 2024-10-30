@@ -1,4 +1,6 @@
-﻿namespace BeatLeader_Server.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BeatLeader_Server.Models
 {
     public class ScoreImprovement
     {
@@ -21,6 +23,9 @@
         public int BombCuts { get; set; }
         public int WallsHit { get; set; }
         public int Pauses { get; set; }
+
+        [StringLength(50, MinimumLength = 0)]
+        public string Modifiers { get; set; } = "";
     }
         
 }

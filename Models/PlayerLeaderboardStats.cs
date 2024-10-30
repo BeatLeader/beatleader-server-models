@@ -139,7 +139,8 @@ namespace BeatLeader_Server.Models {
                     MissedNotes = score.ScoreImprovement.MissedNotes,
                     BombCuts = score.ScoreImprovement.BombCuts,
                     WallsHit = score.ScoreImprovement.WallsHit,
-                    Pauses = score.ScoreImprovement.Pauses
+                    Pauses = score.ScoreImprovement.Pauses,
+                    Modifiers = score.ScoreImprovement.Modifiers
                 };
             }
         }
