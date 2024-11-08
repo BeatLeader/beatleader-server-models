@@ -27,4 +27,16 @@ namespace BeatLeader_Server.Utils {
         public int UnrankedImprovementsCount { get; set; }
         public int TotalImprovementsCount { get; set; }
     }
+
+    public class HistoryTriangleResponse {
+        public int Timestamp { get; set; }
+
+        public float Pp { get; set; }
+        public float AccPp { get; set; }
+        public float PassPp { get; set; }
+        public float TechPp { get; set; }
+
+        public int Improvements { get; set; }
+        public int NewScores { get; set; }
+    }
 }
