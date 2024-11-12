@@ -11,6 +11,7 @@ namespace BeatLeader_Server.Models {
         public float AccPp { get; set; }
         public float TechPp { get; set; }
         public float PassPp { get; set; }
+        public float AllContextsPp { get; set; }
         public int Rank { get; set; }
         public int CountryRank { get; set; }
 
@@ -46,6 +47,7 @@ namespace BeatLeader_Server.Models {
         public float AccPp { get; set; }
         public float TechPp { get; set; }
         public float PassPp { get; set; }
+        public float AllContextsPp { get; set; }
 
         public int Rank { get; set; }
         public int CountryRank { get; set; }

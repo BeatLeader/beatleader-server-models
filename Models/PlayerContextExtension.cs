@@ -11,6 +11,9 @@ namespace BeatLeader_Server.Models {
         public float AccPp { get; set; }
         public float TechPp { get; set; }
         public float PassPp { get; set; }
+        [NotMapped]
+        [JsonIgnore]
+        public float AllContextsPp { get => 0; set => PlayerInstance.AllContextsPp = value; }
 
         public int Rank { get; set; }
         public string Country { get; set; }

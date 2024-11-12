@@ -110,6 +110,7 @@ namespace BeatLeader_Server.Utils {
             public float AccPp { get; set; }
             public float PassPp { get; set; }
             public float TechPp { get; set; }
+            public float AllContextsPp { get; set; }
             public PlayerScoreStats? ScoreStats { get; set; }
             public float LastWeekPp { get; set; }
             public int LastWeekRank { get; set; }

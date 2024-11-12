@@ -14,6 +14,7 @@ namespace BeatLeader_Server.Models
         public Clan Clan { get; set; }
         public float GlobalMapCaptured { get; set; }
         public int PlayersCount { get; set; }
+        public int MainPlayersCount { get; set; }
         public float Pp { get; set; }
         public int Rank { get; set; }
         public float AverageRank { get; set; }

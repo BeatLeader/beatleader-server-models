@@ -23,6 +23,7 @@ namespace BeatLeader_Server.Models
         [JsonIgnore]
         public string DiscordInvite { get; set; }
         public int PlayersCount { get; set; }
+        public int MainPlayersCount { get; set; }
         public float Pp { get; set; }
         public int Rank { get; set; }
         public float AverageRank { get; set; }
