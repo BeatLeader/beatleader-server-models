@@ -599,6 +599,7 @@ namespace BeatLeader_Server.Utils {
             public int PlaylistId { get; set; }
             public string Image { get; set; }
             public bool Downloadable { get; set; }
+            public string? Description { get; set; }
 
             public int PlayerCount { get; set; }
             public PlayerResponse Leader { get; set; }

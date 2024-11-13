@@ -9,6 +9,7 @@ namespace BeatLeader_Server.Models
         public int EndDate { get; set; }
         public int PlaylistId { get; set; }
         public string Image { get; set; }
+        public string? Description { get; set; }
 
         [JsonIgnore]
         public ICollection<Leaderboard> Leaderboards { get; set; }
