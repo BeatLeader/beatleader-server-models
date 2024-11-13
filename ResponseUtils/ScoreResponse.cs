@@ -74,6 +74,89 @@ namespace BeatLeader_Server.Utils
         public float AccRight { get; set; }
     }
 
+    public class ScoreResponseWithHeadsets : ScoreResponse
+    {
+        public string? HeadsetName { get; set; }
+        public string? ControllerName { get; set; }
+
+        public void FillNames() {
+            HeadsetName = Hmd switch {
+                HMD.rift => "Oculus Rift",
+                HMD.riftS => "Oculus Rift S", 
+                HMD.quest => "Meta Quest",
+                HMD.quest2 => "Meta Quest 2",
+                HMD.quest3 => "Meta Quest 3",
+                HMD.quest3s => "Meta Quest 3S",
+                HMD.questPro => "Meta Quest Pro",
+                HMD.vive => "HTC Vive",
+                HMD.vivePro => "HTC Vive Pro",
+                HMD.vivePro2 => "HTC Vive Pro 2",
+                HMD.viveCosmos => "HTC Vive Cosmos",
+                HMD.viveElite => "HTC Vive Elite",
+                HMD.viveFocus => "HTC Vive Focus",
+                HMD.viveDvt => "HTC Vive DVT",
+                HMD.wmr => "WMR",
+                HMD.hpReverb => "HP Reverb",
+                HMD.samsungWmr => "Samsung Odyssey",
+                HMD.lenovoExplorer => "Lenovo Explorer",
+                HMD.acerWmr => "Acer WMR",
+                HMD.dellVisor => "Dell Visor",
+                HMD.asusWmr => "ASUS WMR",
+                HMD.picoNeo2 => "Pico Neo 2",
+                HMD.picoNeo3 => "Pico Neo 3",
+                HMD.picoNeo4 => "Pico Neo 4",
+                HMD.pimax8k => "Pimax 8K",
+                HMD.pimax5k => "Pimax 5K",
+                HMD.pimaxArtisan => "Pimax Artisan",
+                HMD.pimaxCrystal => "Pimax Crystal",
+                HMD.index => "Valve Index",
+                HMD.psvr2 => "PlayStation VR2",
+                HMD.varjoaero => "Varjo Aero",
+                HMD.bigscreenbeyond => "Bigscreen Beyond",
+                HMD.controllable => "Controllable",
+                _ => null
+            };
+
+            ControllerName = Controller switch {
+                ControllerEnum.oculustouch => "Oculus Touch",
+                ControllerEnum.oculustouch2 => "Oculus Touch 2",
+                ControllerEnum.quest2 => "Oculus Touch",
+                ControllerEnum.vive => "Vive Wands",
+                ControllerEnum.vivePro => "Vive Pro Wands",
+                ControllerEnum.wmr => "WMR Controllers",
+                ControllerEnum.odyssey => "Odyssey Controllers",
+                ControllerEnum.hpMotion => "HP Motion",
+                ControllerEnum.picoNeo3 => "Pico Neo 3 Controllers",
+                ControllerEnum.picoNeo2 => "Pico Neo 2 Controllers", 
+                ControllerEnum.vivePro2 => "Vive Pro 2 Wands",
+                ControllerEnum.miramar => "Miramar",
+                ControllerEnum.disco => "Disco",
+                ControllerEnum.questPro => "Touch Pro",
+                ControllerEnum.viveTracker => "Vive Tracker",
+                ControllerEnum.viveTracker2 => "Vive Tracker 2",
+                ControllerEnum.knuckles => "Knuckles",
+                ControllerEnum.nolo => "Nolo",
+                ControllerEnum.picophoenix => "Pico Phoenix",
+                ControllerEnum.hands => "Hands",
+                ControllerEnum.viveTracker3 => "Vive Tracker 3",
+                ControllerEnum.pimax => "Pimax",
+                ControllerEnum.huawei => "Huawei",
+                ControllerEnum.polaris => "Polaris",
+                ControllerEnum.tundra => "Tundra",
+                ControllerEnum.cry => "Cry",
+                ControllerEnum.e4 => "E4",
+                ControllerEnum.gamepad => "Gamepad",
+                ControllerEnum.joycon => "Joy-Con",
+                ControllerEnum.steamdeck => "Steam Deck",
+                ControllerEnum.etee => "Etee",
+                ControllerEnum.quest3 => "Quest 3 Touch",
+                ControllerEnum.contactglove => "Contact Glove",
+                ControllerEnum.viveCosmos => "Cosmos Controllers",
+                _ => null
+            };
+        }
+    }
+
     public class ScoreResponseWithMyScore : ScoreResponseWithAcc
     {
         public ScoreResponseWithAcc? MyScore { get; set; }
