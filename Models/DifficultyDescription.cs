@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -41,12 +42,15 @@ namespace BeatLeader_Server.Models
     }
 
     [Index(nameof(Status), IsUnique = false)]
+    [Index(nameof(Hash), nameof(ModeName), nameof(DifficultyName), IsUnique = false)]
     public class DifficultyDescription
     {
         public int Id { get; set; }
         public int Value { get; set; }
         public int Mode { get; set; }
+        [StringLength(25, MinimumLength = 0)]
         public string DifficultyName { get; set; }
+        [StringLength(100, MinimumLength = 0)]
         public string ModeName { get; set; }
         public DifficultyStatus Status { get; set; }
         public ModifiersMap? ModifierValues { get; set; } = new ModifiersMap();
@@ -56,6 +60,10 @@ namespace BeatLeader_Server.Models
         public int NominatedTime { get; set; }
         public int QualifiedTime { get; set; }
         public int RankedTime { get; set; }
+
+        [StringLength(80, MinimumLength = 0)]
+        public string Hash { get; set; } = "";
+        public string? SongId { get; set; }
 
 
         public int SpeedTags { get; set; }

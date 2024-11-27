@@ -25,18 +25,22 @@ namespace BeatLeader_Server.Models {
     }
 
     [Index(nameof(Banned), IsUnique = false)]
+    [Index(nameof(Id), nameof(Alias), nameof(OldAlias), IsUnique = false)]
     [Index(nameof(Rank), IsUnique = false)]
     [Index(nameof(Banned), nameof(Pp), nameof(ScoreStatsId), IsUnique = false)]
-    public class Player : IPlayer {
+    public class Player : IPlayer, StringTrackedEntity {
         [Key]
         public string Id { get; set; }
+        [StringLength(80, MinimumLength = 0)]
         public string Name { get; set; } = "";
         public string Platform { get; set; } = "";
         public string Avatar { get; set; } = "";
         public string WebAvatar { get; set; } = "";
         public string Country { get; set; } = "not set";
         
+        [StringLength(40, MinimumLength = 0)]
         public string? Alias { get; set; }
+        [StringLength(40, MinimumLength = 0)]
         public string? OldAlias { get; set; }
 
         public string Role { get; set; } = "";

@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace BeatLeader_Server.Models {
-    public class Leaderboard {
+    public class Leaderboard : StringTrackedEntity {
         public string Id { get; set; }
         public string? SongId { get; set; }
         public Song Song { get; set; }
@@ -24,6 +24,9 @@ namespace BeatLeader_Server.Models {
         public ICollection<EventRanking>? Events { get; set; }
         public int Plays { get; set; }
         public int PlayCount { get; set; }
+
+        public int TodayPlays { get; set; }
+        public int ThisWeekPlays { get; set; }
 
         public int PositiveVotes { get; set; }
         public int StarVotes { get; set; }

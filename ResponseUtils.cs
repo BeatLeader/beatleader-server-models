@@ -220,6 +220,10 @@ namespace BeatLeader_Server.Utils {
             public void HideRatings() {
                 this.Difficulty.HideRatings();
             }
+
+            public void RemoveSpeedMultipliers() {
+                this.Difficulty.RemoveSpeedMultipliers();
+            }
         }
 
         public class LeaderboardsResponseWithScores : LeaderboardsResponse {
@@ -362,6 +366,14 @@ namespace BeatLeader_Server.Utils {
                 this.Stars = null;
 
                 this.ModifiersRating = null;
+            }
+
+            public void RemoveSpeedMultipliers() {
+                if (ModifierValues != null) {
+                    ModifierValues.SF = 0;
+                    ModifierValues.FS = 0;
+                    ModifierValues.SS = 0;
+                }
             }
         }
 

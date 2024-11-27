@@ -11,7 +11,7 @@ namespace BeatLeader_Server.Models
     [Index(nameof(Pp))]
     [Index(nameof(Accuracy))]
     [Index(nameof(PlayerId), nameof(Qualification), nameof(Pp), IsUnique = false)]
-    public class PredictedScore
+    public class PredictedScore : TrackedEntity
     {
         [Key]
         public int Id { get; set; }

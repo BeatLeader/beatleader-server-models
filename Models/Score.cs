@@ -58,7 +58,7 @@ namespace BeatLeader_Server.Models
         public string? Link { get; set; }
     }
 
-    public interface IScore {
+    public interface IScore : TrackedEntity {
         public int Id { get; set; }
         public int? ScoreId { get; set; }
         public float Accuracy { get; set; }
@@ -119,6 +119,7 @@ namespace BeatLeader_Server.Models
 
     [Index(nameof(PlayerId))]
     [Index(nameof(PlayerId), nameof(LeaderboardId), nameof(ValidContexts), IsUnique = true)]
+    [Index(nameof(PlayerId), nameof(LeaderboardId), nameof(ValidForGeneral), IsUnique = false)]
     [Index(nameof(Banned), nameof(Qualification), nameof(Pp), IsUnique = false)]
     [Index(nameof(Timepost), nameof(Replay))]
     [Index(nameof(Timepost))]
@@ -171,6 +172,7 @@ namespace BeatLeader_Server.Models
         public string Platform { get; set; } = "";
         public Player Player { get; set; }
         public LeaderboardContexts ValidContexts { get; set; }
+        public bool ValidForGeneral { get; set; }
         public ICollection<ScoreContextExtension> ContextExtensions { get; set; }
         public string LeaderboardId { get; set; }
         public Leaderboard Leaderboard { get; set; }

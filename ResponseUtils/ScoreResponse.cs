@@ -129,7 +129,7 @@ namespace BeatLeader_Server.Utils
                 ControllerEnum.picoNeo3 => "Pico Neo 3 Controllers",
                 ControllerEnum.picoNeo2 => "Pico Neo 2 Controllers", 
                 ControllerEnum.vivePro2 => "Vive Pro 2 Wands",
-                ControllerEnum.miramar => "Miramar",
+                ControllerEnum.miramar => "Oculus Touch",
                 ControllerEnum.disco => "Disco",
                 ControllerEnum.questPro => "Touch Pro",
                 ControllerEnum.viveTracker => "Vive Tracker",

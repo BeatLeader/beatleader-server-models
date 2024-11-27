@@ -2,7 +2,7 @@
 
 namespace BeatLeader_Server.Models
 {
-    public class ClanRanking
+    public class ClanRanking : TrackedEntity
     {
         public int Id { get; set; } // Unique ID for this clanRanking
 

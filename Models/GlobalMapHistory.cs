@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BeatLeader_Server.Models
 {
-    public class GlobalMapHistory
+    public class GlobalMapHistory : TrackedEntity
     {
         public int Id { get; set; }
         public int Timestamp { get; set; }

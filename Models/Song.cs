@@ -27,7 +27,7 @@ namespace BeatLeader_Server.Models
     }
 
     [Index(nameof(Hash), IsUnique = true)]
-    public class Song
+    public class Song : StringTrackedEntity
     {
         public string Id { get; set; }
         public string Hash { get; set; }
@@ -50,6 +50,7 @@ namespace BeatLeader_Server.Models
         [JsonIgnore]
         public string CreatedTime { get; set; } = "";
         public int UploadTime { get; set; }
+        public SongStatus Status { get; set; }
         public ICollection<DifficultyDescription> Difficulties { get; set; }
         public ICollection<Leaderboard> Leaderboards { get; set; }
         public ICollection<ExternalStatus>? ExternalStatuses { get; set; }
@@ -115,6 +116,7 @@ namespace BeatLeader_Server.Models
                 difficulty.Mode = ModeForModeName(diff.Characteristic);
                 difficulty.DifficultyName = diff.Difficulty;
                 difficulty.Value = DiffForDiffName(diff.Difficulty);
+                difficulty.Hash = Hash;
 
                 difficulty.Njs = diff.Njs;
                 difficulty.Notes = diff.Notes;

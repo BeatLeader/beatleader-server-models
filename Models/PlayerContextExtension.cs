@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BeatLeader_Server.Models {
     [Index(nameof(PlayerId), nameof(Context), IsUnique = true)]
-    public class PlayerContextExtension : IPlayer {
+    public class PlayerContextExtension : IPlayer, TrackedEntity {
         public int Id { get; set; }
         public LeaderboardContexts Context { get; set; }
         public float Pp { get; set; }

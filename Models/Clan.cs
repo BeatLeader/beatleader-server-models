@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace BeatLeader_Server.Models
 {
     [Index(nameof(Tag), IsUnique = true)]
-    public class Clan
+    public class Clan : TrackedEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
