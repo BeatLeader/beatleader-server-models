@@ -102,7 +102,7 @@ namespace BeatLeader_Server.Models {
         public Player PlayerInstance { get => this; set => _ = value; }
 
         public void SetDefaultAvatar() {
-            this.Avatar = "https://cdn.assets.beatleader.xyz/" + this.Platform + "avatar.png";
+            this.Avatar = "https://cdn.assets.beatleader.com/" + this.Platform + "avatar.png";
         }
 
         public void SanitizeName() {
@@ -124,6 +124,13 @@ namespace BeatLeader_Server.Models {
             role.Contains("supporter") ||
             role.Contains("sponsor") ||
             role.Contains("booster") ||
+            role.Contains("creator") ||
+            role.Contains("rankedteam") || 
+            role.Contains("qualityteam"));
+        }
+
+        public static bool RoleIsAnyTeam(string? role) {
+            return role != null && (
             role.Contains("creator") ||
             role.Contains("rankedteam") || 
             role.Contains("qualityteam"));

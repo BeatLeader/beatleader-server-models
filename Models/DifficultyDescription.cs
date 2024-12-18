@@ -38,7 +38,8 @@ namespace BeatLeader_Server.Models
         MappingExtensions = 1 << 3,
         Cinema = 1 << 4,
         V3 = 1 << 5,
-        OptionalProperties = 1 << 6
+        OptionalProperties = 1 << 6,
+        VNJS = 1 << 7
     }
 
     [Index(nameof(Status), IsUnique = false)]

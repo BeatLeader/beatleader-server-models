@@ -15,4 +15,19 @@ namespace BeatLeader_Server.Models.SongSuggest
         public int timepost { get; set; }
 
     }
+
+    public class Top10kScoreV2
+    {
+        public String songID { get; set; }
+        public float pp { get; set; }
+        public int rank { get; set; }
+        public string? modifiers { get; set; }
+
+        [JsonIgnore]
+        public float accuracy { get; set; }
+
+        [JsonIgnore]
+        public int timepost { get; set; }
+
+    }
 }

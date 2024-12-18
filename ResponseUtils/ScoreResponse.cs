@@ -45,6 +45,8 @@ namespace BeatLeader_Server.Utils
         public int LastTryTime { get; set; }
         [JsonIgnore]
         public int Priority { get; set; }
+        [JsonIgnore]
+        public int OriginalId { get; set; }
         public PlayerResponse? Player { get; set; }
         public ScoreImprovement? ScoreImprovement { get; set; }
         public RankVoting? RankVoting { get; set; }
