@@ -577,6 +577,9 @@ namespace BeatLeader_Server.Utils {
 
         public class CompactScore {
             public int? Id { get; set; }
+
+            [JsonIgnore]
+            public int OriginalId { get; set; }
             public int BaseScore { get; set; }
             public int ModifiedScore { get; set; }
             public string Modifiers { get; set; }

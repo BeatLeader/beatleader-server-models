@@ -97,6 +97,9 @@ namespace BeatLeader_Server.Models {
         public ICollection<ReeSabersPreset>? Presets { get; set; }
         [JsonIgnore]
         public ICollection<PlayerSearch> Searches { get; set; }
+
+        [JsonIgnore]
+        public ICollection<PlayerTreeOrnament> Ornaments { get; set; }
         [NotMapped]
         [JsonIgnore]
         public Player PlayerInstance { get => this; set => _ = value; }
