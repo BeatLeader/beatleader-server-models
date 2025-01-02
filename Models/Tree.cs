@@ -19,4 +19,12 @@
         public string SongId { get; set; }
         public int Timestart { get; set; }
     }
+
+    public class TreeChampion {
+        public int Id { get; set; }
+        public int BundleId { get; set; }
+        public int Day { get; set; }
+        public int Diffs { get; set; }
+        public string PlayerId { get; set; }
+    }
 }

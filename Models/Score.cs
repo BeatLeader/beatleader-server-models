@@ -126,6 +126,8 @@ namespace BeatLeader_Server.Models
     [Index(nameof(Pp))]
     [Index(nameof(Accuracy))]
     [Index(nameof(PlayerId), nameof(Banned), nameof(Qualification), nameof(Pp), IsUnique = false)]
+    [Index(nameof(PlayerId), nameof(Banned), nameof(ValidForGeneral), nameof(Pp), nameof(Timepost), IsUnique = false)]
+    [Index(nameof(LeaderboardId), nameof(Banned), nameof(ValidForGeneral), IsUnique = false)]
     public class Score : IScore
     {
         [Key]
