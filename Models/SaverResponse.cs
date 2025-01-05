@@ -11,6 +11,7 @@
         public bool Automapper { get; set; }
         public bool Ranked { get; set; }
         public bool Qualified { get; set; }
+        public bool Nsfw { get; set; }
         public List<MapVersion> Versions { get; set; }
         public UserDetail? Curator { get; set; }
         public DateTime? CuratedAt { get; set; }

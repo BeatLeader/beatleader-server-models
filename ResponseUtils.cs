@@ -392,6 +392,7 @@ namespace BeatLeader_Server.Utils {
             public double Bpm { get; set; }
             public double Duration { get; set; }
             public string? FullCoverImage { get; set; }
+            public SongExplicitStatus Explicity { get; set; }
         }
 
         public class CompactLeaderboardResponse {
@@ -428,6 +429,7 @@ namespace BeatLeader_Server.Utils {
             public double Bpm { get; set; }
             public double Duration { get; set; }
             public int UploadTime { get; set; }
+            public SongExplicitStatus Explicity { get; set; }
             public ICollection<DifficultyDescription> Difficulties { get; set; }
             public ICollection<ExternalStatus>? ExternalStatuses { get; set; }
         }
@@ -485,7 +487,7 @@ namespace BeatLeader_Server.Utils {
 
         public class LeaderboardInfoResponse {
             public string Id { get; set; }
-            public Song Song { get; set; }
+            public SongResponse Song { get; set; }
             public DifficultyResponse Difficulty { get; set; }
             public int Plays { get; set; }
             public int PositiveVotes { get; set; }
@@ -788,6 +790,7 @@ namespace BeatLeader_Server.Utils {
                         FullCoverImage = s.Leaderboard.Song.FullCoverImage,
                         Bpm = s.Leaderboard.Song.Bpm,
                         Duration = s.Leaderboard.Song.Duration,
+                        Explicity = s.Leaderboard.Song.Explicity
                     } : null,
                     Difficulty = s.Leaderboard?.Difficulty != null ? new DifficultyResponse {
                         Id = s.Leaderboard.Difficulty.Id,
@@ -873,79 +876,6 @@ namespace BeatLeader_Server.Utils {
 
         public static PlayerResponse? ResponseFromPlayer(Player? p) {
             return GeneralResponseFromPlayer<PlayerResponse>(p);
-        }
-
-        public static LeaderboardResponse ResponseFromLeaderboard(Leaderboard l) {
-            return new LeaderboardResponse {
-                Id = l.Id,
-                Song = new SongResponse {
-                    Id = l.Song.Id,
-                    Hash = l.Song.Hash,
-                    Name = l.Song.Name,
-                    SubName = l.Song.SubName,
-                    Author = l.Song.Author,
-                    Mapper = l.Song.Mapper,
-                    MapperId  = l.Song.MapperId,
-                    CoverImage   = l.Song.CoverImage,
-                    FullCoverImage = l.Song.FullCoverImage,
-                    DownloadUrl = l.Song.DownloadUrl,
-                    Bpm = l.Song.Bpm,
-                    Duration = l.Song.Duration,
-                    UploadTime = l.Song.UploadTime,
-                    Mappers = l.Song.Mappers?.Select(m => new MapperResponse {
-                        Id = m.Id,
-                        PlayerId = m.Player != null ? m.Player.Id : null,
-                        Name = m.Player != null ? m.Player.Name : m.Name,
-                        Avatar = m.Player != null ? m.Player.Avatar : m.Avatar,
-                        Curator = m.Curator,
-                        VerifiedMapper = m.VerifiedMapper,
-                    }).ToList(),
-                    Difficulties = l.Song.Difficulties,
-                    ExternalStatuses = l.Song.ExternalStatuses,
-                },
-                Difficulty = new DifficultyResponse {
-                    Id = l.Difficulty.Id,
-                    Value = l.Difficulty.Value,
-                    Mode = l.Difficulty.Mode,
-                    DifficultyName = l.Difficulty.DifficultyName,
-                    ModeName = l.Difficulty.ModeName,
-                    Status = l.Difficulty.Status,
-                    ModifierValues = l.Difficulty.ModifierValues,
-                    ModifiersRating = l.Difficulty.ModifiersRating,
-                    NominatedTime  = l.Difficulty.NominatedTime,
-                    QualifiedTime  = l.Difficulty.QualifiedTime,
-                    RankedTime = l.Difficulty.RankedTime,
-
-                    Stars  = l.Difficulty.Stars,
-                    PredictedAcc  = l.Difficulty.PredictedAcc,
-                    PassRating  = l.Difficulty.PassRating,
-                    AccRating  = l.Difficulty.AccRating,
-                    TechRating  = l.Difficulty.TechRating,
-                    Type  = l.Difficulty.Type,
-
-                    Njs  = l.Difficulty.Njs,
-                    Nps  = l.Difficulty.Nps,
-                    Notes  = l.Difficulty.Notes,
-                    Bombs  = l.Difficulty.Bombs,
-                    Walls  = l.Difficulty.Walls,
-                    MaxScore = l.Difficulty.MaxScore,
-                    Duration  = l.Difficulty.Duration,
-
-                    Requirements = l.Difficulty.Requirements,
-                },
-                Scores = l.Scores?.Select(RemoveLeaderboard).ToList(),
-                Plays = l.Plays,
-                Qualification = l.Qualification,
-                Reweight = l.Reweight,
-                Changes = l.Changes,
-                LeaderboardGroup = l.LeaderboardGroup?.Leaderboards?.Select(it =>
-                    new LeaderboardGroupEntry {
-                        Id = it.Id,
-                        Status = it.Difficulty.Status,
-                        Timestamp = it.Timestamp
-                    }
-                )
-            };
         }
 
         public static PlayerResponseFull ResponseFullFromPlayer(Player p) {

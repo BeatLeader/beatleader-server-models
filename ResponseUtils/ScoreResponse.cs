@@ -280,6 +280,7 @@ namespace BeatLeader_Server.Utils
                         FullCoverImage = s.Leaderboard.Song.FullCoverImage,
                         Bpm = s.Leaderboard.Song.Bpm,
                         Duration = s.Leaderboard.Song.Duration,
+                        Explicity = s.Leaderboard.Song.Explicity
                     },
                     Difficulty = new DifficultyResponse
                     {

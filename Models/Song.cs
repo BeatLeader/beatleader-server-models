@@ -14,6 +14,17 @@ namespace BeatLeader_Server.Models
         BeastSaberAwarded = 1 << 5
     }
 
+    [Flags]
+    public enum SongExplicitStatus
+    {
+        None = 0,
+        Cover = 1 << 1,
+        Lyrics = 1 << 2,
+        Name = 1 << 3,
+        Author = 1 << 4,
+        Map = 1 << 5
+    }
+
     public class ExternalStatus
     {
         public int Id { get; set; }
@@ -51,6 +62,7 @@ namespace BeatLeader_Server.Models
         public string CreatedTime { get; set; } = "";
         public int UploadTime { get; set; }
         public SongStatus Status { get; set; }
+        public SongExplicitStatus Explicity { get; set; }
         public ICollection<DifficultyDescription> Difficulties { get; set; }
         public ICollection<Leaderboard> Leaderboards { get; set; }
         public ICollection<ExternalStatus>? ExternalStatuses { get; set; }
@@ -98,6 +110,8 @@ namespace BeatLeader_Server.Models
             CoverImage = currentVersion.CoverURL;
             DownloadUrl = currentVersion.DownloadURL;
             Hash = currentVersion.Hash;
+
+            Explicity = info.Nsfw ? SongExplicitStatus.Cover : SongExplicitStatus.None;
 
             if (info.Id != null)
             {
