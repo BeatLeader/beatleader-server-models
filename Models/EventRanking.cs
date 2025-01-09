@@ -2,7 +2,7 @@
 
 namespace BeatLeader_Server.Models
 {
-    public class EventRanking
+    public class EventRanking : TrackedEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

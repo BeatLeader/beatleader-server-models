@@ -38,6 +38,7 @@ namespace BeatLeader_Server.Models
     }
 
     [Index(nameof(Hash), IsUnique = true)]
+    [Index(nameof(UploadTime), IsUnique = false)]
     public class Song : StringTrackedEntity
     {
         public string Id { get; set; }
@@ -112,13 +113,21 @@ namespace BeatLeader_Server.Models
             Hash = currentVersion.Hash;
 
             Explicity = info.Nsfw ? SongExplicitStatus.Cover : SongExplicitStatus.None;
-
+            
             if (info.Id != null)
             {
                 Id = info.Id;
             } else
             {
                 Id = currentVersion.Key;
+            }
+
+            if (Explicity.HasFlag(SongExplicitStatus.Cover)) {
+                CoverImage = System.Text.RegularExpressions.Regex.Replace(
+                    CoverImage, 
+                    @"https?://(?:[a-z]{2}\.)?cdn\.beatsaver\.com/",
+                    $"https://api.beatleader.com/cover/processed/{Id}/"
+                );
             }
 
             List<DifficultyDescription> difficulties = new List<DifficultyDescription>();

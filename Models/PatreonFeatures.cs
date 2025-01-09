@@ -28,6 +28,7 @@
 
         public bool ShowBots { get; set; }
         public bool ShowAllRatings { get; set; }
+        public bool ShowExplicitCovers { get; set; }
         public bool ShowStatsPublic { get; set; }
         public bool ShowStatsPublicPinned { get; set; } = true;
     }
