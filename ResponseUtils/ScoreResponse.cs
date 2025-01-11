@@ -385,4 +385,10 @@ namespace BeatLeader_Server.Utils
             };
         }
     }
+
+    public class CommonScores
+    {
+        public CompactLeaderboardResponse Leaderboard { get; set; }
+        public List<ScoreResponse> Scores { get; set; }
+    }
 }
