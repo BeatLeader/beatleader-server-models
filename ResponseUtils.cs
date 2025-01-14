@@ -167,6 +167,26 @@ namespace BeatLeader_Server.Utils {
             public ICollection<PlayerChange>? Changes { get; set; }
         }
 
+        public class PlayerWithBanHistory
+        {
+            public string Id { get; set; }
+            public string Name { get; set; } = "";
+            public string Platform { get; set; } = "";
+            public string Avatar { get; set; } = "";
+            public string Country { get; set; } = "not set";
+            public string? Alias { get; set; }
+
+            public bool Bot { get; set; }
+            public bool Banned { get; set; }
+
+            public float Pp { get; set; }
+            public int Rank { get; set; }
+            public int CountryRank { get; set; }
+            public string Role { get; set; }
+
+            public List<Ban> Bans { get; set; }
+        }
+
         public class ScoreSongResponse {
             public string Id { get; set; }
             public string Hash { get; set; }
