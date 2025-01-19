@@ -159,6 +159,11 @@ namespace BeatLeader_Server.Utils
         }
     }
 
+    public class ClanPlayerResponse {
+        public ScoreResponseWithHeadsets? Score { get; set; }
+        public PlayerResponse? Player { get; set; }
+    }
+
     public class ScoreResponseWithMyScore : ScoreResponseWithAcc
     {
         public ScoreResponseWithAcc? MyScore { get; set; }

@@ -13,6 +13,7 @@ namespace BeatLeader_Server.Models {
     }
 
     [Index(nameof(PlayerId), nameof(LeaderboardId), nameof(Timeset), IsUnique = false)]
+    [Index(nameof(PlayerId), nameof(ScoreId), IsUnique = false)]
     public class PlayerLeaderboardStats {
         public int Id { get; set; }
         [StringLength(25, MinimumLength = 0)]

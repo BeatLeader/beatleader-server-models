@@ -31,6 +31,8 @@ namespace BeatLeader_Server.Utils
 
         public float Pp { get; set; }
         public int Rank { get; set; }
-            
+        
+        public float RankedPoolPercentCaptured { get; set; }
+        public int CaptureLeaderboardsCount { get; set; }
     }
 }
