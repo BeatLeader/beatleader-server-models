@@ -78,6 +78,7 @@ namespace BeatLeader_Server.Models
         public int BaseScore { get; set; }
         public int ModifiedScore { get; set; }
         public string? Modifiers { get; set; }
+        public float ModifiedStars { get; set; }
         public int BadCuts { get; set; }
         public int MissedNotes { get; set; }
         public int BombCuts { get; set; }
@@ -156,6 +157,7 @@ namespace BeatLeader_Server.Models
         public int CountryRank { get; set; }
         public string? Replay { get; set; } = "";
         public string? Modifiers { get; set; }
+        public float ModifiedStars { get; set; }
         public int BadCuts { get; set; }
         public int MissedNotes { get; set; }
         public int BombCuts { get; set; }

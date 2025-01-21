@@ -24,6 +24,7 @@ namespace BeatLeader_Server.Models {
         public float TechPP { get; set; }
         public float BonusPp { get; set; }
         public string? Modifiers { get; set; }
+        public float ModifiedStars { get; set; }
         public int Timepost { get; set; }
         public int Priority { get; set; }
 
