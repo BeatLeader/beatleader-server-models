@@ -725,6 +725,7 @@ namespace BeatLeader_Server.Utils {
                         Country  = ce.Country,
                         CountryRank  = ce.CountryRank,
                     }).ToList() : null,
+                    ClanOrder = s.Player.ClanOrder,
                     Clans = s.Player.Clans?.OrderBy(c => s.Player.ClanOrder.IndexOf(c.Tag))
                             .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
                 } : null,
