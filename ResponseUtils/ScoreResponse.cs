@@ -113,7 +113,9 @@ namespace BeatLeader_Server.Utils
                 HMD.pimaxCrystal => "Pimax Crystal",
                 HMD.index => "Valve Index",
                 HMD.psvr2 => "PlayStation VR2",
+                HMD.hedy => "Varjo",
                 HMD.varjoaero => "Varjo Aero",
+                HMD.varjoxr3 => "Varjo XR-3",
                 HMD.bigscreenbeyond => "Bigscreen Beyond",
                 HMD.controllable => "Controllable",
                 _ => null
@@ -153,6 +155,7 @@ namespace BeatLeader_Server.Utils
                 ControllerEnum.etee => "Etee",
                 ControllerEnum.quest3 => "Quest 3 Touch",
                 ControllerEnum.contactglove => "Contact Glove",
+                ControllerEnum.playstationSense = "PlayStation Sense",
                 ControllerEnum.viveCosmos => "Cosmos Controllers",
                 _ => null
             };

@@ -38,6 +38,7 @@
         etee = 78,
         quest3 = 79,
         contactglove = 80,
+        playstationSense = 81,
         viveCosmos = 128,
     }
 }

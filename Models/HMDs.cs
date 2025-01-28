@@ -52,6 +52,7 @@
         hypereal = 68,
         varjoaero = 69,
         psvr2 = 70,
-        megane1 = 71
+        megane1 = 71,
+        varjoxr3 = 72
     }
 }
