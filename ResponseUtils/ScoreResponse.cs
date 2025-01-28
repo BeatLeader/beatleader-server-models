@@ -155,7 +155,7 @@ namespace BeatLeader_Server.Utils
                 ControllerEnum.etee => "Etee",
                 ControllerEnum.quest3 => "Quest 3 Touch",
                 ControllerEnum.contactglove => "Contact Glove",
-                ControllerEnum.playstationSense = "PlayStation Sense",
+                ControllerEnum.playstationSense => "PlayStation Sense",
                 ControllerEnum.viveCosmos => "Cosmos Controllers",
                 _ => null
             };

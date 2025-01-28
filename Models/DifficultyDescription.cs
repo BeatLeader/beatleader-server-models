@@ -39,7 +39,8 @@ namespace BeatLeader_Server.Models
         Cinema = 1 << 4,
         V3 = 1 << 5,
         OptionalProperties = 1 << 6,
-        VNJS = 1 << 7
+        VNJS = 1 << 7,
+        Vivify = 1 << 8
     }
 
     [Index(nameof(Status), IsUnique = false)]
