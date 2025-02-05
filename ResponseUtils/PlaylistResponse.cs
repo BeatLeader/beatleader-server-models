@@ -10,6 +10,14 @@ namespace BeatLeader_Server.Utils {
         public string characteristic { get; set; }
     }
 
+    public class PlaylistSong {
+        public string? hash { get; set; }
+        public string? key { get; set; }
+        public string? songName { get; set; }
+        public string? levelAuthorName { get; set; }
+        public List<PlaylistDifficulty>? difficulties { get; set; }
+    }
+
     public class PlaylisCustomData {
         public string syncURL { get; set; }
         public string owner { get; set; }
@@ -19,5 +27,6 @@ namespace BeatLeader_Server.Utils {
     }
 
     public class PlaylistResponse {
+        public List<PlaylistSong> songs { get; set; }
     }
 }

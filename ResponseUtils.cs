@@ -726,7 +726,7 @@ namespace BeatLeader_Server.Utils {
                         CountryRank  = ce.CountryRank,
                     }).ToList() : null,
                     ClanOrder = s.Player.ClanOrder,
-                    Clans = s.Player.Clans?.OrderBy(c => s.Player.ClanOrder.IndexOf(c.Tag))
+                    Clans = s.Player.Clans?.OrderBy(c => ("," + s.Player.ClanOrder + ",").IndexOf("," + c.Tag + ",") >= 0 ? ("," + s.Player.ClanOrder + ",").IndexOf("," + c.Tag + ",") : 1000)
                             .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
                 } : null,
                 ScoreImprovement = s.ScoreImprovement,
@@ -787,7 +787,7 @@ namespace BeatLeader_Server.Utils {
                     Socials = s.Player.Socials,
                     PatreonFeatures = s.Player.PatreonFeatures,
                     ProfileSettings = s.Player.ProfileSettings,
-                    Clans = s.Player.Clans?.OrderBy(c => s.Player.ClanOrder.IndexOf(c.Tag))
+                    Clans = s.Player.Clans?.OrderBy(c => ("," + s.Player.ClanOrder + ",").IndexOf("," + c.Tag + ",") >= 0 ? ("," + s.Player.ClanOrder + ",").IndexOf("," + c.Tag + ",") : 1000)
                             .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
                 } : null,
                 ScoreImprovement = s.ScoreImprovement,
@@ -890,7 +890,7 @@ namespace BeatLeader_Server.Utils {
                 PatreonFeatures = p.PatreonFeatures,
                 ProfileSettings = p.ProfileSettings,
                 ContextExtensions = p.ContextExtensions,
-                Clans = p.Clans?.OrderBy(c => p.ClanOrder.IndexOf(c.Tag))
+                Clans = p.Clans?.OrderBy(c => ("," + p.ClanOrder + ",").IndexOf("," + c.Tag + ",") >= 0 ? ("," + p.ClanOrder + ",").IndexOf("," + c.Tag + ",") : 1000)
                             .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color, Name = c.Name })
             };
         }
@@ -934,7 +934,7 @@ namespace BeatLeader_Server.Utils {
                 PatreonFeatures = p.PatreonFeatures,
                 ProfileSettings = p.ProfileSettings,
                 ContextExtensions = p.ContextExtensions,
-                Clans = p.Clans?.OrderBy(c => p.ClanOrder.IndexOf(c.Tag))
+                Clans = p.Clans?.OrderBy(c => ("," + p.ClanOrder + ",").IndexOf("," + c.Tag + ",") >= 0 ? ("," + p.ClanOrder + ",").IndexOf("," + c.Tag + ",") : 1000)
                             .ThenBy(c => c.Id).Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
             };
         }
@@ -966,7 +966,7 @@ namespace BeatLeader_Server.Utils {
 
             if (input.Clans != null && input.Clans.Count() > 0) {
                 input.Clans = input.Clans
-                            .OrderBy(c => input.ClanOrder.IndexOf(c.Tag) >= 0 ? input.ClanOrder.IndexOf(c.Tag) : 1000)
+                            .OrderBy(c => ("," + input.ClanOrder + ",").IndexOf("," + c.Tag + ",") >= 0 ? ("," + input.ClanOrder + ",").IndexOf("," + c.Tag + ",") : 1000)
                             .ThenBy(c => c.Id)
                             .ToList();
 

@@ -25,6 +25,15 @@ namespace BeatLeader_Server.Models
         Map = 1 << 5
     }
 
+    public enum SongCreator
+    {
+        Human = 0,
+        GenericBot = 1,
+        BeatSage = 2,
+        TopMapper = 3,
+
+    }
+
     public class ExternalStatus
     {
         public int Id { get; set; }
@@ -58,6 +67,7 @@ namespace BeatLeader_Server.Models
         public double Bpm { get; set; }
         public double Duration { get; set; }
         public string? Tags { get; set; }
+        public SongCreator MapCreator { get; set; }
 
         [JsonIgnore]
         public string CreatedTime { get; set; } = "";
@@ -75,6 +85,28 @@ namespace BeatLeader_Server.Models
 
         [JsonIgnore]
         public ICollection<SongSearch> Searches { get; set; }
+
+        public static SongCreator BotName(string mapper, string? declaredAi) {
+            SongCreator result = SongCreator.GenericBot;
+            if (declaredAi != null) {
+                if (declaredAi.ToLower().Contains("sage")) {
+                    result = SongCreator.BeatSage;
+                }
+                if (declaredAi.ToLower().Contains("topmapper")) {
+                    result = SongCreator.TopMapper;
+                }
+            }
+
+            if (result == SongCreator.GenericBot) {
+                if (mapper.ToLower().Contains("sage")) {
+                    result = SongCreator.BeatSage;
+                }
+                if (mapper.ToLower().Contains("topmapper")) {
+                    result = SongCreator.BeatSage;
+                }
+            }
+            return result;
+        }
 
         public void FromMapDetails(MapDetail info)
         {
@@ -105,6 +137,10 @@ namespace BeatLeader_Server.Models
             if (info.Collaborators?.Count > 0)
             {
                 CollaboratorIds = string.Join(",", info.Collaborators.Select(c => c.Id));
+            }
+
+            if (info.Automapper) {
+                MapCreator = BotName(Mapper, info.DeclatedAi);
             }
 
             var currentVersion = info.Versions[0];

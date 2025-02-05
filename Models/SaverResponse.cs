@@ -21,6 +21,7 @@
         public DateTime? DeletedAt { get; set; }
         public List<string>? Tags { get; set; }
         public bool? Bookmarked { get; set; }
+        public string? DeclatedAi { get; set; }
         public List<UserDetail>? Collaborators { get; set; }
     }
 
