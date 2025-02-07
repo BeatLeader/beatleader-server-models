@@ -432,6 +432,7 @@ namespace BeatLeader_Server.Utils {
             public string Avatar { get; set; }
             public bool? Curator { get; set; }
             public bool VerifiedMapper { get; set; }
+            public MapperStatus Status { get; set; }
         }
 
         public class SongResponse {

@@ -129,18 +129,24 @@ namespace BeatLeader_Server.Models {
             role.Contains("booster") ||
             role.Contains("creator") ||
             role.Contains("rankedteam") || 
-            role.Contains("qualityteam"));
+            role.Contains("qualityteam") ||
+            role.Contains("rankoperatorteam"));
         }
 
         public static bool RoleIsAnyTeam(string? role) {
             return role != null && (
             role.Contains("creator") ||
             role.Contains("rankedteam") || 
-            role.Contains("qualityteam"));
+            role.Contains("qualityteam") ||
+            role.Contains("rankoperatorteam"));
         }
 
         public bool AnySupporter() {
             return RoleIsAnySupporter(Role);
+        }
+
+        public bool AnyTeam() {
+            return RoleIsAnyTeam(Role);
         }
         
         public void RefreshClanOrder() {
