@@ -70,7 +70,7 @@ namespace BeatLeader_Server.Models
                 FS = 0.20f * 2,
                 SF = 0.36f * 2,
                 SS = -0.3f,
-                GN = 0.04f * 2,
+                GN = 0.00f,
                 NA = -0.3f,
                 NB = -0.2f,
                 NF = -1.0f,
