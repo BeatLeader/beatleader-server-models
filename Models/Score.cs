@@ -201,6 +201,10 @@ namespace BeatLeader_Server.Models
         public RankVoting? RankVoting { get; set; }
         public ScoreMetadata? Metadata { get; set; }
 
+        [JsonIgnore]
+        [StringLength(25, MinimumLength = 0)]
+        public string? HashId { get; set; }
+
         public void ToContext(ScoreContextExtension? extension) {
             if (extension == null) return;
 

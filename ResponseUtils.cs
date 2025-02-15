@@ -511,6 +511,7 @@ namespace BeatLeader_Server.Utils {
             public SongResponse Song { get; set; }
             public DifficultyResponse Difficulty { get; set; }
             public int Plays { get; set; }
+            public int Attempts { get; set; }
             public int PositiveVotes { get; set; }
             public int StarVotes { get; set; }
             public int NegativeVotes { get; set; }
