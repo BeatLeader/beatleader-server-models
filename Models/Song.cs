@@ -68,9 +68,6 @@ namespace BeatLeader_Server.Models
         public double Duration { get; set; }
         public string? Tags { get; set; }
         public SongCreator MapCreator { get; set; }
-
-        [JsonIgnore]
-        public string CreatedTime { get; set; } = "";
         public int UploadTime { get; set; }
         public SongStatus Status { get; set; }
         public SongExplicitStatus Explicity { get; set; }

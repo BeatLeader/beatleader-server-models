@@ -536,6 +536,7 @@ namespace BeatLeader_Server.Utils {
         public class MapDiffResponse : DifficultyResponse {
             public string LeaderboardId { get; set; }
             public int Plays { get; set; }
+            public int Attempts { get; set; }
             public int PositiveVotes { get; set; }
             public int StarVotes { get; set; }
             public int NegativeVotes { get; set; }

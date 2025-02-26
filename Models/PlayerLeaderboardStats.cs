@@ -63,6 +63,7 @@ namespace BeatLeader_Server.Models {
         public int AnonimusReplayWatched { get; set; }
         public int? ReplayOffsetsId { get; set; }
         public ReplayOffsets? ReplayOffsets { get; set; }
+        public ScoreMetadata? Metadata { get; set; }
         public string? Country { get; set; }
         public int? MaxStreak { get; set; } = null;
         public float LeftTiming { get; set; }
@@ -118,6 +119,19 @@ namespace BeatLeader_Server.Models {
                     Walls = score.ReplayOffsets.Walls,
                     Heights = score.ReplayOffsets.Heights,
                     Pauses = score.ReplayOffsets.Pauses,
+                };
+            }
+
+            if (score.Metadata != null) {
+                Metadata = new ScoreMetadata {
+                    PinnedContexts = score.Metadata.PinnedContexts,
+                    HighlightedInfo = score.Metadata.HighlightedInfo,
+                    Priority = score.Metadata.Priority,
+                    Description = score.Metadata.Description,
+
+                    LinkService = score.Metadata.LinkService,
+                    LinkServiceIcon = score.Metadata.LinkServiceIcon,
+                    Link = score.Metadata.Link
                 };
             }
 
