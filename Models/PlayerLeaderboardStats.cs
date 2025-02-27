@@ -14,7 +14,7 @@ namespace BeatLeader_Server.Models {
 
     [Index(nameof(PlayerId), nameof(LeaderboardId), nameof(Timeset), IsUnique = false)]
     [Index(nameof(PlayerId), nameof(ScoreId), IsUnique = false)]
-    public class PlayerLeaderboardStats {
+    public class PlayerLeaderboardStats : TrackedEntity {
         public int Id { get; set; }
         [StringLength(25, MinimumLength = 0)]
         public string PlayerId { get; set; }
