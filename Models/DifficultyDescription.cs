@@ -40,7 +40,8 @@ namespace BeatLeader_Server.Models
         V3 = 1 << 5,
         OptionalProperties = 1 << 6,
         VNJS = 1 << 7,
-        Vivify = 1 << 8
+        Vivify = 1 << 8,
+        V3Pepega = 1 << 9
     }
 
     [Index(nameof(Status), IsUnique = false)]

@@ -88,8 +88,7 @@ namespace BeatLeader_Server.Models
     }
 
     [Index(nameof(PlayerId), nameof(Context), nameof(Timestamp), IsUnique = false)]
-    public class PlayerScoreStatsHistory
-    {
+    public class PlayerScoreStatsHistory : TrackedEntity {
         public int Id { get; set; }
         public LeaderboardContexts Context { get; set; }
         public int Timestamp { get; set; }
