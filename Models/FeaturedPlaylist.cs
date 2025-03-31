@@ -14,6 +14,7 @@ namespace BeatLeader_Server.Models
         public string Cover { get; set; }
         public string Title { get; set; }
         public string? Description { get; set; }
+        public int MapCount { get; set; }
 
         public string? Owner { get; set; }
         public string? OwnerCover { get; set; }

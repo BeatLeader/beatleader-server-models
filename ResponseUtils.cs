@@ -41,6 +41,7 @@ namespace BeatLeader_Server.Utils {
             public string Cover { get; set; }
             public string Title { get; set; }
             public string? Description { get; set; }
+            public int? MapCount { get; set; }
 
             public string? Owner { get; set; }
             public string? OwnerCover { get; set; }
@@ -533,6 +534,13 @@ namespace BeatLeader_Server.Utils {
             }
         }
 
+        public class TrendingLeaderboardInfoResponse : LeaderboardInfoResponse {
+            public string Description { get; set; }
+            public string TrendingValue { get; set; }
+            public int ThisWeekPlays { get; set; }
+            public int TodayPlays { get; set; }
+        }
+
         public class MapDiffResponse : DifficultyResponse {
             public string LeaderboardId { get; set; }
             public int Plays { get; set; }
@@ -568,6 +576,10 @@ namespace BeatLeader_Server.Utils {
             public int UploadTime { get; set; }
         
             public ICollection<ExternalStatus>? ExternalStatuses { get; set; }
+        }
+
+        public class MapInfoResponseWithUpvotes : MapInfoResponse {
+            public int Upvotes { get; set; }
         }
 
         public class ClanRankingStatus {

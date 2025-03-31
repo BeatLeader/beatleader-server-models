@@ -20,6 +20,7 @@
         public DateTime? LastPublishedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
         public List<string>? Tags { get; set; }
+        public MapStats? Stats { get; set; }
         public bool? Bookmarked { get; set; }
         public string? DeclatedAi { get; set; }
         public List<UserDetail>? Collaborators { get; set; }
@@ -60,6 +61,10 @@
         public string DownloadURL { get; set; }
         public string CoverURL { get; set; }
         public string PreviewURL { get; set; }
+    }
+
+    public class MapStats {
+        public int Upvotes { get; set; }
     }
 
     public class MapDifficulty

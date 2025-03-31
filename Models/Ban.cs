@@ -9,4 +9,11 @@
         public int Timeset { get; set; }
         public int Duration { get; set; }
     }
+
+    public class IpBan
+    {
+        public int Id { get; set; }
+        public string HashId { get; set; }
+        public string PlayerId { get; set; }
+    }
 }

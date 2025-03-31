@@ -11,7 +11,8 @@ namespace BeatLeader_Server.Models
         MapOfTheWeek = 1 << 2,
         NoodleMonday = 1 << 3,
         FeaturedOnCC = 1 << 4,
-        BeastSaberAwarded = 1 << 5
+        BeastSaberAwarded = 1 << 5,
+        BuildingBlocksAwarded = 1 << 6
     }
 
     [Flags]
