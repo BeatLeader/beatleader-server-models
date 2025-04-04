@@ -17,6 +17,7 @@ namespace BeatLeader_Server.Models
         SCPM = 1 << 5,
         Speedrun = 1 << 6,
         SpeedrunBackup = 1 << 7,
+        Funny = 1 << 8
     }
 
     public static class ContextExtensions {
