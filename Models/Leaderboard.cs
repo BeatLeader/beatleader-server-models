@@ -24,6 +24,7 @@ namespace BeatLeader_Server.Models {
         public ICollection<EventRanking>? Events { get; set; }
         public int Plays { get; set; }
         public int PlayCount { get; set; }
+        public int LastScoreTime { get; set; }
 
         public int TodayPlays { get; set; }
         public int ThisWeekPlays { get; set; }
