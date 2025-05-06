@@ -83,6 +83,9 @@ namespace BeatLeader_Server.Utils {
             public float Pp { get; set; }
             public int Rank { get; set; }
             public int CountryRank { get; set; }
+            public int Level { get; set; }
+            public int Experience { get; set; }
+            public int Prestige { get; set; }
             public string Role { get; set; }
             public ICollection<PlayerSocial>? Socials { get; set; }
             public ICollection<PlayerContextExtension>? ContextExtensions { get; set; }
@@ -938,6 +941,9 @@ namespace BeatLeader_Server.Utils {
                 PassPp = p.PassPp,
                 Rank = p.Rank,
                 CountryRank = p.CountryRank,
+                Level = p.Level,
+                Experience = p.Experience,
+                Prestige = p.Prestige,
                 LastWeekPp = p.LastWeekPp,
                 LastWeekRank = p.LastWeekRank,
                 LastWeekCountryRank = p.LastWeekCountryRank,
