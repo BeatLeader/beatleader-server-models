@@ -14,7 +14,9 @@ namespace BeatLeader_Server.Models {
         public float AllContextsPp { get; set; }
         public int Rank { get; set; }
         public int CountryRank { get; set; }
-
+        public int Level { get; set; }
+        public int Experience { get; set; }
+        public int Prestige { get; set; }
         public float LastWeekPp { get; set; }
         public int LastWeekRank { get; set; }
         public int LastWeekCountryRank { get; set; }
@@ -55,7 +57,9 @@ namespace BeatLeader_Server.Models {
 
         public int Rank { get; set; }
         public int CountryRank { get; set; }
-
+        public int Level { get; set; }
+        public int Experience { get; set; }
+        public int Prestige { get; set; }
         public float LastWeekPp { get; set; }
         public int LastWeekRank { get; set; }
         public int LastWeekCountryRank { get; set; }
