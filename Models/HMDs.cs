@@ -53,6 +53,8 @@
         varjoaero = 69,
         psvr2 = 70,
         megane1 = 71,
-        varjoxr3 = 72
+        varjoxr3 = 72,
+        meganexsuperlight = 73,
+        somniumvr1 = 74
     }
 }
