@@ -70,6 +70,7 @@ namespace BeatLeader_Server.Models {
         public float RightTiming { get; set; }
         public int Priority { get; set; } = 0;
         public int AttemptsCount { get; set; }
+        public float Experience { get; set; }
 
         public int? ScoreImprovementId { get; set; }
         public ScoreImprovement? ScoreImprovement { get; set; }
@@ -112,6 +113,7 @@ namespace BeatLeader_Server.Models {
             LeftTiming = score.LeftTiming;
             RightTiming = score.RightTiming;
             Priority = score.Priority;
+            Experience = score.Experience;
             if (score.ReplayOffsets != null) {
                 ReplayOffsets = new ReplayOffsets {
                     Frames = score.ReplayOffsets.Frames,

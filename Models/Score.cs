@@ -87,6 +87,7 @@ namespace BeatLeader_Server.Models
         public bool Suspicious { get; set; }
         public bool IgnoreForStats { get; set; }
         public string? Country { get; set; }
+        public float Experience { get; set; }
 
         public int AuthorizedReplayWatched { get; set; }
         public int AnonimusReplayWatched { get; set; }
@@ -180,6 +181,7 @@ namespace BeatLeader_Server.Models
         public bool Migrated { get; set; } = false;
         public RankVoting? RankVoting { get; set; }
         public ScoreMetadata? Metadata { get; set; }
+        public float Experience { get; set; }
 
         [JsonIgnore]
         [StringLength(25, MinimumLength = 0)]

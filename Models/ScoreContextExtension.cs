@@ -123,5 +123,8 @@ namespace BeatLeader_Server.Models {
         [NotMapped]
         [JsonIgnore]
         public string? Country { get => ScoreInstance != null ? ScoreInstance.Country : null; set => ScoreInstance.Country = value; }
+        [NotMapped]
+        [JsonIgnore]
+        public float Experience { get => ScoreInstance != null ? ScoreInstance.Experience : 0; set => ScoreInstance.Experience = value; }
     }
 }
