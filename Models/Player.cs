@@ -108,6 +108,8 @@ namespace BeatLeader_Server.Models {
         [JsonIgnore]
         public Player PlayerInstance { get => this; set => _ = value; }
 
+        public EarthDayMap? EarthDayMap { get; set; }
+
         public void SetDefaultAvatar() {
             this.Avatar = "https://cdn.assets.beatleader.com/" + this.Platform + "avatar.png";
         }
