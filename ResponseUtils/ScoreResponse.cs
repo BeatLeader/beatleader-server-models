@@ -184,6 +184,7 @@ namespace BeatLeader_Server.Utils
         public float Time { get; set; }
         public float StartTime { get; set; }
         public float Experience { get; set; }
+        public float Speed { get; set; }
 
         public CompactLeaderboardResponse Leaderboard { get; set; }
     }

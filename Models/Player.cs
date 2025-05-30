@@ -22,7 +22,9 @@ namespace BeatLeader_Server.Models {
         public int LastWeekCountryRank { get; set; }
         public PlayerScoreStats? ScoreStats { get; set; }
         public bool Banned { get; set; }
+        [JsonIgnore]
         public ICollection<PlayerSearch> Searches { get; set; }
+        [JsonIgnore]
         public Player PlayerInstance { get; set; }
     }
 

@@ -22,12 +22,13 @@ namespace BeatLeader_Server.Models {
         public int Timeset { get; set; }
         public float Time { get; set; }
         public float StartTime { get; set; }
+        public float Speed { get; set; }
         public int Score { get; set; }
 
         [StringLength(200, MinimumLength = 0)]
         public string? Replay { get; set; }
 
-        [StringLength(25, MinimumLength = 0)]
+        [StringLength(40, MinimumLength = 0)]
         public string LeaderboardId { get; set; }
 
         public int? ScoreId { get; set; }
