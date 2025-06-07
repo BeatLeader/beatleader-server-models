@@ -6,6 +6,20 @@ using ReplayDecoder;
 
 namespace BeatLeader_Server.Utils
 {
+    public enum ScoreUploadStatus {
+        Uploaded = 1,
+        NonPB = 2,
+        Attempt = 3,
+        Error = 4,
+    };
+
+    public class ScoreUploadResponse
+    {
+        public ScoreResponse? Score { get; set; }
+        public ScoreUploadStatus Status { get; set; }
+        public string Description { get; set; }
+    }
+
     public class ScoreResponse
     {
         public int? Id { get; set; }
