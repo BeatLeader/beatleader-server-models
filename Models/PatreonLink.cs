@@ -53,4 +53,11 @@
         public string RefreshToken { get; set; } = "";
         public string Timestamp { get; set; } = "";
     }
+
+    public class BlueSkyLink
+    {
+        public string Id { get; set; }
+        public string BlueSkyId { get; set; }
+        public string Token { get; set; }
+    }
 }

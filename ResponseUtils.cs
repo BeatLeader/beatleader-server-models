@@ -721,6 +721,10 @@ namespace BeatLeader_Server.Utils {
                     Avatar = s.Player.Avatar,
                     Country = s.Player.Country,
 
+                    Experience = s.Player.Experience,
+                    Level = s.Player.Level,
+                    Prestige = s.Player.Prestige,
+
                     Pp = s.Player.Pp,
                     Rank = s.Player.Rank,
                     CountryRank = s.Player.CountryRank,
@@ -793,6 +797,10 @@ namespace BeatLeader_Server.Utils {
                     Platform = s.Player.Platform,
                     Avatar = s.Player.Avatar,
                     Country = s.Player.Country,
+
+                    Experience = s.Player.Experience,
+                    Level = s.Player.Level,
+                    Prestige = s.Player.Prestige,
 
                     Pp = s.Player.Pp,
                     Rank = s.Player.Rank,
