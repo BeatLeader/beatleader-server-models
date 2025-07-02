@@ -208,6 +208,7 @@ namespace BeatLeader_Server.Utils {
             public ScoreSongResponse Song { get; set; }
             public LeaderboardContexts ValidContexts { get; set; }
             public ICollection<ScoreContextExtensionResponse> ContextExtensions { get; set; }
+            public ICollection<ScoreExternalStatus>? ExternalStatuses { get; set; }
         }
 
         public class SaverScoreResponse {

@@ -126,5 +126,14 @@ namespace BeatLeader_Server.Models {
         [NotMapped]
         [JsonIgnore]
         public float Experience { get => ScoreInstance != null ? ScoreInstance.Experience : 0; set => ScoreInstance.Experience = value; }
+        [NotMapped]
+        [JsonIgnore]
+        public ScoreStatus Status { get => ScoreInstance != null ? ScoreInstance.Status : ScoreStatus.None; set => ScoreInstance.Status = value; }
+        [NotMapped]
+        [JsonIgnore]
+        public ICollection<ScoreExternalStatus>? ExternalStatuses { get => ScoreInstance != null ? ScoreInstance.ExternalStatuses : null; set => ScoreInstance.ExternalStatuses = value; }
+        [NotMapped]
+        [JsonIgnore]
+        public int SotwNominations { get => ScoreInstance != null ? ScoreInstance.SotwNominations : 0; set => ScoreInstance.SotwNominations = value; }
     }
 }

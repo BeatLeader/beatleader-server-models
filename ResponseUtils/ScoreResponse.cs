@@ -66,6 +66,8 @@ namespace BeatLeader_Server.Utils
         public RankVoting? RankVoting { get; set; }
         public ScoreMetadata? Metadata { get; set; }
         public ReplayOffsets? Offsets { get; set; }
+        public int SotwNominations { get; set; }
+        public ScoreStatus Status { get; set; }
 
         public void ToContext(ScoreContextExtension? extension)
         {

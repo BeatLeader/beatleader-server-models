@@ -20,6 +20,13 @@ namespace BeatLeader_Server.Models
         Funny = 1 << 8
     }
 
+    [Flags]
+    public enum ScoreStatus
+    {
+        None = 0,
+        PlayOfTheWeek = 1 << 1,
+    }
+
     public static class ContextExtensions {
         public static List<LeaderboardContexts> All =  new List<LeaderboardContexts> { 
             LeaderboardContexts.General,
@@ -52,6 +59,10 @@ namespace BeatLeader_Server.Models
 
         public string? Replay { get; set; }
         public string Platform { get; set; }
+
+        public ScoreStatus Status { get; set; }
+        public ICollection<ScoreExternalStatus>? ExternalStatuses { get; set; }
+        public int SotwNominations { get; set; }
 
         public int MaxCombo { get; set; }
         public float BonusPp { get; set; }
@@ -182,6 +193,9 @@ namespace BeatLeader_Server.Models
         public RankVoting? RankVoting { get; set; }
         public ScoreMetadata? Metadata { get; set; }
         public float Experience { get; set; }
+        public ScoreStatus Status { get; set; }
+        public ICollection<ScoreExternalStatus>? ExternalStatuses { get; set; }
+        public int SotwNominations { get; set; }
 
         [JsonIgnore]
         [StringLength(25, MinimumLength = 0)]
