@@ -46,6 +46,10 @@ namespace BeatLeader_Server.Models
         public float AverageLeftTiming { get; set; }
         public float AverageRightTiming { get; set; }
 
+        public int SteamPlaytime2Weeks { get; set; }
+        public int SteamPlaytimeForever { get; set; }
+        public double ScorePlaytime { get; set; }
+
         public int RankedPlayCount { get; set; }
         public int UnrankedPlayCount { get; set; }
         public int TotalPlayCount { get; set; }
@@ -131,6 +135,10 @@ namespace BeatLeader_Server.Models
         public int MaxStreak { get; set; }
         public float AverageLeftTiming { get; set; }
         public float AverageRightTiming { get; set; }
+
+        public int SteamPlaytime2Weeks { get; set; }
+        public int SteamPlaytimeForever { get; set; }
+        public long ScorePlaytime { get; set; }
 
         public int RankedPlayCount { get; set; }
         public int UnrankedPlayCount { get; set; }

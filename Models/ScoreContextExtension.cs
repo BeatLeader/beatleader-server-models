@@ -59,6 +59,9 @@ namespace BeatLeader_Server.Models {
         public int WallsHit { get => ScoreInstance != null ? ScoreInstance.WallsHit : 0; set => ScoreInstance.WallsHit = value; }
         [NotMapped]
         [JsonIgnore]
+        public int Mistakes { get => ScoreInstance != null ? ScoreInstance.Mistakes : 0; set => ScoreInstance.Mistakes = value; }
+        [NotMapped]
+        [JsonIgnore]
         public int Pauses { get => ScoreInstance != null ? ScoreInstance.Pauses : 0; set => ScoreInstance.Pauses = value; }
         [NotMapped]
         [JsonIgnore]
@@ -108,6 +111,9 @@ namespace BeatLeader_Server.Models {
         [NotMapped]
         [JsonIgnore]
         public int AnonimusReplayWatched { get => ScoreInstance != null ? ScoreInstance.AnonimusReplayWatched : 0; set => ScoreInstance.AnonimusReplayWatched = value; }
+        [NotMapped]
+        [JsonIgnore]
+        public int ReplayWatchedTotal { get => ScoreInstance != null ? ScoreInstance.ReplayWatchedTotal : 0; set => ScoreInstance.ReplayWatchedTotal = value; }
         [NotMapped]
         [JsonIgnore]
         public ReplayOffsets? ReplayOffsets { get => ScoreInstance != null ? ScoreInstance.ReplayOffsets : null; set => ScoreInstance.ReplayOffsets = value; }

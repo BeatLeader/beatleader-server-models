@@ -74,6 +74,7 @@ namespace BeatLeader_Server.Models
         public int MissedNotes { get; set; }
         public int BombCuts { get; set; }
         public int WallsHit { get; set; }
+        public int Mistakes { get; set; }
         public int Pauses { get; set; }
         public bool FullCombo { get; set; }
         public int Timepost { get; set; }
@@ -102,6 +103,7 @@ namespace BeatLeader_Server.Models
 
         public int AuthorizedReplayWatched { get; set; }
         public int AnonimusReplayWatched { get; set; }
+        public int ReplayWatchedTotal { get; set; }
 
         public ScoreImprovement? ScoreImprovement { get; set; }
         public ReplayOffsets? ReplayOffsets { get; set; }
@@ -154,6 +156,7 @@ namespace BeatLeader_Server.Models
         public int MissedNotes { get; set; }
         public int BombCuts { get; set; }
         public int WallsHit { get; set; }
+        public int Mistakes { get; set; }
         public int Pauses { get; set; }
         public bool FullCombo { get; set; }
         public int MaxCombo { get; set; }
@@ -174,6 +177,7 @@ namespace BeatLeader_Server.Models
         public Leaderboard Leaderboard { get; set; }
         public int AuthorizedReplayWatched { get; set; }
         public int AnonimusReplayWatched { get; set; }
+        public int ReplayWatchedTotal { get; set; }
         public int? ReplayOffsetsId { get; set; }
         public ReplayOffsets? ReplayOffsets { get; set; }
         public string? Country { get; set; }
