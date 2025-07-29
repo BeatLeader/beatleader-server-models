@@ -192,6 +192,21 @@ namespace BeatLeader_Server.Utils
         public CompactLeaderboardResponse Leaderboard { get; set; }
     }
 
+    public class ScoreNominationResponse
+    {
+        public int Timestamp { get; set; }
+        public int ScoreId { get; set; }
+        public string PlayerId { get; set; }
+        public PlayerResponse? Player { get; set; }
+
+        public string? Description { get; set; }
+    }
+
+    public class ScoreResponseWithNominations : ScoreResponseWithMyScore
+    {
+        public ICollection<ScoreNominationResponse> Nominations { get; set; }
+    }
+
     public class AttemptResponseWithMyScore : ScoreResponseWithAcc
     {
         public ScoreResponseWithAcc? MyScore { get; set; }

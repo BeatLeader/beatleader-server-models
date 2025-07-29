@@ -138,7 +138,7 @@ namespace BeatLeader_Server.Models
 
         public int SteamPlaytime2Weeks { get; set; }
         public int SteamPlaytimeForever { get; set; }
-        public long ScorePlaytime { get; set; }
+        public double ScorePlaytime { get; set; }
 
         public int RankedPlayCount { get; set; }
         public int UnrankedPlayCount { get; set; }
