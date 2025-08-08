@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace BeatLeader_Server.Models {
     public interface IPlayer {
@@ -116,17 +117,30 @@ namespace BeatLeader_Server.Models {
             this.Avatar = "https://cdn.assets.beatleader.com/" + this.Platform + "avatar.png";
         }
 
+        public static string SanitizeName(string initialName) {
+            var name = initialName;
+            
+            // Regex to remove Unity rich text tags
+            name = Regex.Replace(name, "<(/)?(align|alpha|color|b|i|cspace|font|indent|line-height|line-indent|link|lowercase|uppercase|smallcaps|margin|mark|mspace|noparse|nobr|page|pos|size|space|sprite|s|u|style|sub|sup|voffset|width)(.*?)>|<#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})>", string.Empty);
+            // Regex to remove unprintable, control, and specific whitespace-like characters
+            name = Regex.Replace(name, @"[\p{Cc}\p{Cf}\p{Co}\p{Cn}]+", string.Empty);
+            // Explicitly include known problematic characters like the Hangul Filler (U+3164), ZERO WIDTH SPACE (U+200B), etc.
+            name = Regex.Replace(name, @"[\u3164\u200B\u200C\u200D\u2060\u2800\uFEFF]+", string.Empty);
+
+            foreach (var superWideCharacter in new string[] { "FDFD", "1242B", "12219", "2E3B", "A9C5", "102A", "0BF5", "0BF8", "E0021" }) {
+                int code = int.Parse(superWideCharacter, System.Globalization.NumberStyles.HexNumber);
+                string unicodeString = char.ConvertFromUtf32(code);
+                name = name.Replace(unicodeString, "");
+            }
+
+            return name.Trim();
+        }
+
         public void SanitizeName() {
-            var characters = (new string[] { "FDFD", "1242B", "12219", "2E3B", "A9C5", "102A", "0BF5", "0BF8", "E0021" }).Select(
-                superWideCharacter => char.ConvertFromUtf32(int.Parse(superWideCharacter, System.Globalization.NumberStyles.HexNumber)))
-                .ToList();
-            Name = Name.Trim();
-            foreach (var character in characters) {
-                Name = Name.Replace(character, "");
-                if (Name.Replace(" ", "").Length == 0) {
-                    Random rnd = new Random();
-                    Name = "RenamedPlayer" + rnd.Next(1, 100);
-                }
+            Name = SanitizeName(Name);
+            if (Name.Replace(" ", "").Length == 0) {
+                Random rnd = new Random();
+                Name = "RenamedPlayer" + rnd.Next(1, 100);
             }
         }
 
@@ -146,6 +160,7 @@ namespace BeatLeader_Server.Models {
             role.Contains("creator") ||
             role.Contains("rankedteam") || 
             role.Contains("qualityteam") ||
+            role.Contains("artist") ||
             role.Contains("rankoperatorteam"));
         }
 

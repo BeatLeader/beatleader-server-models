@@ -45,6 +45,16 @@ namespace BeatLeader_Server.Models
         GroupLighting = 1 << 10
     }
 
+    [Flags]
+    public enum MapTypes
+    {
+        None = 0,
+        Acc = 1,
+        Tech = 2,
+        Midspeed = 4,
+        Speed = 8
+    }
+
     [Index(nameof(Status), IsUnique = false)]
     [Index(nameof(Hash), nameof(ModeName), nameof(DifficultyName), IsUnique = false)]
     public class DifficultyDescription
@@ -80,7 +90,7 @@ namespace BeatLeader_Server.Models
         public float? PassRating { get; set; }
         public float? AccRating { get; set; }
         public float? TechRating { get; set; }
-        public int Type { get; set; }
+        
 
         public float Njs { get; set; }
         public float Nps { get; set; }
@@ -93,6 +103,36 @@ namespace BeatLeader_Server.Models
         public double Duration { get; set; }
 
         public Requirements Requirements { get; set; }
+        [JsonIgnore]
+        public bool RequiresChroma { get; set; }
+        [JsonIgnore]
+        public bool RequiresNoodles { get; set; }
+        [JsonIgnore]
+        public bool RequiresMappingExtensions { get; set; }
+        [JsonIgnore]
+        public bool RequiresCinema { get; set; }
+        [JsonIgnore]
+        public bool RequiresV3 { get; set; }
+        [JsonIgnore]
+        public bool RequiresOptionalProperties { get; set; }
+        [JsonIgnore]
+        public bool RequiresVNJS { get; set; }
+        [JsonIgnore]
+        public bool RequiresVivify { get; set; }
+        [JsonIgnore]
+        public bool RequiresV3Pepega { get; set; }
+        [JsonIgnore]
+        public bool RequiresGroupLighting { get; set; }
+
+        public MapTypes Type { get; set; }
+        [JsonIgnore]
+        public bool TypeAcc { get; set; }
+        [JsonIgnore]
+        public bool TypeTech { get; set; }
+        [JsonIgnore]
+        public bool TypeMidspeed { get; set; }
+        [JsonIgnore]
+        public bool TypeSpeed { get; set; }
 
         public void HideRatings() {
             this.AccRating = null;

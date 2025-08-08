@@ -185,18 +185,22 @@ namespace BeatLeader_Server.Models
                 if (diff.Chroma)
                 {
                     difficulty.Requirements |= Requirements.Chroma;
+                    difficulty.RequiresChroma = true;
                 }
                 if (diff.Me)
                 {
                     difficulty.Requirements |= Requirements.MappingExtensions;
+                    difficulty.RequiresMappingExtensions = true;
                 }
                 if (diff.Ne)
                 {
                     difficulty.Requirements |= Requirements.Noodles;
+                    difficulty.RequiresNoodles = true;
                 }
                 if (diff.Cinema)
                 {
                     difficulty.Requirements |= Requirements.Cinema;
+                    difficulty.RequiresCinema = true;
                 }
 
                 difficulties.Add(difficulty);

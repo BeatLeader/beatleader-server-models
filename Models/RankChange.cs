@@ -13,7 +13,7 @@
         public float OldAccRating { get; set; } = 0;
         public float OldPassRating { get; set; } = 0;
         public float OldTechRating { get; set; } = 0;
-        public int OldType { get; set; } = 0;
+        public MapTypes OldType { get; set; } = 0;
         public int OldCriteriaMet { get; set; } = 0;
         public ModifiersMap? OldModifiers { get; set; }
         public ModifiersRating? OldModifiersRating { get; set; }
@@ -24,7 +24,7 @@
         public float NewAccRating { get; set; } = 0;
         public float NewPassRating { get; set; } = 0;
         public float NewTechRating { get; set; } = 0;
-        public int NewType { get; set; } = 0;
+        public MapTypes NewType { get; set; } = 0;
         public int NewCriteriaMet { get; set; } = 0;
         public ModifiersMap? NewModifiers { get; set; }
         public ModifiersRating? NewModifiersRating { get; set; }

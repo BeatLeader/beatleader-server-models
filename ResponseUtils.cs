@@ -373,7 +373,7 @@ namespace BeatLeader_Server.Utils {
             public float? PassRating { get; set; }
             public float? AccRating { get; set; }
             public float? TechRating { get; set; }
-            public int Type { get; set; }
+            public MapTypes Type { get; set; }
 
             public float Njs { get; set; }
             public float Nps { get; set; }
@@ -595,7 +595,7 @@ namespace BeatLeader_Server.Utils {
             public string ModeName { get; set; }
             public float? Stars { get; set; }
             public DifficultyStatus Status { get; set; }
-            public int Type { get; set; }
+            public MapTypes Type { get; set; }
             public float[] Votes { get; set; }
             public ModifiersMap? ModifierValues { get; set; }
             public ModifiersRating? ModifiersRating { get; set; }

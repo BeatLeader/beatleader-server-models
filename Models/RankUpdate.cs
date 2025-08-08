@@ -11,7 +11,7 @@
         public float PassRating { get; set; }
         public float TechRating { get; set; }
         public float PredictedAcc { get; set; }
-        public int Type { get; set; }
+        public MapTypes Type { get; set; }
         public int CriteriaMet { get; set; }
         public string? CriteriaCommentary { get; set; }
         public bool Finished { get; set; }
@@ -31,14 +31,14 @@
 
         public bool OldKeep { get; set; }
         public float OldStars { get; set; } = 0;
-        public int OldType { get; set; } = 0;
+        public MapTypes OldType { get; set; } = 0;
         public int OldCriteriaMet { get; set; } = 0;
         public string? OldCriteriaCommentary { get; set; }
         public ModifiersMap? OldModifiers { get; set; }
 
         public bool NewKeep { get; set; }
         public float NewStars { get; set; } = 0;
-        public int NewType { get; set; } = 0;
+        public MapTypes NewType { get; set; } = 0;
         public int NewCriteriaMet { get; set; } = 0;
         public string? NewCriteriaCommentary { get; set; }
         public ModifiersMap? NewModifiers { get; set; }
