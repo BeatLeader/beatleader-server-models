@@ -91,4 +91,11 @@ namespace BeatLeader_Server.Models
         public int PresetId { get; set; }
         public string? Player { get; set; }
     }
+
+    public class ReeSabersDownload {
+        public int Id { get; set; }
+        public int Timeset { get; set; }
+        public string Version { get; set; }
+        public string Player { get; set; }
+    }
 }

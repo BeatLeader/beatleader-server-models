@@ -69,6 +69,7 @@ namespace BeatLeader_Server.Models {
 
         public bool Banned { get; set; }
         public bool Bot { get; set; }
+        public bool Temporary { get; set; }
         public bool Inactive { get; set; }
 
         public string ExternalProfileUrl { get; set; } = "";

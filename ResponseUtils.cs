@@ -79,6 +79,7 @@ namespace BeatLeader_Server.Utils {
             public string? Alias { get; set; }
 
             public bool Bot { get; set; }
+            public bool Temporary { get; set; }
 
             public float Pp { get; set; }
             public int Rank { get; set; }
