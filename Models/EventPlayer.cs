@@ -18,5 +18,8 @@ namespace BeatLeader_Server.Models
         public int Rank { get; set; }
         public int CountryRank { get; set; }
         public float Pp { get; set; }
+
+        public ICollection<MapOfTheDay> MapOfTheDays { get; set; }
+        public ICollection<MapOfTheDayPoints> MapOfTheDayPoints { get; set; }
     }
 }

@@ -75,6 +75,7 @@ namespace BeatLeader_Server.Models
         public ICollection<DifficultyDescription> Difficulties { get; set; }
         public ICollection<Leaderboard> Leaderboards { get; set; }
         public ICollection<ExternalStatus>? ExternalStatuses { get; set; }
+        public string? VideoPreviewUrl { get; set; }
 
         [JsonIgnore]
         public bool Checked { get; set; }

@@ -9,6 +9,8 @@ namespace BeatLeader_Server.Models {
         [JsonIgnore]
         public ICollection<Score> Scores { get; set; }
         [JsonIgnore]
+        public ICollection<FailedScore> FailedScores { get; set; }
+        [JsonIgnore]
         public ICollection<ScoreContextExtension> ContextExtensions { get; set; }
         public RankQualification? Qualification { get; set; }
         public RankUpdate? Reweight { get; set; }

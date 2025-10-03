@@ -454,6 +454,7 @@ namespace BeatLeader_Server.Utils {
             public string CoverImage { get; set; }
             public string? FullCoverImage { get; set; }
             public string DownloadUrl { get; set; }
+            public string? VideoPreviewUrl { get; set; }
             public double Bpm { get; set; }
             public double Duration { get; set; }
             public int UploadTime { get; set; }
@@ -655,9 +656,14 @@ namespace BeatLeader_Server.Utils {
             public string Image { get; set; }
             public bool Downloadable { get; set; }
             public string? Description { get; set; }
+            public string? AnimatedImage { get; set; }
 
             public int PlayerCount { get; set; }
             public PlayerResponse Leader { get; set; }
+            public EventRankingType EventType { get; set; }
+            public string MainColor { get; set; }
+            public string SecondaryColor { get; set; }
+            public string? PageAlias { get; set; }
         }
 
         public class ParticipatingEventResponse {
