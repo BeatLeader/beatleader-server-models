@@ -187,7 +187,7 @@ namespace BeatLeader_Server.Utils
     {
         public ScoreResponseWithAcc? MyScore { get; set; }
         public LeaderboardContexts ValidContexts { get; set; }
-        public float Experience { get; set; }
+        public int Experience { get; set; }
 
         public CompactLeaderboardResponse Leaderboard { get; set; }
     }

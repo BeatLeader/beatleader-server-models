@@ -85,6 +85,10 @@ namespace BeatLeader_Server.Models {
         public ICollection<ClanManager>? ManagingClans { get; set; }
         public string ClanOrder { get; set; } = "";
         [JsonIgnore]
+        public int? TopClanId { get; set; }
+        [JsonIgnore]
+        public Clan? TopClan { get; set; }
+        [JsonIgnore]
         public ICollection<PlayerFriends>? Friends { get; set; }
 
         public ICollection<Badge>? Badges { get; set; }

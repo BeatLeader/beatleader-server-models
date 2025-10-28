@@ -30,6 +30,9 @@ namespace BeatLeader_Server.Models
         public float AverageAccuracy { get; set; }
         public ICollection<FeaturedPlaylist>? FeaturedPlaylists { get; set; }
         [JsonIgnore]
+        [InverseProperty("TopClan")]
+        public ICollection<Player> MainPlayers { get; set; } = new List<Player>();
+        [JsonIgnore]
         public ICollection<Player> Players { get; set; } = new List<Player>();
         [JsonIgnore]
         [InverseProperty("ClanRequest")]
