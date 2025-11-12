@@ -586,6 +586,19 @@ namespace BeatLeader_Server.Utils {
             public int Upvotes { get; set; }
         }
 
+        public class MapInfoResponseBeasties : MapInfoResponse {
+            public new ICollection<MapDiffResponseBeasties> Difficulties { get; set; }
+        }
+
+        public class MapDiffResponseNomination {
+            public int Timepost { get; set; }
+            public string Category { get; set; }
+        }
+
+        public class MapDiffResponseBeasties : MapDiffResponse {
+            public ICollection<MapDiffResponseNomination> Nominations { get; set; }
+        }
+
         public class ClanRankingStatus {
             public ClanResponse? Clan { get; set; }
             public bool ClanRankingContested { get; set; }
