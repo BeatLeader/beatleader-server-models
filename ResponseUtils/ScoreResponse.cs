@@ -310,7 +310,7 @@ namespace BeatLeader_Server.Utils
                     Id = s.LeaderboardId,
                     Song = new CompactSongResponse {
                         Id = s.Leaderboard.Song.Id,
-                        Hash = s.Leaderboard.Song.Hash,
+                        Hash = s.Leaderboard.Song.LowerHash,
                         Name = s.Leaderboard.Song.Name,
             
                         SubName = s.Leaderboard.Song.SubName,

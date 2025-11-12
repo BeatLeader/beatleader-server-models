@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace BeatLeader_Server.Models
@@ -48,11 +49,14 @@ namespace BeatLeader_Server.Models
     }
 
     [Index(nameof(Hash), IsUnique = true)]
+    [Index(nameof(LowerHash), IsUnique = true)]
     [Index(nameof(UploadTime), IsUnique = false)]
     public class Song : StringTrackedEntity
     {
         public string Id { get; set; }
         public string Hash { get; set; }
+        [StringLength(80, MinimumLength = 0)]
+        public string LowerHash { get; set; }
         public string Name { get; set; }
         [JsonIgnore]
         public string? Description { get; set; }
@@ -146,6 +150,7 @@ namespace BeatLeader_Server.Models
             CoverImage = currentVersion.CoverURL;
             DownloadUrl = currentVersion.DownloadURL;
             Hash = currentVersion.Hash;
+            LowerHash = currentVersion.Hash.ToLower();
 
             Explicity = info.Nsfw ? SongExplicitStatus.Cover : SongExplicitStatus.None;
             
@@ -174,7 +179,7 @@ namespace BeatLeader_Server.Models
                 difficulty.Mode = ModeForModeName(diff.Characteristic);
                 difficulty.DifficultyName = diff.Difficulty;
                 difficulty.Value = DiffForDiffName(diff.Difficulty);
-                difficulty.Hash = Hash;
+                difficulty.Hash = LowerHash;
 
                 difficulty.Njs = diff.Njs;
                 difficulty.Notes = diff.Notes;

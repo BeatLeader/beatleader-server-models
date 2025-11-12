@@ -36,6 +36,7 @@ namespace BeatLeader_Server.Models {
 
         public int? LevelId { get; set; }
         public AchievementLevel? Level { get; set; }
+        public string? AdditionalLevels { get; set; }
         public int Timeset { get; set; }
         public int Count { get; set; }
     }   
