@@ -379,6 +379,8 @@ namespace BeatLeader_Server.Utils {
             public float Njs { get; set; }
             public float Nps { get; set; }
             public int Notes { get; set; }
+            public int Chains { get; set; }
+            public int Sliders { get; set; }
             public int Bombs { get; set; }
             public int Walls { get; set; }
             public int MaxScore { get; set; }
