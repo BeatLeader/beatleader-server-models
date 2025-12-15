@@ -96,6 +96,7 @@ namespace BeatLeader_Server.Models
         public float LeftTiming { get; set; }
         public float RightTiming { get; set; }
         public bool Banned { get; set; }
+        public bool Bot { get; set; }
         public bool Suspicious { get; set; }
         public bool IgnoreForStats { get; set; }
         public string? Country { get; set; }

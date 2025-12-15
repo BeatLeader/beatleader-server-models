@@ -32,7 +32,8 @@ namespace BeatLeader_Server.Models {
         [ForeignKey("ScoreId")]
         public Score? ScoreInstance { get; set; }
         public bool Qualification { get; set; }
-        public bool Banned { get; set; }
+        public bool Banned { get; set; } = false;
+        public bool Bot { get; set; } = false;
 
         public LeaderboardContexts Context { get; set; }
         public ScoreImprovement? ScoreImprovement { get; set; }
