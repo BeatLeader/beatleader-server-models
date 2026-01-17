@@ -81,6 +81,10 @@ namespace BeatLeader_Server.Models
         public ICollection<ExternalStatus>? ExternalStatuses { get; set; }
         public string? VideoPreviewUrl { get; set; }
 
+        public int? IdolDescriptionId { get; set; }
+        public IdolDescription? IdolDescription { get; set; }
+
+
         [JsonIgnore]
         public bool Checked { get; set; }
         [JsonIgnore]

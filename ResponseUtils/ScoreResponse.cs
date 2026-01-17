@@ -28,6 +28,7 @@ namespace BeatLeader_Server.Utils
         public float Accuracy { get; set; }
         public string PlayerId { get; set; }
         public float Pp { get; set; }
+        public bool WithPp { get; set; }
         public float BonusPp { get; set; }
         public float PassPP { get; set; }
         public float AccPP { get; set; }

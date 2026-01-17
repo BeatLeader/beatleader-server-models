@@ -117,6 +117,9 @@ namespace BeatLeader_Server.Models {
         public Player PlayerInstance { get => this; set => _ = value; }
 
         public EarthDayMap? EarthDayMap { get; set; }
+        public IdolCanvas? IdolCanvas { get; set; }
+        public ICollection<PlayerIdolDecoration> PlayerIdolDecorations { get; set; }
+        public ICollection<PlayerBonusIdol> PlayerBonusIdols { get; set; }
 
         public void SetDefaultAvatar() {
             this.Avatar = "https://cdn.assets.beatleader.com/" + this.Platform + "avatar.png";

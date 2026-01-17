@@ -463,6 +463,7 @@ namespace BeatLeader_Server.Utils {
             public SongExplicitStatus Explicity { get; set; }
             public ICollection<DifficultyDescription> Difficulties { get; set; }
             public ICollection<ExternalStatus>? ExternalStatuses { get; set; }
+            public IdolDescription? IdolDescription { get; set; }
         }
 
         public class LeaderboardResponse {
