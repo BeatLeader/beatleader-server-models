@@ -52,7 +52,17 @@ namespace BeatLeader_Server.Models
         Acc = 1,
         Tech = 2,
         Midspeed = 4,
-        Speed = 8
+        Speed = 8,
+        Fitbeat = 16,
+        Linear = 32,
+        BombReset = 64
+    }
+
+    public class DifficultyDescriptionExtension {
+        public int Id { get; set; }
+        public LeaderboardContexts Context { get; set; }
+        public int MaxScoreRight { get; set; }
+        public int MaxScoreLeft { get; set; }
     }
 
     [Index(nameof(Status), IsUnique = false)]
@@ -79,6 +89,7 @@ namespace BeatLeader_Server.Models
         public string Hash { get; set; } = "";
         public string? SongId { get; set; }
 
+        public string? CustomDifficultyName { get; set; }
 
         public int SpeedTags { get; set; }
         public int StyleTags { get; set; }
@@ -90,7 +101,10 @@ namespace BeatLeader_Server.Models
         public float? PassRating { get; set; }
         public float? AccRating { get; set; }
         public float? TechRating { get; set; }
-        
+
+        public float? MultiRating { get; set; }
+        public float? LinearPercentage { get; set; }
+        public float? PeakSustainedEBPM { get; set; }
 
         public float Njs { get; set; }
         public float Nps { get; set; }
@@ -101,6 +115,9 @@ namespace BeatLeader_Server.Models
         public int Walls { get; set; }
         public int MaxScore { get; set; }
         public double Duration { get; set; }
+        public double NoteJumpStartBeatOffset { get; set; }
+        [StringLength(25, MinimumLength = 0)]
+        public string? MapVersion { get; set; }
 
         public Requirements Requirements { get; set; }
         [JsonIgnore]
@@ -133,6 +150,16 @@ namespace BeatLeader_Server.Models
         public bool TypeMidspeed { get; set; }
         [JsonIgnore]
         public bool TypeSpeed { get; set; }
+        [JsonIgnore]
+        public bool TypeFitbeat { get; set; }
+        [JsonIgnore]
+        public bool TypeLinear { get; set; }
+        [JsonIgnore]
+        public bool TypeBombReset { get; set; }
+        [JsonIgnore]
+        public DifficultyStatistics? DifficultyStatistics { get; set; }
+
+        public ICollection<DifficultyDescriptionExtension> Extensions { get; set; }
 
         public void HideRatings() {
             this.AccRating = null;

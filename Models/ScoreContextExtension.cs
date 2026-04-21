@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReplayDecoder;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection;
 using System.Text.Json.Serialization;
 
 namespace BeatLeader_Server.Models {
@@ -37,6 +38,65 @@ namespace BeatLeader_Server.Models {
 
         public LeaderboardContexts Context { get; set; }
         public ScoreImprovement? ScoreImprovement { get; set; }
+
+        [JsonIgnore]
+        public bool HasDA { get; set; }
+        [JsonIgnore]
+        public bool HasFS { get; set; }
+        [JsonIgnore]
+        public bool HasSF { get; set; }
+        [JsonIgnore]
+        public bool HasSS { get; set; }
+        [JsonIgnore]
+        public bool HasGN { get; set; }
+        [JsonIgnore]
+        public bool HasNA { get; set; }
+        [JsonIgnore]
+        public bool HasNB { get; set; }
+        [JsonIgnore]
+        public bool HasNF { get; set; }
+        [JsonIgnore]
+        public bool HasNO { get; set; }
+        [JsonIgnore]
+        public bool HasPM { get; set; }
+        [JsonIgnore]
+        public bool HasSC { get; set; }
+        [JsonIgnore]
+        public bool HasSA { get; set; }
+        [JsonIgnore]
+        public bool HasOP { get; set; }
+        [JsonIgnore]
+        public bool HasEZ { get; set; }
+        [JsonIgnore]
+        public bool HasHD { get; set; }
+        [JsonIgnore]
+        public bool HasSMC { get; set; }
+        [JsonIgnore]
+        public bool HasOHP { get; set; }
+        [JsonIgnore]
+        public bool HasBSF { get; set; }
+        [JsonIgnore]
+        public bool HasBFS { get; set; }
+
+        public void ModifiersUpdated() {
+            if (Modifiers?.Length > 0) {
+                var modifiersList = Modifiers.Split(",").Select(m => m.ToUpper()).ToList();
+                foreach (var modifier in ModifiersMap.KnownModifiers) {
+                    Type scoreType = typeof(ScoreContextExtension);                   
+                    PropertyInfo? modifierBool = scoreType.GetProperty($"Has{modifier}");
+                    if (modifierBool != null) {
+                        modifierBool.SetValue(this, modifiersList.Contains(modifier), null);
+                    }
+                }
+            }
+        }
+
+        public float AccRight { get; set; }
+        public float AccLeft { get; set; }
+        public float FcAccuracy { get; set; }
+        public float FcPp { get; set; }
+
+
         [NotMapped]
         [JsonIgnore]
         public string? Replay { get => ScoreInstance != null ? ScoreInstance.Replay : null; set => ScoreInstance.Replay = value; }
@@ -73,21 +133,11 @@ namespace BeatLeader_Server.Models {
         [NotMapped]
         [JsonIgnore]
         public ControllerEnum Controller { get => ScoreInstance != null ? ScoreInstance.Controller : ControllerEnum.unknown; set => ScoreInstance.Controller = value; }
-        [NotMapped]
-        [JsonIgnore]
-        public float AccRight { get => ScoreInstance != null ? ScoreInstance.AccRight : 0; set => ScoreInstance.AccRight = value; }
-        [NotMapped]
-        [JsonIgnore]
-        public float AccLeft { get => ScoreInstance != null ? ScoreInstance.AccLeft : 0; set => ScoreInstance.AccLeft = value; }
+        
         [NotMapped]
         [JsonIgnore]
         public int? MaxStreak { get => ScoreInstance != null ? ScoreInstance.MaxStreak : 0; set => ScoreInstance.MaxStreak = value; }
-        [NotMapped]
-        [JsonIgnore]
-        public float FcAccuracy { get => ScoreInstance != null ? ScoreInstance.FcAccuracy : 0; set => ScoreInstance.FcAccuracy = value; }
-        [NotMapped]
-        [JsonIgnore]
-        public float FcPp { get => ScoreInstance != null ? ScoreInstance.FcPp : 0; set => ScoreInstance.FcPp = value; }
+        
         [NotMapped]
         [JsonIgnore]
         public int PlayCount { get => ScoreInstance != null ? ScoreInstance.PlayCount : 0; set => ScoreInstance.PlayCount = value; }
@@ -142,5 +192,12 @@ namespace BeatLeader_Server.Models {
         [NotMapped]
         [JsonIgnore]
         public int SotwNominations { get => ScoreInstance != null ? ScoreInstance.SotwNominations : 0; set => ScoreInstance.SotwNominations = value; }
+
+        [NotMapped]
+        [JsonIgnore]
+        public float Speed { get => ScoreInstance != null ? ScoreInstance.Speed : 0; set => ScoreInstance.Speed = value; }
+        [NotMapped]
+        [JsonIgnore]
+        public LeaderboardContexts ValidContexts { get => ScoreInstance != null ? ScoreInstance.ValidContexts : LeaderboardContexts.None; set => ScoreInstance.ValidContexts = value; }
     }
 }

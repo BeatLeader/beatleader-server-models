@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using ReplayDecoder;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using System.Reflection;
 
 namespace BeatLeader_Server.Models
 {
@@ -19,6 +20,7 @@ namespace BeatLeader_Server.Models
         SpeedrunBackup = 1 << 7,
         Funny = 1 << 8,
         BackUp = 1 << 9,
+        LeftLeader = 1 << 10
     }
 
     [Flags]
@@ -34,7 +36,7 @@ namespace BeatLeader_Server.Models
             LeaderboardContexts.NoMods,
             LeaderboardContexts.NoPause,
             LeaderboardContexts.Golf,
-            LeaderboardContexts.SCPM
+            LeaderboardContexts.SCPM,
         };
 
         public static List<LeaderboardContexts> NonGeneral = new List<LeaderboardContexts> { 
@@ -42,7 +44,8 @@ namespace BeatLeader_Server.Models
             LeaderboardContexts.NoPause,
             LeaderboardContexts.Golf,
             LeaderboardContexts.SCPM,
-            LeaderboardContexts.Speedrun
+            LeaderboardContexts.Speedrun,
+            LeaderboardContexts.LeftLeader
         };
     }
 
@@ -91,6 +94,27 @@ namespace BeatLeader_Server.Models
         public float FcAccuracy { get; set; }
         public float FcPp { get; set; }
         public int Priority { get; set; }
+        public LeaderboardContexts ValidContexts { get; set; }
+
+        public bool HasDA { get; set; }
+        public bool HasFS { get; set; }
+        public bool HasSF { get; set; }
+        public bool HasSS { get; set; }
+        public bool HasGN { get; set; }
+        public bool HasNA { get; set; }
+        public bool HasNB { get; set; }
+        public bool HasNF { get; set; }
+        public bool HasNO { get; set; }
+        public bool HasPM { get; set; }
+        public bool HasSC { get; set; }
+        public bool HasSA { get; set; }
+        public bool HasOP { get; set; }
+        public bool HasEZ { get; set; }
+        public bool HasHD { get; set; }
+        public bool HasSMC { get; set; }
+        public bool HasOHP { get; set; }
+        public bool HasBSF { get; set; }
+        public bool HasBFS { get; set; }
 
         public int PlayCount { get; set; }
         public int LastTryTime { get; set; }
@@ -103,6 +127,8 @@ namespace BeatLeader_Server.Models
         public string? Country { get; set; }
         public float Experience { get; set; }
 
+        public float Speed { get; set; }
+
         public int AuthorizedReplayWatched { get; set; }
         public int AnonimusReplayWatched { get; set; }
         public int ReplayWatchedTotal { get; set; }
@@ -112,6 +138,8 @@ namespace BeatLeader_Server.Models
         public RankVoting? RankVoting { get; set; }
         public ScoreMetadata? Metadata { get; set; }
         public Score? ScoreInstance { get; set; }
+
+        public void ModifiersUpdated();
     }
 
     [Index(nameof(PlayerId))]
@@ -202,6 +230,61 @@ namespace BeatLeader_Server.Models
         public ScoreStatus Status { get; set; }
         public ICollection<ScoreExternalStatus>? ExternalStatuses { get; set; }
         public int SotwNominations { get; set; }
+        public bool LeftHanded { get; set; }
+
+        public float Speed { get; set; }
+
+        [JsonIgnore]
+        public bool HasDA { get; set; }
+        [JsonIgnore]
+        public bool HasFS { get; set; }
+        [JsonIgnore]
+        public bool HasSF { get; set; }
+        [JsonIgnore]
+        public bool HasSS { get; set; }
+        [JsonIgnore]
+        public bool HasGN { get; set; }
+        [JsonIgnore]
+        public bool HasNA { get; set; }
+        [JsonIgnore]
+        public bool HasNB { get; set; }
+        [JsonIgnore]
+        public bool HasNF { get; set; }
+        [JsonIgnore]
+        public bool HasNO { get; set; }
+        [JsonIgnore]
+        public bool HasPM { get; set; }
+        [JsonIgnore]
+        public bool HasSC { get; set; }
+        [JsonIgnore]
+        public bool HasSA { get; set; }
+        [JsonIgnore]
+        public bool HasOP { get; set; }
+        [JsonIgnore]
+        public bool HasEZ { get; set; }
+        [JsonIgnore]
+        public bool HasHD { get; set; }
+        [JsonIgnore]
+        public bool HasSMC { get; set; }
+        [JsonIgnore]
+        public bool HasOHP { get; set; }
+        [JsonIgnore]
+        public bool HasBSF { get; set; }
+        [JsonIgnore]
+        public bool HasBFS { get; set; }
+
+        public void ModifiersUpdated() {
+            if (Modifiers?.Length > 0) {
+                var modifiersList = Modifiers.Split(",").Select(m => m.ToUpper()).ToList();
+                foreach (var modifier in ModifiersMap.KnownModifiers) {
+                    Type scoreType = typeof(Score);                   
+                    PropertyInfo? modifierBool = scoreType.GetProperty($"Has{modifier}");
+                    if (modifierBool != null) {
+                        modifierBool.SetValue(this, modifiersList.Contains(modifier), null);
+                    }
+                }
+            }
+        }
 
         [JsonIgnore]
         [StringLength(25, MinimumLength = 0)]

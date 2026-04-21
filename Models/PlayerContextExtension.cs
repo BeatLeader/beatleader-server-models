@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace BeatLeader_Server.Models {
     [Index(nameof(PlayerId), nameof(Context), IsUnique = true)]
@@ -16,6 +17,7 @@ namespace BeatLeader_Server.Models {
         public float AllContextsPp { get => 0; set => PlayerInstance.AllContextsPp = value; }
 
         public int Rank { get; set; }
+        [StringLength(7, MinimumLength = 0)]
         public string Country { get; set; }
         public int CountryRank { get; set; }
         public int Level { get; set; }
@@ -24,6 +26,10 @@ namespace BeatLeader_Server.Models {
         public float LastWeekPp { get; set; }
         public int LastWeekRank { get; set; }
         public int LastWeekCountryRank { get; set; }
+        [StringLength(80, MinimumLength = 0)]
+        public string Name { get; set; } = "";
+        [StringLength(40, MinimumLength = 0)]
+        public string? Alias { get; set; }
 
         public string PlayerId { get; set; }
         [JsonIgnore]
@@ -35,9 +41,5 @@ namespace BeatLeader_Server.Models {
         [NotMapped]
         [JsonIgnore]
         public ICollection<PlayerSearch> Searches { get => PlayerInstance != null ? PlayerInstance.Searches : new List<PlayerSearch>(); set => PlayerInstance.Searches = value;  }
-
-        [NotMapped]
-        [JsonIgnore]
-        public string Name { get => PlayerInstance != null ? PlayerInstance.Name : ""; set => PlayerInstance.Name = value; }
     }
 }

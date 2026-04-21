@@ -104,6 +104,13 @@ namespace BeatLeader_Server.Utils {
                 Rank = extension.Rank;
                 CountryRank = extension.CountryRank;
             }
+
+            public virtual void ToContext(PlayerResponse extension) {
+                Pp = extension.Pp;
+
+                Rank = extension.Rank;
+                CountryRank = extension.CountryRank;
+            }
         }
         public class PlayerResponseWithFriends : PlayerResponse {
             public ICollection<string>? Friends { get; set; }
@@ -137,6 +144,7 @@ namespace BeatLeader_Server.Utils {
                     extension.ScoreStats.WatchedReplays = ScoreStats.WatchedReplays;
                     extension.ScoreStats.AnonimusReplayWatched = ScoreStats.AnonimusReplayWatched;
                     extension.ScoreStats.AuthorizedReplayWatched = ScoreStats.AuthorizedReplayWatched;
+                    extension.ScoreStats.ReplaysWatched = ScoreStats.ReplaysWatched;
                 }
                 ScoreStats = extension.ScoreStats;
 
@@ -232,7 +240,7 @@ namespace BeatLeader_Server.Utils {
         }
 
         public class LeaderboardsResponse {
-            public Song Song { get; set; }
+            public SongResponse2 Song { get; set; }
             public ICollection<LeaderboardsInfoResponse> Leaderboards { get; set; }
         }
 
@@ -310,6 +318,7 @@ namespace BeatLeader_Server.Utils {
             public ICollection<Clan> BannedClans { get; set; } = new List<Clan>();
             public ICollection<Playlist>? Playlists { get; set; }
             public ICollection<PlayerResponseFull>? Friends { get; set; }
+            public List<ValentineMessageResponse>? Valentines { get; set; }
             public ICollection<string?>? Ids { get; set; }
             public bool HideFriends { get; set; }
             public AliasRequest? AliasRequest { get; set; }
@@ -357,6 +366,8 @@ namespace BeatLeader_Server.Utils {
             public int Value { get; set; }
             public int Mode { get; set; }
             public string DifficultyName { get; set; }
+            public string? CustomDifficultyName { get; set; }
+            public string? MapVersion { get; set; }
             public string ModeName { get; set; }
             public DifficultyStatus Status { get; set; }
             public ModifiersMap? ModifierValues { get; set; } = new ModifiersMap();
@@ -374,10 +385,14 @@ namespace BeatLeader_Server.Utils {
             public float? PassRating { get; set; }
             public float? AccRating { get; set; }
             public float? TechRating { get; set; }
+            public float? MultiRating { get; set; }
             public MapTypes Type { get; set; }
 
             public float Njs { get; set; }
             public float Nps { get; set; }
+            public float? LinearPercentage { get; set; }
+            public float? PeakSustainedEBPM { get; set; }
+            public float NoteJumpStartBeatOffset { get; set; }
             public int Notes { get; set; }
             public int Chains { get; set; }
             public int Sliders { get; set; }
@@ -387,6 +402,8 @@ namespace BeatLeader_Server.Utils {
             public double Duration { get; set; }
 
             public Requirements Requirements { get; set; }
+
+            public DifficultyStatistics? DifficultyStatistics { get; set; }
 
             public void HideRatings() {
                 this.AccRating = null;
@@ -464,6 +481,28 @@ namespace BeatLeader_Server.Utils {
             public ICollection<DifficultyDescription> Difficulties { get; set; }
             public ICollection<ExternalStatus>? ExternalStatuses { get; set; }
             public IdolDescription? IdolDescription { get; set; }
+        }
+
+        public class SongResponse2 {
+            public string Id { get; set; }
+            public string Hash { get; set; }
+            public string Name { get; set; }
+            public string? SubName { get; set; }
+            public string Author { get; set; }
+            public string Mapper { get; set; }
+            public ICollection<MapperResponse>? Mappers { get; set; }
+            public int MapperId { get; set; }
+            public string CoverImage { get; set; }
+            public string? FullCoverImage { get; set; }
+            public string DownloadUrl { get; set; }
+            public string? VideoPreviewUrl { get; set; }
+            public double Bpm { get; set; }
+            public double Duration { get; set; }
+            public int UploadTime { get; set; }
+            public SongExplicitStatus Explicity { get; set; }
+            public ICollection<DifficultyResponse> Difficulties { get; set; }
+            public ICollection<ExternalStatus>? ExternalStatuses { get; set; }
+            public ICollection<string>? LeaderboardIds { get; set; }
         }
 
         public class LeaderboardResponse {

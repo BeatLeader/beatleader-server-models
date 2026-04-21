@@ -15,6 +15,9 @@ namespace BeatLeader_Server.Models
         public int Type { get; set; } = 0;
         public int Timeset { get; set; } = 0;
 
+        public string? LeaderboardId { get; set; }
+        public FavoriteMap? FavoriteMap { get; set; }
+
         public ICollection<VoterFeedback>? Feedbacks { get; set; }
     }
 }

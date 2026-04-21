@@ -8,5 +8,7 @@ namespace BeatLeader_Server.Models {
         public int Level { get; set; }
         public string BigIcon { get; set; }
         public string SmallIcon { get; set; }
+        public string Color { get; set; } = "";
+        public string PrestigeAnimationLink { get; set; } = "";
     }
 }

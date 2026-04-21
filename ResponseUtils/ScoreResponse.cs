@@ -85,6 +85,22 @@ namespace BeatLeader_Server.Utils
             BonusPp = extension.BonusPp;
             Modifiers = extension.Modifiers;
         }
+
+        public void ToContext(ScoreContextExtensionResponse? extension)
+        {
+            if (extension == null) return;
+
+            Weight = extension.Weight;
+            Rank = extension.Rank;
+            BaseScore = extension.BaseScore;
+            ModifiedScore = extension.ModifiedScore;
+            Accuracy = extension.Accuracy;
+            Pp = extension.Pp;
+            TechPP = extension.TechPP;
+            PassPP = extension.PassPP;
+            BonusPp = extension.BonusPp;
+            Modifiers = extension.Modifiers;
+        }
     }
 
     public class ScoreResponseWithAcc : ScoreResponse
@@ -97,6 +113,8 @@ namespace BeatLeader_Server.Utils
     {
         public string? HeadsetName { get; set; }
         public string? ControllerName { get; set; }
+
+        public float Speed { get; set; }
 
         public void FillNames() {
             HeadsetName = Hmd switch {
@@ -357,70 +375,6 @@ namespace BeatLeader_Server.Utils
                         Requirements = s.Leaderboard.Difficulty.Requirements,
                     }
                 },
-                Weight = s.Weight,
-                AccLeft = s.AccLeft,
-                AccRight = s.AccRight,
-                MaxStreak = s.MaxStreak
-            };
-        }
-
-        public static Expression<Func<Score, ScoreResponseWithAcc>> SelectWithAcc() 
-        {
-            return s => new ScoreResponseWithAcc
-            {
-                Id = s.Id,
-                BaseScore = s.BaseScore,
-                ModifiedScore = s.ModifiedScore,
-                PlayerId = s.PlayerId,
-                Accuracy = s.Accuracy,
-                Pp = s.Pp,
-                PassPP = s.PassPP,
-                AccPP = s.AccPP,
-                TechPP = s.TechPP,
-                FcAccuracy = s.FcAccuracy,
-                FcPp = s.FcPp,
-                BonusPp = s.BonusPp,
-                Rank = s.Rank,
-                Replay = s.Replay,
-                Modifiers = s.Modifiers,
-                BadCuts = s.BadCuts,
-                MissedNotes = s.MissedNotes,
-                BombCuts = s.BombCuts,
-                WallsHit = s.WallsHit,
-                Pauses = s.Pauses,
-                FullCombo = s.FullCombo,
-                Hmd = s.Hmd,
-                Controller = s.Controller,
-                MaxCombo = s.MaxCombo,
-                Timeset = s.Timeset,
-                ReplaysWatched = s.ReplayWatchedTotal,
-                Timepost = s.Timepost,
-                LeaderboardId = s.LeaderboardId,
-                Platform = s.Platform,
-                Player = new PlayerResponse
-                {
-                    Id = s.Player.Id,
-                    Name = s.Player.Name,
-                    Alias = s.Player.Alias,
-                    Platform = s.Player.Platform,
-                    Avatar = s.Player.Avatar,
-                    Country = s.Player.Country,
-
-                    Pp = s.Player.Pp,
-                    Rank = s.Player.Rank,
-                    CountryRank = s.Player.CountryRank,
-                    Role = s.Player.Role,
-                    Socials = s.Player.Socials,
-                    PatreonFeatures = s.Player.PatreonFeatures,
-                    ProfileSettings = s.Player.ProfileSettings,
-                    ClanOrder = s.Player.ClanOrder,
-                    Clans = s.Player.Clans.Select(c => new ClanResponse { Id = c.Id, Tag = c.Tag, Color = c.Color })
-                },
-                ScoreImprovement = s.ScoreImprovement,
-                RankVoting = s.RankVoting,
-                Metadata = s.Metadata,
-                Country = s.Country,
-                Offsets = s.ReplayOffsets,
                 Weight = s.Weight,
                 AccLeft = s.AccLeft,
                 AccRight = s.AccRight,

@@ -75,6 +75,19 @@ namespace BeatLeader_Server.Models
         public SongCreator MapCreator { get; set; }
         public int UploadTime { get; set; }
         public SongStatus Status { get; set; }
+
+        [JsonIgnore]
+        public bool IsCurated { get; set; }
+        [JsonIgnore]
+        public bool IsMapOfTheWeek { get; set; }
+        [JsonIgnore]
+        public bool IsNoodleMonday { get; set; }
+        [JsonIgnore]
+        public bool IsFeaturedOnCC { get; set; }
+        [JsonIgnore]
+        public bool IsBeastSaberAwarded { get; set; }
+        [JsonIgnore]
+        public bool IsBuildingBlocksAwarded { get; set; }
         public SongExplicitStatus Explicity { get; set; }
         public ICollection<DifficultyDescription> Difficulties { get; set; }
         public ICollection<Leaderboard> Leaderboards { get; set; }
@@ -83,6 +96,9 @@ namespace BeatLeader_Server.Models
 
         public int? IdolDescriptionId { get; set; }
         public IdolDescription? IdolDescription { get; set; }
+
+        [StringLength(25, MinimumLength = 0)]
+        public string? MapVersion { get; set; }
 
 
         [JsonIgnore]
@@ -182,10 +198,12 @@ namespace BeatLeader_Server.Models
                 difficulty.ModeName = diff.Characteristic;
                 difficulty.Mode = ModeForModeName(diff.Characteristic);
                 difficulty.DifficultyName = diff.Difficulty;
+                difficulty.CustomDifficultyName = diff.Label;
                 difficulty.Value = DiffForDiffName(diff.Difficulty);
                 difficulty.Hash = LowerHash;
 
                 difficulty.Njs = diff.Njs;
+                difficulty.NoteJumpStartBeatOffset = diff.Offset;
                 difficulty.Notes = diff.Notes;
                 difficulty.Bombs = diff.Bombs;
                 difficulty.Nps = diff.Nps;

@@ -18,4 +18,17 @@ namespace BeatLeader_Server.Models
 
         public int ViewCount { get; set; }
     }
+
+    public class ValentineMessage2026
+    {
+        public int Id { get; set; }
+        public string? SenderId { get; set; }
+        public string? ReceiverId { get; set; }
+
+        public string Message { get; set; }
+        public int Timeset { get; set; }
+        public bool Viewed { get; set; }
+
+        public int ViewCount { get; set; }
+    }
 }

@@ -36,6 +36,8 @@ namespace BeatLeader_Server.Models {
         public int NegativeVotes { get; set; }
         public float VoteStars { get; set; }
 
+        public int FansCount { get; set; }
+
         public int? ClanId { get; set; }
         [JsonIgnore]
         public Clan? Clan { get; set; }
@@ -47,6 +49,8 @@ namespace BeatLeader_Server.Models {
 
         [JsonIgnore]
         public ICollection<PredictedScore> PredictedScores { get; set; }
+        [JsonIgnore]
+        public ICollection<FavoriteMap> FavoriteMaps { get; set; }
     }
 
     public class LeaderboardGroup {

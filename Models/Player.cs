@@ -41,6 +41,7 @@ namespace BeatLeader_Server.Models {
         public string Platform { get; set; } = "";
         public string Avatar { get; set; } = "";
         public string WebAvatar { get; set; } = "";
+        [StringLength(7, MinimumLength = 0)]
         public string Country { get; set; } = "not set";
         
         [StringLength(40, MinimumLength = 0)]
@@ -120,6 +121,9 @@ namespace BeatLeader_Server.Models {
         public IdolCanvas? IdolCanvas { get; set; }
         public ICollection<PlayerIdolDecoration> PlayerIdolDecorations { get; set; }
         public ICollection<PlayerBonusIdol> PlayerBonusIdols { get; set; }
+
+        [JsonIgnore]
+        public ICollection<FavoriteMap> FavoriteMaps { get; set; }
 
         public void SetDefaultAvatar() {
             this.Avatar = "https://cdn.assets.beatleader.com/" + this.Platform + "avatar.png";

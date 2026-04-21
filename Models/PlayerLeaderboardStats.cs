@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReplayDecoder;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace BeatLeader_Server.Models {
     public enum EndType {
@@ -45,6 +46,8 @@ namespace BeatLeader_Server.Models {
         public int Rank { get; set; }
         public int CountryRank { get; set; }
         public string? Modifiers { get; set; }
+        [StringLength(100, MinimumLength = 0)]
+        public string ModifiersList { get; set; } = "";
         public int BadCuts { get; set; }
         public int MissedNotes { get; set; }
         public int BombCuts { get; set; }
@@ -76,6 +79,45 @@ namespace BeatLeader_Server.Models {
         public int? ScoreImprovementId { get; set; }
         public ScoreImprovement? ScoreImprovement { get; set; }
 
+        [JsonIgnore]
+        public bool HasDA { get; set; }
+        [JsonIgnore]
+        public bool HasFS { get; set; }
+        [JsonIgnore]
+        public bool HasSF { get; set; }
+        [JsonIgnore]
+        public bool HasSS { get; set; }
+        [JsonIgnore]
+        public bool HasGN { get; set; }
+        [JsonIgnore]
+        public bool HasNA { get; set; }
+        [JsonIgnore]
+        public bool HasNB { get; set; }
+        [JsonIgnore]
+        public bool HasNF { get; set; }
+        [JsonIgnore]
+        public bool HasNO { get; set; }
+        [JsonIgnore]
+        public bool HasPM { get; set; }
+        [JsonIgnore]
+        public bool HasSC { get; set; }
+        [JsonIgnore]
+        public bool HasSA { get; set; }
+        [JsonIgnore]
+        public bool HasOP { get; set; }
+        [JsonIgnore]
+        public bool HasEZ { get; set; }
+        [JsonIgnore]
+        public bool HasHD { get; set; }
+        [JsonIgnore]
+        public bool HasSMC { get; set; }
+        [JsonIgnore]
+        public bool HasOHP { get; set; }
+        [JsonIgnore]
+        public bool HasBSF { get; set; }
+        [JsonIgnore]
+        public bool HasBFS { get; set; }
+
         public void FromScore(Score score) {
             ScoreId = score.Id;
             BaseScore = score.BaseScore;
@@ -90,7 +132,7 @@ namespace BeatLeader_Server.Models {
             Weight = score.Weight;
             Rank = score.Rank;
             CountryRank = score.CountryRank;
-            Modifiers = score.Modifiers;
+            ModifiersList = score.Modifiers ?? "";
             BadCuts = score.BadCuts;
             MissedNotes = score.MissedNotes;
             BombCuts = score.BombCuts;
@@ -161,6 +203,26 @@ namespace BeatLeader_Server.Models {
                     Modifiers = score.ScoreImprovement.Modifiers
                 };
             }
+
+            HasDA = score.HasDA;
+            HasFS = score.HasFS;
+            HasSF = score.HasSF;
+            HasSS = score.HasSS;
+            HasGN = score.HasGN;
+            HasNA = score.HasNA;
+            HasNB = score.HasNB;
+            HasNF = score.HasNF;
+            HasNO = score.HasNO;
+            HasPM = score.HasPM;
+            HasSC = score.HasSC;
+            HasSA = score.HasSA;
+            HasOP = score.HasOP;
+            HasEZ = score.HasEZ;
+            HasHD = score.HasHD;
+            HasSMC = score.HasSMC;
+            HasOHP = score.HasOHP;
+            HasBSF = score.HasBFS;
+            HasBFS = score.HasBSF;
         }
     }
 }
