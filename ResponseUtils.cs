@@ -93,6 +93,7 @@ namespace BeatLeader_Server.Utils {
 
             public PatreonFeatures? PatreonFeatures { get; set; }
             public ProfileSettings? ProfileSettings { get; set; }
+            public RichPresence? RichPresence { get; set; }
 
             [JsonIgnore]
             public string ClanOrder { get; set; } = "";

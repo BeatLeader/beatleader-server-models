@@ -10,6 +10,12 @@
         public string RightSaberColor { get; set; } = "";
     }
 
+    public enum ReplayStreaming {
+        Private,
+        Friends,
+        Public
+    }
+
     public class ProfileSettings
     {
         public int Id { get; set; }
@@ -31,5 +37,9 @@
         public bool ShowExplicitCovers { get; set; }
         public bool ShowStatsPublic { get; set; }
         public bool ShowStatsPublicPinned { get; set; } = true;
+
+        public bool RichPresenceEnabled { get; set; }
+        public ReplayStreaming StreamingViewPermissions { get; set; }
+        public ReplayStreaming StreamingCommentPermissions { get; set; }
     }
 }

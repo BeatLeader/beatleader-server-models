@@ -119,6 +119,7 @@ namespace BeatLeader_Server.Models {
 
         public EarthDayMap? EarthDayMap { get; set; }
         public IdolCanvas? IdolCanvas { get; set; }
+        public RichPresence? RichPresence { get; set; }
         public ICollection<PlayerIdolDecoration> PlayerIdolDecorations { get; set; }
         public ICollection<PlayerBonusIdol> PlayerBonusIdols { get; set; }
 
