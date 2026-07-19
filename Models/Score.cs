@@ -231,6 +231,8 @@ namespace BeatLeader_Server.Models
         public ICollection<ScoreExternalStatus>? ExternalStatuses { get; set; }
         public int SotwNominations { get; set; }
         public bool LeftHanded { get; set; }
+        [JsonIgnore]
+        public int StorageTier { get; set; }
 
         public float Speed { get; set; }
 

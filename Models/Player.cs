@@ -125,6 +125,15 @@ namespace BeatLeader_Server.Models {
 
         [JsonIgnore]
         public ICollection<FavoriteMap> FavoriteMaps { get; set; }
+        [JsonIgnore]
+        public ICollection<RankedPlayProfile> RankedPlayProfiles { get; set; }
+
+        [JsonIgnore]
+        [InverseProperty("PlayerA")]
+        public ICollection<RankedPlayMatch>? MatchesAsPlayerA { get; set; }
+        [JsonIgnore]
+        [InverseProperty("PlayerB")]
+        public ICollection<RankedPlayMatch>? MatchesAsPlayerB { get; set; }
 
         public void SetDefaultAvatar() {
             this.Avatar = "https://cdn.assets.beatleader.com/" + this.Platform + "avatar.png";

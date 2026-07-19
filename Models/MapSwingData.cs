@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BeatLeader_Server.Models {
+    [Index(nameof(DifficultyStatisticsId))]
     public class MapSwingData {
 
         public int Id { get; set; }
@@ -29,5 +31,6 @@ namespace BeatLeader_Server.Models {
         public bool IsStream { get; set; } = false;
         public double SwingDiff { get; set; } = 0;
         public double SwingTech { get; set; } = 0;
+        public int DifficultyStatisticsId { get; set; }
     }
 }

@@ -361,6 +361,22 @@ namespace BeatLeader_Server.Utils {
             public Requirements Requirements { get; set; }
         }
 
+        public class DifficultyStatisticsResponse {
+            public int Id { get; set; }
+            public int Stacks { get; set; }
+            public int Towers { get; set; }
+            public int Sliders { get; set; }
+            public int CurvedSliders { get; set; }
+            public int Windows { get; set; }
+            public int SlantedWindows { get; set; }
+            public int DodgeWalls { get; set; }
+            public int CrouchWalls { get; set; }
+            public int ParityErrors { get; set; }
+            public int BombAvoidances { get; set; }
+            public int LinearSwings { get; set; }
+            public List<MapSwingData> SwingData { get; set; }
+        }
+
         public class DifficultyResponse
         {
             public int Id { get; set; }
@@ -404,7 +420,7 @@ namespace BeatLeader_Server.Utils {
 
             public Requirements Requirements { get; set; }
 
-            public DifficultyStatistics? DifficultyStatistics { get; set; }
+            public DifficultyStatisticsResponse? DifficultyStatistics { get; set; }
 
             public void HideRatings() {
                 this.AccRating = null;
@@ -720,6 +736,7 @@ namespace BeatLeader_Server.Utils {
             public string MainColor { get; set; }
             public string SecondaryColor { get; set; }
             public string? PageAlias { get; set; }
+            public PlayerResponse? Leader2 { get; set; }
         }
 
         public class ParticipatingEventResponse {

@@ -18,6 +18,5 @@ namespace BeatLeader_Server.Models {
         public int ParityErrors { get; set; }
         public int BombAvoidances { get; set; }
         public int LinearSwings { get; set; }
-        public List<MapSwingData> SwingData { get; set; }
     }
 }

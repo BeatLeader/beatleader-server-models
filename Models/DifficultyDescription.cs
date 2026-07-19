@@ -42,7 +42,8 @@ namespace BeatLeader_Server.Models
         VNJS = 1 << 7,
         Vivify = 1 << 8,
         V3Pepega = 1 << 9,
-        GroupLighting = 1 << 10
+        GroupLighting = 1 << 10,
+        AudioLink = 1 << 11
     }
 
     [Flags]
@@ -140,6 +141,8 @@ namespace BeatLeader_Server.Models
         public bool RequiresV3Pepega { get; set; }
         [JsonIgnore]
         public bool RequiresGroupLighting { get; set; }
+        [JsonIgnore]
+        public bool RequiresAudioLink { get; set; }
 
         public MapTypes Type { get; set; }
         [JsonIgnore]
@@ -156,6 +159,7 @@ namespace BeatLeader_Server.Models
         public bool TypeLinear { get; set; }
         [JsonIgnore]
         public bool TypeBombReset { get; set; }
+        public int? DifficultyStatisticsId { get; set; }
         [JsonIgnore]
         public DifficultyStatistics? DifficultyStatistics { get; set; }
 
