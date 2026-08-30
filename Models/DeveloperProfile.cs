@@ -7,6 +7,7 @@ namespace BeatLeader_Server.Models
         public int Id { get; set; }
         public ICollection<OpenIddictEntityFrameworkCoreApplication> OauthApps { get; set; }
         public ICollection<ModDescription> Mods { get; set; }
+        public ICollection<BotAccount> BotAccounts { get; set; }
         public bool GlobalWatermarkPermissions { get; set; }
     }
 }
