@@ -39,6 +39,7 @@
         quest3 = 79,
         contactglove = 80,
         playstationSense = 81,
+        steamFrame = 82,
         viveCosmos = 128,
     }
 }

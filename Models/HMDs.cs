@@ -55,6 +55,7 @@
         megane1 = 71,
         varjoxr3 = 72,
         meganexsuperlight = 73,
-        somniumvr1 = 74
+        somniumvr1 = 74,
+        steamFrame = 75
     }
 }
