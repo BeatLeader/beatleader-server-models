@@ -13,6 +13,8 @@ namespace BeatLeader_Server.Models
         public float SSAccRating { get; set; }
         public float SSTechRating { get; set; }
         public float SSStars { get; set; }
+        // RatingAPI lack_map_calculation.slider_percentage, for the pp curve (RebalancedPp.Curve)
+        public float SSSliderPercentage { get; set; }
 
         public float FSPeakSustainedEBPM { get; set; }
         public float FSPredictedAcc { get; set; }
@@ -20,6 +22,8 @@ namespace BeatLeader_Server.Models
         public float FSAccRating { get; set; }
         public float FSTechRating { get; set; }
         public float FSStars { get; set; }
+        // RatingAPI lack_map_calculation.slider_percentage, for the pp curve (RebalancedPp.Curve)
+        public float FSSliderPercentage { get; set; }
 
         public float SFPeakSustainedEBPM { get; set; }
         public float SFPredictedAcc { get; set; }
@@ -27,6 +31,8 @@ namespace BeatLeader_Server.Models
         public float SFAccRating { get; set; }
         public float SFTechRating { get; set; }
         public float SFStars { get; set; }
+        // RatingAPI lack_map_calculation.slider_percentage, for the pp curve (RebalancedPp.Curve)
+        public float SFSliderPercentage { get; set; }
 
         public float BFSPeakSustainedEBPM { get; set; }
         public float BFSPredictedAcc { get; set; }

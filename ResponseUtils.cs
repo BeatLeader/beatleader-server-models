@@ -402,6 +402,8 @@ namespace BeatLeader_Server.Utils {
             public float? PassRating { get; set; }
             public float? AccRating { get; set; }
             public float? TechRating { get; set; }
+            // What the map's pp curve is built from, with PredictedAcc and Notes (RatingAPI loloppe-rebalancer)
+            public float? SliderPercentage { get; set; }
             public float? MultiRating { get; set; }
             public MapTypes Type { get; set; }
 
@@ -933,6 +935,7 @@ namespace BeatLeader_Server.Utils {
 
                         Stars  = s.Leaderboard.Difficulty.Stars,
                         PredictedAcc  = s.Leaderboard.Difficulty.PredictedAcc,
+                        SliderPercentage = s.Leaderboard.Difficulty.SliderPercentage,
                         PassRating  = s.Leaderboard.Difficulty.PassRating,
                         AccRating  = s.Leaderboard.Difficulty.AccRating,
                         TechRating  = s.Leaderboard.Difficulty.TechRating,
