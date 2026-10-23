@@ -102,7 +102,6 @@ namespace BeatLeader_Server.Models
         public float? PassRating { get; set; }
         public float? AccRating { get; set; }
         public float? TechRating { get; set; }
-        // RatingAPI lack_map_calculation.slider_percentage: with PredictedAcc and Notes, what the map's pp curve is built from
         public float? SliderPercentage { get; set; }
 
         public float? MultiRating { get; set; }

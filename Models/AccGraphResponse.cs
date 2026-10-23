@@ -40,7 +40,6 @@ namespace BeatLeader_Server.Models {
         public float? AccRating { get; set; }
         [JsonIgnore]
         public float? TechRating { get; set; }
-        // What the map's pp curve is built from, for stars with modifiers
         [System.Text.Json.Serialization.JsonIgnore]
         public float? PredictedAcc { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
