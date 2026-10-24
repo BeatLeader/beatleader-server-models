@@ -103,6 +103,7 @@ namespace BeatLeader_Server.Models
         public float? AccRating { get; set; }
         public float? TechRating { get; set; }
         public float? SliderPercentage { get; set; }
+        public float? NoteSpan { get; set; }
 
         public float? MultiRating { get; set; }
         public float? LinearPercentage { get; set; }

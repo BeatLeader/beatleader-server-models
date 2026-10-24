@@ -360,6 +360,7 @@ namespace BeatLeader_Server.Utils
                         Stars = s.Leaderboard.Difficulty.Stars,
                         PredictedAcc = s.Leaderboard.Difficulty.PredictedAcc,
                         SliderPercentage = s.Leaderboard.Difficulty.SliderPercentage,
+                        NoteSpan = s.Leaderboard.Difficulty.NoteSpan,
                         PassRating = s.Leaderboard.Difficulty.PassRating,
                         AccRating = s.Leaderboard.Difficulty.AccRating,
                         TechRating = s.Leaderboard.Difficulty.TechRating,

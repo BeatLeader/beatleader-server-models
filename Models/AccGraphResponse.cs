@@ -45,6 +45,8 @@ namespace BeatLeader_Server.Models {
         [System.Text.Json.Serialization.JsonIgnore]
         public float? SliderPercentage { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
+        public float? NoteSpan { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public int Notes { get; set; }
     }
 
